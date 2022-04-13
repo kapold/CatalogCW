@@ -44,7 +44,7 @@ namespace Catalog.Wndows
             this.Cursor = customCursor;
         }
 
-        private void AuthorizationPageSelect(object sender, RoutedEventArgs e)
+        public void AuthorizationPageSelect(object sender, RoutedEventArgs e)
         {
             navigationService.Navigate(authorizationPage);
         }

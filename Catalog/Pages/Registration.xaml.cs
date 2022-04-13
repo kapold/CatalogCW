@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Catalog.Classes;
+using Catalog.Wndows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,9 +27,28 @@ namespace Catalog.Pages
             InitializeComponent();
         }
 
-        private void RegistrationBtn()
+        private void RegisterBtn(object sender, RoutedEventArgs e)
         {
+            int isAdministractor = 0;
+            if(isAdminBoxRegistr.Text == "Да" || isAdminBoxRegistr.Text == "Yes" || isAdminBoxRegistr.Text == "1" || isAdminBoxRegistr.Text == "True")
+            {
+                isAdministractor = 1;
+            }
+            Auth.TryRegister(loginBoxRegistr.Text, passwordBoxRegistr.Password.ToString(), nameBoxRegistr.Text, surnameBoxRegistr.Text, patronymicBoxRegistr.Text, isAdministractor, addressBoxRegistr.Text, phoneNumberBoxRegistr.Text);
 
+            // Чищу поля и возвращаюсь к Входу
+            if(Auth.isSucessfullQuery)
+            {
+                loginBoxRegistr.Text = null;
+                passwordBoxRegistr.Password = null;
+                nameBoxRegistr.Text = null;
+                surnameBoxRegistr.Text = null;
+                patronymicBoxRegistr.Text = null;
+                addressBoxRegistr.Text = null;
+                phoneNumberBoxRegistr.Text = null;
+                isAdminBoxRegistr.Text = null;
+                RegisterWnd.regWnd.AuthorizationPageSelect(sender, e);
+            }
         }
     }
 }

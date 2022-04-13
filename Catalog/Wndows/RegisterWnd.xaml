@@ -75,7 +75,7 @@
 
         <!-- Логотип, кнопки смены фрейма -->
         <Frame x:Name="mainFrame" Source="/Pages/Authorization.xaml" NavigationUIVisibility="Hidden" Height="414" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2"/>
-        <Image Height="100" Width="230" Margin="0,13,0,0" Source="/Images/Logo.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Image Height="100" Width="230" Margin="0,13,0,0" Source="/Images/CatalogLogo.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Button Style="{DynamicResource authButtons}" Click="AuthorizationPageSelect" Content="Sing in" HorizontalAlignment="Left" Height="30" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="100" FontSize="16" FontFamily="Century Gothic" FontStyle="Normal" FontWeight="Bold"/>
         <Button Style="{DynamicResource authButtons}" Click="RegistrationPageSelect" Content="Register" Height="30" Margin="0,0,10,0" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontFamily="Century Gothic" HorizontalAlignment="Right" Width="100" FontWeight="Bold"/>
 

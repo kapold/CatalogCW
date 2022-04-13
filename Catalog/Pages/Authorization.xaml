@@ -158,16 +158,17 @@
             <RowDefinition Height="90*"/>
             <RowDefinition Height="68*"/>
         </Grid.RowDefinitions>
-        <!-- Sign In Btn -->
-        <Button Style="{DynamicResource authButtons}" Click="SingInBtn" Content="Sign in" HorizontalAlignment="Center" Height="30" Grid.Row="3" VerticalAlignment="Top" Width="200" FontSize="20" FontFamily="Century Gothic" FontWeight="Bold" Margin="0,14,0,0"/>
+
+        <!-- PageName -->
+        <TextBlock Height="74" TextWrapping="Wrap" Text="Log in" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="48" FontWeight="Bold" TextAlignment="Center" Margin="100,0,100,0"/>
         <!-- Login -->
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="100,4,0,0" TextWrapping="Wrap" Text="Login:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="100,4,0,0" TextWrapping="Wrap" Text="Login:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" Grid.Row="1"/>
         <TextBox x:Name="usernameTextBox" Style="{DynamicResource MainBoxStyle}" MinWidth="80" Height="30" Margin="100,24,100,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="20"/>
         <!-- Password -->
-        <TextBlock HorizontalAlignment="Left" Height="40" Grid.Row="2" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Bold" Margin="100,0,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Grid.Row="2" TextWrapping="Wrap" Text="Password:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" Margin="100,0,0,0"/>
         <PasswordBox x:Name="passwordBox" Style="{DynamicResource MainPasswordStyle}" MinWidth="80" Height="30" Margin="100,20,100,0" Grid.Row="2" VerticalAlignment="Top" FontSize="18"/>
-        <!-- Log -->
-        <TextBlock Height="74" TextWrapping="Wrap" Text="Log in" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="48" FontWeight="Bold" TextAlignment="Center" Margin="100,0,100,0"/>
+        <!-- Sign In Btn -->
+        <Button Style="{DynamicResource authButtons}" Click="SingInBtn" Content="Sign in" HorizontalAlignment="Center" Height="30" Grid.Row="3" VerticalAlignment="Top" Width="200" FontSize="20" FontFamily="Century Gothic" FontWeight="Bold" Margin="0,14,0,0"/>
 
     </Grid>
 </Page>
