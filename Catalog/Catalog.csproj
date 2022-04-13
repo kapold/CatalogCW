@@ -8,7 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\" />
+    <None Remove="Images\CatalogLogo.png" />
+    <None Remove="Images\CatalogLogo.svg" />
+    <None Remove="Images\CursorBlack.cur" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\shopImg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\CatalogLogo.png" />
+    <Resource Include="Images\CursorBlack.cur" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\shopImg.png" />
   </ItemGroup>
 
 </Project>
