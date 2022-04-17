@@ -59,6 +59,7 @@ namespace Catalog.Classes
                 }
                 connection.Close();
             }
+            // MessageBox.Show(currentUser.ToString()); // User info
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
@@ -73,7 +74,7 @@ namespace Catalog.Classes
                 connection.Open();
                 string sqlExpression = $"INSERT INTO Users(isAdmin, login, password, name, surname, patronymic, phoneNumber, Address)" +
                                        $"   VALUES({isAdmin}, '{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{phoneNumber}', '{address}')";
-                string checkUserSql = $"SELECT * FROM Users WHERE Password = '{password}' AND Login = '{login}'";
+                string checkUserSql = $"SELECT * FROM Users WHERE Login = '{login}'";
                 
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlCommand commandForCheck = new SqlCommand(checkUserSql, connection);

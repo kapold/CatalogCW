@@ -5,8 +5,63 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Catalog"
         mc:Ignorable="d"
-        Title="Catalog" Height="450" Width="800">
+        Title="Catalog" 
+        Height="550" Width="900"
+        MinHeight="400" MinWidth="300"
+        Icon="/Images/shopIcon.png">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
 
+        <!-- Menu List -->
+        <Grid Grid.RowSpan="1" Background="Cornsilk">
+            <ListView x:Name="ListViewMenu" Margin="0 20" Foreground="Black" Background="{x:Null}" 
+                      BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      IsSynchronizedWithCurrentItem="True">
+
+                <!-- All Goods Item -->
+                <ListViewItem x:Name="allGoodsItem" Height="60" MouseDoubleClick="OutputGoods">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/allGoodsIcon.png" Width="50" Height="40" 
+                               VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="All Goods" VerticalAlignment="Center" FontSize="20" 
+                                   FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ListViewItem>
+                
+                <!-- Admin Panel Item -->
+                <ListViewItem x:Name="adminPanelItem" Height="60" MouseDoubleClick="OpenAdminPanel">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/adminPanelIcon.png" Width="50" Height="50" 
+                               VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Admin Panel" VerticalAlignment="Center" FontSize="20" 
+                                   FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ListViewItem>
+
+                <!-- Sign Out Item -->
+                <ListViewItem x:Name="signOutItem" Height="60" MouseDoubleClick="OpenAuthForm">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/exitIcon.png" Width="50" Height="40" 
+                               VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Sign Out" VerticalAlignment="Center" FontSize="20" 
+                                   FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ListViewItem>
+
+            </ListView>
+        </Grid>
+        
+        <!-- Main Frame with Goods -->
+        <Frame x:Name="goodsFrame" Grid.Column="1" Height="500" VerticalAlignment="Top"/>
+
+        <!-- Search and filtration menu -->
+        <Grid Grid.Column="3" Background="Cornsilk">
+            
+        </Grid>
+        
     </Grid>
 </Window>

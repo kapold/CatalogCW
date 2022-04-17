@@ -1,0 +1,29 @@
+﻿<Window x:Class="Catalog.Wndows.AdminPanelWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Catalog.Wndows"
+        mc:Ignorable="d"
+        Title="Admin Panel" 
+        Height="300" Width="300"
+        MinHeight="300" MinWidth="300"
+        Closing="Window_Closing">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Add Good -->
+        <Button Content="Add Good" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0"/>
+        <!-- Change Good -->
+        <Button Content="Change Good" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="1"/>
+        <!-- Delete Good -->
+        <Button Content="Delete Good" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="2"/>
+        
+    </Grid>
+
+</Window>
