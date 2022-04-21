@@ -73,7 +73,7 @@ namespace Catalog.Classes
             {
                 connection.Open();
                 string sqlExpression = $"INSERT INTO Users(isAdmin, login, password, name, surname, patronymic, phoneNumber, Address)" +
-                                       $"   VALUES({isAdmin}, '{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{phoneNumber}', '{address}')";
+                                       $"   VALUES(0, '{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{phoneNumber}', '{address}')";
                 string checkUserSql = $"SELECT * FROM Users WHERE Login = '{login}'";
                 
                 SqlCommand command = new SqlCommand(sqlExpression, connection);

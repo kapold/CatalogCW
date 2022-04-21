@@ -30,10 +30,22 @@ namespace Catalog.Pages
         private void RegisterBtn(object sender, RoutedEventArgs e)
         {
             int isAdministractor = 0;
-            if(isAdminBoxRegistr.Text == "Да" || isAdminBoxRegistr.Text == "Yes" || isAdminBoxRegistr.Text == "1" || isAdminBoxRegistr.Text == "True")
+            
+            if(String.IsNullOrEmpty(loginBoxRegistr.Text) || String.IsNullOrEmpty(passwordBoxRegistr.Password) ||
+               String.IsNullOrEmpty(nameBoxRegistr.Text) || String.IsNullOrEmpty(repeatPasswordBoxRegistr.Password) ||
+               String.IsNullOrEmpty(surnameBoxRegistr.Text) || String.IsNullOrEmpty(addressBoxRegistr.Text) ||
+               String.IsNullOrEmpty(patronymicBoxRegistr.Text) || String.IsNullOrEmpty(phoneNumberBoxRegistr.Text))
             {
-                isAdministractor = 1;
+
+                MessageBox.Show("Заполните все поля!");
+                return;
             }
+            if(passwordBoxRegistr.Password != repeatPasswordBoxRegistr.Password)
+            {
+                MessageBox.Show("Пароли не совпадают!");
+                return;
+            }
+
             Auth.TryRegister(loginBoxRegistr.Text, passwordBoxRegistr.Password.ToString(), nameBoxRegistr.Text, surnameBoxRegistr.Text, patronymicBoxRegistr.Text, isAdministractor, addressBoxRegistr.Text, phoneNumberBoxRegistr.Text);
 
             // Чищу поля и возвращаюсь к Входу
@@ -46,7 +58,7 @@ namespace Catalog.Pages
                 patronymicBoxRegistr.Text = null;
                 addressBoxRegistr.Text = null;
                 phoneNumberBoxRegistr.Text = null;
-                isAdminBoxRegistr.Text = null;
+                repeatPasswordBoxRegistr.Password = null;
                 RegisterWnd.regWnd.AuthorizationPageSelect(sender, e);
             }
         }

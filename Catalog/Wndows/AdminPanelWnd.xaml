@@ -5,25 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Catalog.Wndows"
         mc:Ignorable="d"
-        Title="Admin Panel" 
-        Height="300" Width="300"
+        Title="Админ-панель" 
+        Icon="/Images/shopIcon.png" 
+        Height="600" Width="1000"
         MinHeight="300" MinWidth="300"
-        Closing="Window_Closing">
+        Closing="Window_Closing"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary Source="/Dictionaries/StaticRes.xaml"/>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
 
         <!-- Add Good -->
-        <Button Content="Add Good" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0"/>
+        <Button Style="{DynamicResource authButtons}" Click="OpenAddGoodWnd" Content="Добавить товар" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0"/>
         <!-- Change Good -->
-        <Button Content="Change Good" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="1"/>
+        <Button Style="{DynamicResource authButtons}" Click="ChangeGoodBtn" Content="Изменить товар" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="1"/>
         <!-- Delete Good -->
-        <Button Content="Delete Good" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="2"/>
-        
+        <Button Style="{DynamicResource authButtons}" Click="DeleteGoodBtn" Content="Удалить товар" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="2"/>
+        <!-- Table -->
+        <DataGrid x:Name="tableGoods" CanUserAddRows="False" Grid.RowSpan="4" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10"/>
+        <!-- Search -->
+        <TextBox Style="{StaticResource MainBoxStyle}" x:Name="searchBox" Foreground="Gray" TextChanged="SearchBox_Changed" Padding="5,0,0,0" Margin="50,59,50,47" Grid.Row="3" TextWrapping="Wrap" FontSize="26" FontFamily="Century Gothic" FontStyle="Normal"/>
+        <TextBlock Height="50" Margin="50,29,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Поиск:" VerticalAlignment="Top" FontSize="22" FontFamily="Century Gothic" FontStyle="Normal" HorizontalAlignment="Left" Width="200"/>
+
     </Grid>
 
 </Window>

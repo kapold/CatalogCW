@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Catalog"
         mc:Ignorable="d"
-        Title="Catalog" 
-        Height="550" Width="900"
+        Title="Каталог" 
+        Height="550" Width="1000"
         MinHeight="400" MinWidth="300"
-        Icon="/Images/shopIcon.png">
+        Icon="/Images/shopIcon.png"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -22,22 +23,22 @@
                       BorderBrush="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       IsSynchronizedWithCurrentItem="True">
 
-                <!-- All Goods Item -->
-                <ListViewItem x:Name="allGoodsItem" Height="60" MouseDoubleClick="OutputGoods">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Images/allGoodsIcon.png" Width="50" Height="40" 
-                               VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="All Goods" VerticalAlignment="Center" FontSize="20" 
-                                   FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                    </StackPanel>
-                </ListViewItem>
-                
                 <!-- Admin Panel Item -->
                 <ListViewItem x:Name="adminPanelItem" Height="60" MouseDoubleClick="OpenAdminPanel">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/adminPanelIcon.png" Width="50" Height="50" 
                                VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Admin Panel" VerticalAlignment="Center" FontSize="20" 
+                        <TextBlock Text="Админ панель" VerticalAlignment="Center" FontSize="20" 
+                                   FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ListViewItem>
+                
+                <!-- All Goods Item -->
+                <ListViewItem x:Name="allGoodsItem" Height="60" MouseDoubleClick="OutputGoods">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/allGoodsIcon.png" Width="50" Height="40" 
+                               VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Все товары" VerticalAlignment="Center" FontSize="20" 
                                    FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
                     </StackPanel>
                 </ListViewItem>
@@ -47,7 +48,7 @@
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/exitIcon.png" Width="50" Height="40" 
                                VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Sign Out" VerticalAlignment="Center" FontSize="20" 
+                        <TextBlock Text="Выйти" VerticalAlignment="Center" FontSize="20" 
                                    FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
                     </StackPanel>
                 </ListViewItem>
