@@ -98,5 +98,26 @@ namespace Catalog.Classes
                 connection.Close();
             }
         }
+
+        public static void DeleteUser(int id)
+        {
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sqlDelete = $"DELETE FROM Users WHERE UserID = {id}";
+
+                try
+                {
+                    SqlCommand commandDelete = new SqlCommand(sqlDelete, connection);
+                    commandDelete.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                connection.Close();
+            }
+        }
     }
 }

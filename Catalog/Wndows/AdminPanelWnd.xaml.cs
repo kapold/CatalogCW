@@ -49,7 +49,7 @@ namespace Catalog.Wndows
             int GoodID = Convert.ToInt32(good.ID);
 
             DataBase dataBase = new DataBase();
-            dataBase.Update(GoodID, good);
+            dataBase.UpdateGood(GoodID, good);
             tableGoods.ItemsSource = dataBase.GetGoods();
             dataBase.Dispose();
 
@@ -58,6 +58,13 @@ namespace Catalog.Wndows
 
         private void DeleteGoodBtn(object sender, RoutedEventArgs e)
         {
+            Good good = (Good)tableGoods.SelectedItem;
+            int GoodID = Convert.ToInt32(good.ID);
+
+            DataBase dataBase = new DataBase();
+            dataBase.DeleteGood(GoodID);
+            tableGoods.ItemsSource = dataBase.GetGoods();
+            dataBase.Dispose();
 
             MessageBox.Show("Товар удален!");
         }

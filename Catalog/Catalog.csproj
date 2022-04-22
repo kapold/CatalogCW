@@ -15,7 +15,13 @@
     <None Remove="Images\catalogMini.png" />
     <None Remove="Images\CursorBlack.cur" />
     <None Remove="Images\exitIcon.png" />
+    <None Remove="Images\guestRedact.png" />
+    <None Remove="Images\leftArrow.png" />
     <None Remove="Images\Logo.png" />
+    <None Remove="Images\logoNew.png" />
+    <None Remove="Images\profileIcon.png" />
+    <None Remove="Images\rightArrow.png" />
+    <None Remove="Images\searchIcon.png" />
     <None Remove="Images\shopIcon.png" />
   </ItemGroup>
 
@@ -30,7 +36,13 @@
     <Resource Include="Images\catalogMini.png" />
     <Resource Include="Images\CursorBlack.cur" />
     <Resource Include="Images\exitIcon.png" />
+    <Resource Include="Images\guestRedact.png" />
+    <Resource Include="Images\leftArrow.png" />
     <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\logoNew.png" />
+    <Resource Include="Images\profileIcon.png" />
+    <Resource Include="Images\rightArrow.png" />
+    <Resource Include="Images\searchIcon.png" />
     <Resource Include="Images\shopIcon.png" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
 ﻿using Catalog.Classes;
+using Catalog.Pages;
 using Catalog.Wndows;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,21 @@ namespace Catalog
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Кадры
+        public NavigationService navigationService;
+        public AllGoodsPage allGoodPage = new AllGoodsPage();
+        public static MainWindow mainWindow;
+
         public static bool ifAdminPanelOpened = false;
         public MainWindow()
         {
             InitializeComponent();
+            mainWindow = this;
+            navigationService = goodsFrame.NavigationService;
+            navigationService.Navigate(allGoodPage);
 
-            // Скрываем админ-панель если пользователь не админ
-            if(!Auth.currentUser.IsAdmin)
+            // Скрываем админ-панель, если пользователь не админ
+            if (!Auth.currentUser.IsAdmin)
             {
                 adminPanelItem.IsEnabled = false;
                 adminPanelItem.Visibility = Visibility.Hidden;
@@ -54,9 +63,41 @@ namespace Catalog
             this.Close();
         }
 
+        private void OpenProfile(object sender, RoutedEventArgs e)
+        {
+            ProfileWnd profileWnd = new ProfileWnd();
+            profileWnd.Show();
+
+            this.Close();
+        }
+
         private void OutputGoods(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void LeftArrowNavigate(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                navigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void RightArrowNavigate(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                navigationService.GoForward();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
         }
     }
 }

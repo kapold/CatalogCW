@@ -15,7 +15,7 @@
         <ResourceDictionary Source="/Dictionaries/StaticRes.xaml"/>
     </Window.Resources>
 
-    <Grid Background="Cornsilk">
+    <Grid Background="#abcdef">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="9*"/>
@@ -27,9 +27,9 @@
 
         <!-- Логотип, кнопки смены фрейма -->
         <Frame x:Name="mainFrame" Source="/Pages/Authorization.xaml" NavigationUIVisibility="Hidden" Height="414" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2"/>
-        <Image Height="100" Width="230" Margin="0,13,0,0" Source="/Images/catalogMini.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Image Height="100" Width="230" Margin="0,13,0,0" Source="/Images/logoNew.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Button Style="{DynamicResource authButtons}" Click="AuthorizationPageSelect" Content="Вход" HorizontalAlignment="Left" Height="30" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="100" FontSize="16" FontFamily="Century Gothic" FontStyle="Normal" FontWeight="Bold"/>
-        <Button Style="{DynamicResource authButtons}" Click="RegistrationPageSelect" Content="Регистрация" Height="30" Margin="130,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontFamily="Century Gothic" HorizontalAlignment="Left" Width="110" FontWeight="Bold"/>
+        <Button Style="{DynamicResource authButtons}" Click="RegistrationPageSelect" Content="Регистрация" Height="30" Margin="125,0,0,0" Grid.Row="1" VerticalAlignment="Center" FontSize="16" FontFamily="Century Gothic" HorizontalAlignment="Left" Width="115" FontWeight="Bold"/>
 
     </Grid>
 </Window>

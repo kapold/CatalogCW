@@ -28,6 +28,9 @@ namespace Catalog.Classes
 
         public void AddGood(Good g)
         {
+            //SqlTransaction transaction = connection.BeginTransaction();
+            //SqlCommand commandTrans = connection.CreateCommand();
+            //commandTrans.Transaction = transaction;
             // Редактирую приближенные значения(в c# и sql разные знаки)
             string redactedPrice = g.Price.ToString().Replace(',', '.');
             string redactedDisplay = g.Display.ToString().Replace(',', '.');
@@ -35,6 +38,7 @@ namespace Catalog.Classes
             string sqlGoods = $"INSERT INTO Goods(Name, Price, GoodCount, Firm, Description, ImageSrc, GoodType) " +
                 $"VALUES ('{g.Name}', {redactedPrice}, {g.Count}, '{g.Firm}', '{g.Description}', '{g.ImageSrc}', '{g.Type}');";
             string sqlCopyID = $"SELECT TOP(1) GoodID FROM Goods ORDER BY Goods.GoodID DESC; ";
+
 
             int id = 0;
             try
@@ -61,18 +65,17 @@ namespace Catalog.Classes
 
             string sqlParams = $"INSERT INTO Params(Good_ID, Display, DisplayType, Resolution, Hertz, CPU, RAM, ROM, Color, OS, Battery, Camera, NFC) " +
                 $"VALUES ({id}, {redactedDisplay}, '{g.DisplayType}', '{g.Resolution}', {g.Hertz}, '{g.CPU}', {g.RAM}, {g.ROM}, '{g.Color}', '{g.OS}', {g.Battery}, {g.Camera}, {Convert.ToInt32(g.NFC)});";
-            //MessageBox.Show(id.ToString());
-            //MessageBox.Show(sqlGoods);
-            //MessageBox.Show(sqlParams);
 
             try
             {
                 SqlCommand commandParams = new SqlCommand(sqlParams, connection);
                 commandParams.ExecuteNonQuery();
+                //transaction.Commit();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                //transaction.Rollback();
             }
         }
 
@@ -123,15 +126,10 @@ namespace Catalog.Classes
                 }
             }
 
-            //foreach(var g in goods)
-            //{
-            //    MessageBox.Show(g.ToString());
-            //}
-
             return goods;
         }
 
-        public void Update(int id, Good g)
+        public void UpdateGood(int id, Good g)
         {
             // Редактирую приближенные значения(в c# и sql разные знаки)
             string redactedPrice = g.Price.ToString().Replace(',', '.');
@@ -154,19 +152,40 @@ namespace Catalog.Classes
             }
         }
 
-        //public void Delete(Good g)
-        //{
-        //    string sql = $"";
+        public void DeleteGood(int id)
+        {
+            string sqlGoods = $"DELETE FROM Goods WHERE GoodID = {id}";
+            string sqlParams = $"DELETE FROM Params WHERE Good_ID = {id}";
 
-        //    try
-        //    {
-        //        SqlCommand command = new SqlCommand(sql, connection);
-        //        command.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+            try
+            {
+                SqlCommand commandParams = new SqlCommand(sqlParams, connection);
+                commandParams.ExecuteNonQuery();
+
+                SqlCommand commandGoods = new SqlCommand(sqlGoods, connection);
+                commandGoods.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void RedactUser(User user)
+        {
+            User redactedUser = new User();
+
+            string sqlRedact = $"UPDATE Users SET Password = '{user.Password}', Name = '{user.Name}', Surname = '{user.Surname}', Patronymic = '{user.Patronymic}', PhoneNumber = '{user.PhoneNumber}', Address = '{user.Address}' WHERE UserID = {user.ID}";
+
+            try
+            {
+                SqlCommand commandRedact = new SqlCommand(sqlRedact, connection);
+                commandRedact.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

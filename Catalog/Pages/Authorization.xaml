@@ -11,7 +11,7 @@
         <ResourceDictionary Source="/Dictionaries/StaticRes.xaml"/>
     </Page.Resources>
 
-    <Grid Background="Cornsilk">
+    <Grid Background="{x:Null}">
         <Grid.RowDefinitions>
             <RowDefinition Height="125*"/>
             <RowDefinition Height="90*"/>
@@ -23,11 +23,11 @@
         <!-- PageName -->
         <TextBlock Height="74" TextWrapping="Wrap" Text="Войти" VerticalAlignment="Center" FontFamily="Century Gothic" FontSize="48" FontWeight="Bold" TextAlignment="Center" Margin="100,0,100,0"/>
         <!-- Login -->
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="100,4,0,0" TextWrapping="Wrap" Text="Логин:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" Grid.Row="1"/>
-        <TextBox x:Name="usernameTextBox" Style="{DynamicResource MainBoxStyle}" MinWidth="80" Height="30" Margin="100,24,100,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="20"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="110,4,0,0" TextWrapping="Wrap" Text="Логин:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" Grid.Row="1"/>
+        <TextBox x:Name="usernameTextBox" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" MinWidth="80" Height="30" Margin="100,24,100,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="20"/>
         <!-- Password -->
-        <TextBlock HorizontalAlignment="Left" Height="40" Grid.Row="2" TextWrapping="Wrap" Text="Пароль:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" Margin="100,0,0,0"/>
-        <PasswordBox x:Name="passwordBox" Style="{DynamicResource MainPasswordStyle}" MinWidth="80" Height="30" Margin="100,20,100,0" Grid.Row="2" VerticalAlignment="Top" FontSize="18"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Grid.Row="2" TextWrapping="Wrap" Text="Пароль:" VerticalAlignment="Top" Width="250" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" Margin="110,0,0,0"/>
+        <PasswordBox x:Name="passwordBox" Padding="5,0,0,0" Style="{DynamicResource MainPasswordStyle}" MinWidth="80" Height="30" Margin="100,20,100,0" Grid.Row="2" VerticalAlignment="Top" FontSize="18"/>
         <!-- Sign In Btn -->
         <Button Style="{DynamicResource authButtons}" Click="SingInBtn" Content="Войти" HorizontalAlignment="Center" Height="30" Grid.Row="3" VerticalAlignment="Top" Width="200" FontSize="20" FontFamily="Century Gothic" FontWeight="Bold" Margin="0,14,0,0"/>
 

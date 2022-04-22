@@ -11,7 +11,7 @@
         <ResourceDictionary Source="/Dictionaries/StaticRes.xaml"/>
     </Page.Resources>
 
-    <Grid Background="Cornsilk">
+    <Grid Background="{x:Null}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -28,29 +28,29 @@
         <!-- PageName -->
         <TextBlock Height="74" TextWrapping="Wrap" Text="Регистрация" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="48" FontWeight="Bold" TextAlignment="Center" Margin="60,10,60,0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         <!-- Login -->
-        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Логин:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="1" Margin="32,0,0,0"/>
-        <TextBox x:Name="loginBoxRegistr" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Логин:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="1" Margin="40,0,0,0"/>
+        <TextBox x:Name="loginBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- Password -->
-        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Пароль:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="1" Grid.Column="1" Margin="33,0,0,0"/>
-        <PasswordBox x:Name="passwordBoxRegistr" Style="{DynamicResource MainPasswordStyle}" Margin="33,0,33,0" Grid.Row="1" FontSize="18" Grid.Column="1" Height="30" VerticalAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Пароль:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="1" Grid.Column="1" Margin="40,0,0,0"/>
+        <PasswordBox x:Name="passwordBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainPasswordStyle}" Margin="33,0,33,0" Grid.Row="1" FontSize="18" Grid.Column="1" Height="30" VerticalAlignment="Center"/>
         <!-- Name -->
-        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="2" Margin="32,0,0,0"/>
-        <TextBox x:Name="nameBoxRegistr" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="2" Margin="40,0,0,0"/>
+        <TextBox x:Name="nameBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- Surname -->
-        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Фамилия:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="3" Margin="32,0,0,0"/>
-        <TextBox x:Name="surnameBoxRegistr" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Фамилия:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="3" Margin="40,0,0,0"/>
+        <TextBox x:Name="surnameBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- Patronymic -->
         <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Отчество:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="4" Margin="32,0,0,0"/>
-        <TextBox x:Name="patronymicBoxRegistr" Style="{DynamicResource MainBoxStyle}" Height="31" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
+        <TextBox x:Name="patronymicBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="31" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- RepeatPassword -->
-        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Повторите пароль:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="2" Grid.Column="1" Margin="33,0,0,0"/>
-        <PasswordBox x:Name="repeatPasswordBoxRegistr" Style="{DynamicResource MainPasswordStyle}" MaxLength="4" Height="30" Grid.Row="2" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Повторите пароль:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="2" Grid.Column="1" Margin="40,0,0,0"/>
+        <PasswordBox x:Name="repeatPasswordBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainPasswordStyle}" MaxLength="4" Height="30" Grid.Row="2" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
         <!-- Address -->
-        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Адрес:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="3" Grid.Column="1" Margin="33,0,0,0"/>
-        <TextBox x:Name="addressBoxRegistr" Style="{DynamicResource MainBoxStyle}" Height="32" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Адрес:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="3" Grid.Column="1" Margin="40,0,0,0"/>
+        <TextBox x:Name="addressBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="32" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
         <!-- PhoneNumber -->
-        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Номер телефона:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="4" Grid.Column="1" Margin="33,0,0,0"/>
-        <TextBox x:Name="phoneNumberBoxRegistr" MaxLength="12" Style="{DynamicResource MainBoxStyle}" Height="31" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Номер телефона:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="4" Grid.Column="1" Margin="40,0,0,0"/>
+        <TextBox x:Name="phoneNumberBoxRegistr" Padding="5,0,0,0" MaxLength="12" Style="{DynamicResource MainBoxStyle}" Height="31" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
         <!-- Register Btn -->
         <Button Style="{DynamicResource authButtons}" Click="RegisterBtn" Content="Регистрация" Height="30" Grid.Row="5" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" FontWeight="Bold" Margin="125,10,125,0" Grid.ColumnSpan="2"/>
 

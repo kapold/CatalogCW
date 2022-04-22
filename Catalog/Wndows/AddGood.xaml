@@ -39,7 +39,7 @@
         <TextBlock TextWrapping="Wrap" Text="Фирма:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,33,34" Grid.Row="1"/>
         <TextBox x:Name="firmBox" Height="30" Margin="33,93,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="1"/>
         <!-- Display Type -->
-        <ComboBox x:Name="displayTypeBox" Grid.Column="1" Height="30" Margin="33,94,33,0" VerticalAlignment="Top" FontSize="20">
+        <ComboBox x:Name="displayTypeBox" Grid.Column="1" Height="30" Margin="33,94,33,0" VerticalAlignment="Top" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="IPS"/>
             <ComboBoxItem Content="AMOLED"/>
             <ComboBoxItem Content="OLED"/>
@@ -50,7 +50,7 @@
         <TextBlock TextWrapping="Wrap" Text="Тип экрана:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,32,34" Grid.Column="1"/>
         <!-- Type of Electronic -->
         <TextBlock TextWrapping="Wrap" Text="Тип:" FontSize="18" FontFamily="Century Gothic" Margin="34,10,33,97" Grid.Row="2"/>
-        <ComboBox x:Name="typeBox" Height="30" Margin="33,33,34,0" VerticalAlignment="Top" Grid.Row="2" FontSize="20">
+        <ComboBox x:Name="typeBox" Height="30" Margin="33,33,34,0" VerticalAlignment="Top" Grid.Row="2" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="Телефон"/>
             <ComboBoxItem Content="Планшет"/>
             <ComboBoxItem Content="Ноутбук"/>
@@ -60,7 +60,7 @@
         <TextBlock TextWrapping="Wrap" Text="Картинка:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,33,34" Grid.Row="2"/>
         <TextBox x:Name="imageBox" Height="30" Margin="33,95,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="2"/>
         <!-- Resolution -->
-        <ComboBox x:Name="resolutionBox" Grid.Column="1" Height="30" Margin="33,33,33,0" VerticalAlignment="Top" Grid.Row="1" FontSize="20">
+        <ComboBox x:Name="resolutionBox" Grid.Column="1" Height="30" Margin="33,33,33,0" VerticalAlignment="Top" Grid.Row="1" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="7680x4320 (8K UHD)"/>
             <ComboBoxItem Content="3840x2160 (4K UHD)"/>
             <ComboBoxItem Content="1920x1080 (Full HD)"/>
@@ -71,7 +71,7 @@
         <TextBlock TextWrapping="Wrap" Text="Разрешение:" FontSize="18" FontFamily="Century Gothic" Margin="34,10,32,97" Grid.Column="1" Grid.Row="1"/>
         <!-- Hertz -->
         <TextBlock TextWrapping="Wrap" Text="Герцовка:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,32,34" Grid.Column="1" Grid.Row="1"/>
-        <ComboBox x:Name="hertzBox" Grid.Column="1" Height="30" Margin="33,96,33,0" VerticalAlignment="Top" Grid.Row="1" FontSize="20">
+        <ComboBox x:Name="hertzBox" Grid.Column="1" Height="30" Margin="33,96,33,0" VerticalAlignment="Top" Grid.Row="1" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="240 Гц"/>
             <ComboBoxItem Content="144 Гц"/>
             <ComboBoxItem Content="120 Гц"/>
@@ -86,7 +86,7 @@
         <TextBox x:Name="colorBox" Height="30" Margin="35,95,32,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Grid.Row="2"/>
         <!-- RAM -->
         <TextBlock TextWrapping="Wrap" Text="RAM:" FontSize="18" FontFamily="Century Gothic" Margin="34,0,32,107" Grid.Column="2"/>
-        <ComboBox x:Name="ramBox" Grid.Column="2" Height="30" Margin="33,25,33,0" VerticalAlignment="Top" FontSize="20">
+        <ComboBox x:Name="ramBox" Grid.Column="2" Height="30" Margin="33,25,33,0" VerticalAlignment="Top" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="32 Гб"/>
             <ComboBoxItem Content="24 Гб"/>
             <ComboBoxItem Content="16 Гб"/>
@@ -96,7 +96,7 @@
         </ComboBox>
         <!-- ROM -->
         <TextBlock TextWrapping="Wrap" Text="ROM:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,32,34" Grid.Column="2"/>
-        <ComboBox x:Name="romBox" Grid.Column="2" Height="30" Margin="33,95,33,0" VerticalAlignment="Top" FontSize="20">
+        <ComboBox x:Name="romBox" Grid.Column="2" Height="30" Margin="33,95,33,0" VerticalAlignment="Top" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="4096 Гб"/>
             <ComboBoxItem Content="2048 Гб"/>
             <ComboBoxItem Content="1028 Гб"/>
@@ -106,7 +106,7 @@
         </ComboBox>
         <!-- OS -->
         <TextBlock TextWrapping="Wrap" Text="OS:" FontSize="18" FontFamily="Century Gothic" Margin="34,10,32,97" Grid.Column="2" Grid.Row="1"/>
-        <ComboBox x:Name="osBox" Grid.Column="2" Height="30" Margin="33,33,33,0" VerticalAlignment="Top" Grid.Row="1" FontSize="20">
+        <ComboBox x:Name="osBox" Grid.Column="2" Height="30" Margin="33,33,33,0" VerticalAlignment="Top" Grid.Row="1" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="macOS"/>
             <ComboBoxItem Content="Windows 11"/>
             <ComboBoxItem Content="Windows 10"/>
@@ -119,7 +119,7 @@
         <TextBox x:Name="cameraBox" Height="30" MaxLength="5" Margin="35,33,32,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Column="2" Grid.Row="2"/>
         <!-- NFC -->
         <TextBlock TextWrapping="Wrap" Text="NFC:" FontSize="18" FontFamily="Century Gothic" Margin="34,68,32,39" Grid.Column="2" Grid.Row="2"/>
-        <ComboBox x:Name="nfcBox" Grid.Column="2" Height="30" Margin="34,94,32,0" VerticalAlignment="Top" Grid.Row="2" FontSize="20">
+        <ComboBox x:Name="nfcBox" Grid.Column="2" Height="30" Margin="34,94,32,0" VerticalAlignment="Top" Grid.Row="2" FontSize="16" FontFamily="Century Gothic">
             <ComboBoxItem Content="Присутствует"/>
             <ComboBoxItem Content="Отсутствует"/>
         </ComboBox>
