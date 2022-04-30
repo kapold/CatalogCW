@@ -187,5 +187,21 @@ namespace Catalog.Classes
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public void AddOrder(Good g, User u)
+        {
+            string sqlOrder = $"INSERT INTO Orders(GoodID, OrderedCount, DeliveryDate, IsOrdered, Customer) " +
+                $"VALUES ({g.ID}, 1, '{DateTime.Now.AddDays(3).Date}', 0, {u.ID})";
+
+            try
+            {
+                SqlCommand commandOrders = new SqlCommand(sqlOrder, connection);
+                commandOrders.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

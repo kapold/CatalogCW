@@ -23,9 +23,11 @@
     <None Remove="Images\rightArrow.png" />
     <None Remove="Images\searchIcon.png" />
     <None Remove="Images\shopIcon.png" />
+    <None Remove="Images\shoppingCartIcon.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ReactiveValidation" Version="1.0.7" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
@@ -44,6 +46,7 @@
     <Resource Include="Images\rightArrow.png" />
     <Resource Include="Images\searchIcon.png" />
     <Resource Include="Images\shopIcon.png" />
+    <Resource Include="Images\shoppingCartIcon.png" />
   </ItemGroup>
 
   <ItemGroup>

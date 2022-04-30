@@ -27,17 +27,19 @@
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Add Good -->
-        <Button Style="{DynamicResource authButtons}" Click="OpenAddGoodWnd" Content="Добавить товар" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0"/>
-        <!-- Change Good -->
-        <Button Style="{DynamicResource authButtons}" Click="ChangeGoodBtn" Content="Изменить товар" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="1"/>
-        <!-- Delete Good -->
-        <Button Style="{DynamicResource authButtons}" Click="DeleteGoodBtn" Content="Удалить товар" Height="45" VerticalAlignment="Center" FontSize="24" FontFamily="Century Gothic" Margin="50,0,50,0" Grid.Row="2"/>
         <!-- Table -->
-        <DataGrid x:Name="tableGoods" CanUserAddRows="False" Grid.RowSpan="4" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10"/>
+        <DataGrid x:Name="tableGoods" ColumnWidth="*" RowBackground="LightGray" AlternatingRowBackground="White" CanUserAddRows="False" Grid.RowSpan="4" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10"/>
         <!-- Search -->
-        <TextBox Style="{StaticResource MainBoxStyle}" x:Name="searchBox" Foreground="Gray" TextChanged="SearchBox_Changed" Padding="5,0,0,0" Margin="50,59,50,47" Grid.Row="3" TextWrapping="Wrap" FontSize="26" FontFamily="Century Gothic" FontStyle="Normal"/>
+        <TextBox Style="{StaticResource MainBoxStyle}" x:Name="searchBox" MinHeight="39" Foreground="Gray" TextChanged="SearchBox_Changed" Padding="5,0,0,0" Margin="50,59,50,0" Grid.Row="3" TextWrapping="Wrap" FontSize="26" FontFamily="Century Gothic" FontStyle="Normal" Height="40" VerticalAlignment="Top"/>
         <TextBlock Height="50" Margin="50,29,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Поиск:" VerticalAlignment="Top" FontSize="22" FontFamily="Century Gothic" FontStyle="Normal" HorizontalAlignment="Left" Width="200"/>
+        <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.RowSpan="2" Width="310">
+            <!-- Add Good -->
+            <Button Style="{DynamicResource authButtons}" Margin="0,30,0,0" Click="OpenAddGoodWnd" Content="Добавить товар" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
+            <!-- Change Good -->
+            <Button Style="{DynamicResource authButtons}" Margin="0,30,0,0" Click="ChangeGoodBtn" Content="Изменить товар" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
+            <!-- Delete Good -->
+            <Button Style="{DynamicResource authButtons}" Margin="0,30,0,0" Click="DeleteGoodBtn" Content="Удалить товар" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
+        </StackPanel>
 
     </Grid>
 

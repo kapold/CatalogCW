@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Catalog"
         mc:Ignorable="d"
         Title="Каталог" 
-        Height="550" Width="1000"
-        MinHeight="400" MinWidth="300"
+        Height="600" Width="1000"
+        MinHeight="600" MinWidth="1000"
         Icon="/Images/shopIcon.png"
         WindowStartupLocation="CenterScreen">
     <Grid>
@@ -53,6 +53,16 @@
                     </StackPanel>
                 </ListViewItem>
 
+                <!-- Корзина -->
+                <ListViewItem x:Name="shoppingCartItem" Height="60" MouseDoubleClick="OpenShoppingCart">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/shoppingCartIcon.png" Width="50" Height="40" 
+                               VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Корзина" VerticalAlignment="Center" FontSize="20" 
+                                   FontFamily="Century Gothic" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ListViewItem>
+
                 <!-- Выход -->
                 <ListViewItem x:Name="signOutItem" Height="60" MouseDoubleClick="OpenAuthForm">
                     <StackPanel Orientation="Horizontal">
@@ -69,8 +79,45 @@
         <!-- Главный кадр с товарами -->
         <Frame x:Name="goodsFrame" Grid.Column="1" Margin="0,34,0,0"/>
 
-        <!-- Поиск и фильтрация -->
-        <Grid Grid.Column="3" Background="#abcdef">
+        <!-- Фильтрация -->
+        <Grid Grid.Column="2" Background="#abcdef">
+            <TextBlock Grid.Column="2" Padding="20,3,0,0" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="&lt; Фильтры &gt;" VerticalAlignment="Top" Width="250" FontSize="20" FontFamily="Century Gothic" FontWeight="Bold" FontStyle="Normal"/>
+
+            <!-- Тип -->
+            <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0,40,0,0" VerticalAlignment="Top">
+                <TextBlock Text="Тип" Margin="30,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="220"/>
+                <ComboBox x:Name="typeFilter" SelectionChanged="FilterChanged" Margin="0,0,0,0" Height="30" Width="190" FontFamily="Century Gothic" FontSize="16">
+                    <ComboBoxItem>Все товары</ComboBoxItem>
+                    <ComboBoxItem>Ноутбук</ComboBoxItem>
+                    <ComboBoxItem>Телефон</ComboBoxItem>
+                    <ComboBoxItem>Телевизор</ComboBoxItem>
+                    <ComboBoxItem>Планшет</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <!-- Цена -->
+            <StackPanel Orientation="Vertical" Height="80" Margin="0,120,0,0" VerticalAlignment="Top">
+                <TextBlock Text="Цена(от - до)" Margin="30,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="220"/>
+
+                <StackPanel Orientation="Horizontal" Width="250">
+                    <TextBox x:Name="fromPriceFilter" SelectionChanged="FilterChanged" Style="{StaticResource MainBoxStyle}" Width="100" Height="30" Margin="20,0,0,0" FontFamily="Century Gothic" FontSize="20" FontWeight="Normal" TextAlignment="Center"/>
+                    <TextBox x:Name="toPriceFilter" SelectionChanged="FilterChanged" Style="{StaticResource MainBoxStyle}" Width="100" Height="30" Margin="10,0,0,0" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20"/>
+                </StackPanel>
+            </StackPanel>
+            <!-- Фирма -->
+            <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0,200,0,0" VerticalAlignment="Top">
+                <TextBlock Text="Фирма" Margin="30,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="220"/>
+                <ComboBox x:Name="firmFilter" SelectionChanged="FilterChanged" Margin="0,0,0,0" Height="30" Width="190" FontFamily="Century Gothic" FontSize="16">
+                    <ComboBoxItem>Все фирмы</ComboBoxItem>
+                    <ComboBoxItem>Apple</ComboBoxItem>
+                    <ComboBoxItem>Xiaomi</ComboBoxItem>
+                    <ComboBoxItem>Samsung</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <!-- Размер дисплея -->
+            <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0,280,0,0" VerticalAlignment="Top">
+                <TextBlock Text="Размер дисплея" Margin="30,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="220"/>
+                <TextBox x:Name="displayFilter" SelectionChanged="FilterChanged" Style="{StaticResource MainBoxStyle}" Margin="0,0,0,0" Height="30" Width="190" FontFamily="Century Gothic" FontSize="20" FontWeight="Normal" TextAlignment="Center"/>
+            </StackPanel>
 
         </Grid>
         <!-- Кнопки вперед назад по фреймам -->
@@ -81,8 +128,9 @@
             <Image Source="/Images/rightArrow.png"/>
         </Button>
         <!-- Главный поиск -->
-        <TextBox Style="{StaticResource MainBoxStyle}" Padding="5,0,0,0" Grid.Column="1" Height="24" Margin="0,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="182" FontSize="16" FontFamily="Century Gothic"/>
+        <TextBox Style="{StaticResource MainBoxStyle}" x:Name="mainSearchBox" TextChanged="SearchBoxChanged" Padding="5,0,0,0" Grid.Column="1" Height="24" Margin="0,5,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="182" FontSize="16" FontFamily="Century Gothic"/>
         <Image Source="/Images/searchIcon.png" Grid.Column="1" Height="24" Margin="0,5,196,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="24"/>
+        <Button Style="{StaticResource authButtons}" Click="ClearFilters" Grid.Column="1" Content="Сбросить фильтры" HorizontalAlignment="Left" Height="24" Margin="135,5,0,0" VerticalAlignment="Top" Width="130" FontFamily="Century Gothic"/>
 
     </Grid>
 </Window>

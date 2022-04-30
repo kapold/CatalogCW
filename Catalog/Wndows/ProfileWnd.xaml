@@ -26,7 +26,7 @@
             <RowDefinition Height="25*"/>
             <RowDefinition Height="240*"/>
             <RowDefinition Height="75*"/>
-            <RowDefinition Height="44*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <!-- Картинка -->
         <Image Margin="10,10,10,10" Stretch="Uniform" Source="/Images/guestRedact.png" Grid.Row="1" Grid.ColumnSpan="2"/>
@@ -48,8 +48,8 @@
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="47,118,0,0" TextWrapping="Wrap" Text="Отчество: " VerticalAlignment="Top" Width="116" FontSize="20" FontWeight="Bold" FontFamily="Century Gothic" Grid.Row="1" FontStyle="Normal"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="47,142,0,0" TextWrapping="Wrap" Text="Телефон: " VerticalAlignment="Top" Width="100" FontSize="20" FontWeight="Bold" FontFamily="Century Gothic" Grid.Row="1" FontStyle="Normal"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Height="30" Margin="47,166,0,0" TextWrapping="Wrap" Text="Адрес: " VerticalAlignment="Top" Width="100" FontSize="20" FontWeight="Bold" FontFamily="Century Gothic" Grid.Row="1" FontStyle="Normal"/>
-        
-        <TextBlock x:Name="profileLogin" Grid.Column="2" Background="{x:Null}" HorizontalAlignment="Left" Height="30" Margin="158,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="20" FontStyle="Italic" FontFamily="Century Gothic"/>
+
+        <TextBox x:Name="profileLogin" BorderThickness="0" Grid.Column="2" Background="{x:Null}" HorizontalAlignment="Left" Height="30" Margin="158,20,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="20" FontStyle="Italic" FontFamily="Century Gothic"/>
         <TextBox x:Name="profilePassword" BorderThickness="0" Grid.Column="2" Background="{x:Null}" HorizontalAlignment="Left" Height="30" Margin="158,46,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="20" FontStyle="Italic" FontFamily="Century Gothic"/>
         <TextBox x:Name="profileName" BorderThickness="0" Grid.Column="2" Background="{x:Null}" HorizontalAlignment="Left" Height="30" Margin="158,70,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="20" FontStyle="Italic" FontFamily="Century Gothic"/>
         <TextBox x:Name="profileSurname" BorderThickness="0" Grid.Column="2" Background="{x:Null}" HorizontalAlignment="Left" Height="30" Margin="158,94,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="280" FontSize="20" FontStyle="Italic" FontFamily="Century Gothic"/>

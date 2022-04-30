@@ -15,7 +15,7 @@
         <ResourceDictionary Source="/Dictionaries/StaticRes.xaml"/>
     </Window.Resources>
 
-    <Grid Background="#abcdef">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="9*"/>

@@ -1,0 +1,63 @@
+﻿<Window x:Class="Catalog.Wndows.ShoppingCartWnd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Catalog.Wndows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Корзина товаров" 
+        Icon="/Images/shopIcon.png"
+        Height="500" Width="800">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.16*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Left" Height="60" Padding="0,16,120,0" Margin="10,3,0,0" TextWrapping="Wrap" Text="Корзина" VerticalAlignment="Top" Width="276" TextAlignment="Center" FontFamily="Century Gothic" FontSize="28" FontWeight="Bold" Grid.Column="1"/>
+        <Button Style="{StaticResource authButtons}" Click="ReturnToGoods" Content="Назад" Grid.Column="1" Margin="0,27,10,0" FontFamily="Century Gothic" FontSize="18" Height="30" HorizontalAlignment="Right" Width="100" VerticalAlignment="Top"/>
+
+        <ListBox x:Name="cartList" Grid.Row="1" BorderBrush="#abcdef" BorderThickness="5" Margin="114,0,114,0" Grid.ColumnSpan="3">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <StackPanel Orientation="Horizontal" Margin="5">
+
+                        <Image x:Name="goodImage" Source="{Binding ImageSrc}" Width="140" Height="160"/>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Характеристики -->
+                            <StackPanel Orientation="Vertical" Margin="5,0,150,0">
+                                <TextBlock Text="{Binding Name}" Padding="0,0,0,20" FontFamily="Century Gothic" FontSize="22" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding}"/>
+                            </StackPanel>
+                            <!-- Цена + купить -->
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="{Binding Price}" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
+                                    <TextBlock Text=" BYN" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!-- Корзина -->
+        <Button x:Name="pickCartBtn" Style="{StaticResource authButtons}" Click="PickCart" Grid.Column="1" Content="Корзина" Margin="0,27,261,0" VerticalAlignment="Top" Height="30" FontFamily="Century Gothic" FontSize="18" HorizontalAlignment="Right" Width="100"/>
+        <!-- Доставка -->
+        <Button x:Name="pickDeliveryBtn" Style="{StaticResource authButtons}" Click="PickDelivery" Grid.Column="1" Content="Доставка" Margin="0,27,156,0" VerticalAlignment="Top" Height="30" FontFamily="Century Gothic" FontSize="18" HorizontalAlignment="Right" Width="100"/>
+
+    </Grid>
+
+</Window>
