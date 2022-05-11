@@ -203,5 +203,80 @@ namespace Catalog.Classes
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public List<Order> GetOrders()
+        {
+            Order order;
+            List<Order> orders = new List<Order>();
+            string sql = $"SELECT * FROM Orders as o INNER JOIN Goods as g on o.GoodID = g.GoodID INNER JOIN Users as u on o.Customer = u.UserID WHERE UserID = {Auth.currentUser.ID}";
+            SqlCommand commandOrders = new SqlCommand(sql, connection);
+
+            using (SqlDataReader reader = commandOrders.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        order = new Order();
+                        order.OrderNo = Convert.ToInt32(reader["OrderNo"]);
+                        order.GoodID = Convert.ToInt32(reader["GoodID"]);
+                        order.GoodCount = 1;
+                        order.Customer = Convert.ToInt32(reader["Customer"]);
+
+                        // Good in Order
+                        order.Good.Name = reader["Name"].ToString();
+                        order.Good.Price = Convert.ToDouble(reader["Price"]);
+                        order.Good.Count = Convert.ToInt32(reader["GoodCount"]);
+                        order.Good.Firm = reader["Firm"].ToString();
+                        order.Good.Description = reader["Description"].ToString();
+                        order.Good.ImageSrc = reader["ImageSrc"].ToString();
+                        order.Good.Type = reader["GoodType"].ToString();
+
+                        orders.Add(order);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка в получении коллекции заказов!");
+                    connection.Close();
+                    return null;
+                }
+            }
+
+            return orders;
+        }
+
+        public List<Delivery> GetDeliveries()
+        {
+            Delivery delivery;
+            List<Delivery> deliveries = new List<Delivery>();
+            string sql = $"SELECT * FROM Deliveries as d INNER JOIN Orders as o ON d.OrderID = o.OrderNo INNER JOIN Users as u ON u.UserID = o.Customer INNER JOIN Goods as g ON o.GoodID = g.GoodID";
+            SqlCommand commandDeliveries = new SqlCommand(sql, connection);
+
+            using (SqlDataReader reader = commandDeliveries.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        delivery = new Delivery();
+                        delivery.DeliveryID = Convert.ToInt32(reader["DeliveryID"]);
+                        delivery.OrderID = Convert.ToInt32(reader["OrderID"]);
+                        delivery.DeliveryDate = Convert.ToDateTime(reader["DeliveryDate"]);
+                        delivery.DeliveryAddress = reader["DeliveryAddress"].ToString();
+
+                        deliveries.Add(delivery);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка в получении коллекции доставок!");
+                    connection.Close();
+                    return null;
+                }
+            }
+
+            return deliveries;
+        }
     }
 }

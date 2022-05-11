@@ -1,5 +1,6 @@
 ﻿using Catalog.Classes;
 using Catalog.Pages;
+using Catalog.Patterns;
 using Catalog.Wndows;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace Catalog
         public static bool ifAdminPanelOpened = false;
         public static List<Good> filterGoods = new List<Good>();
         public static List<Good> goodsMainWnd = new List<Good>();
+        public string forPrice = "";
         public MainWindow()
         {
             InitializeComponent();
@@ -40,17 +42,25 @@ namespace Catalog
             navigationService = goodsFrame.NavigationService;
             navigationService.Navigate(allGoodPage);
 
+            DataContext = new ApplicationsViewModel();
+
             typeFilter.SelectedIndex = 0;
             firmFilter.SelectedIndex = 0;
+            displayTypeFilter.SelectedIndex = 0;
+            resolutionFilter.SelectedIndex = 0;
+            ramFilter.SelectedIndex = 0;
+            romFilter.SelectedIndex = 0;
+            hertzFilter.SelectedIndex = 0;
+            colorFilter.SelectedIndex = 0;
             fromPriceFilter.Text = "0";
 
             // Цена в филтре из БД
-            //DataBase dataBase = new DataBase();
-            //goodsMainWnd = dataBase.GetGoods();
-            //dataBase.Dispose();
-            //List<Good> forPriceFilter = goodsMainWnd.OrderBy(x => x.Price).ToList();
-            //toPriceFilter.Text = Convert.ToString(forPriceFilter[0].Price);
-            //forPrice = Convert.ToString(forPriceFilter[0].Price);
+            DataBase dataBase = new DataBase();
+            goodsMainWnd = dataBase.GetGoods();
+            dataBase.Dispose();
+            List<Good> forPriceFilter = goodsMainWnd.OrderByDescending(x => x.Price).ToList();
+            toPriceFilter.Text = Convert.ToString(forPriceFilter[0].Price);
+            forPrice = Convert.ToString(forPriceFilter[0].Price);
 
             // Скрываем админ-панель, если пользователь не админ
             if (!Auth.currentUser.IsAdmin)
@@ -101,7 +111,7 @@ namespace Catalog
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -113,7 +123,7 @@ namespace Catalog
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -173,7 +183,97 @@ namespace Catalog
             {
                 filterGoods = filterGoods.Where(g => g.Display == Convert.ToDouble(displayFilter.Text)).ToList();
             }
-            //
+            // Фильтр-дисплей(тип)
+            ComboBoxItem displayTypeCBI = displayTypeFilter.SelectedItem as ComboBoxItem;
+            if (displayTypeFilter.SelectedIndex < 0 || displayTypeFilter.SelectedIndex == 0)
+            {
+                filterGoods = filterGoods;
+            }
+            else if (displayTypeFilter.SelectedIndex > 0)
+            {
+                filterGoods = filterGoods.Where(g => g.DisplayType == displayTypeCBI.Content.ToString()).ToList();
+            }
+            // Фильтр-разрешение
+            ComboBoxItem resolutionCBI = resolutionFilter.SelectedItem as ComboBoxItem;
+            if (resolutionFilter.SelectedIndex < 0 || resolutionFilter.SelectedIndex == 0)
+            {
+                filterGoods = filterGoods;
+            }
+            else if (resolutionFilter.SelectedIndex > 0)
+            {
+                filterGoods = filterGoods.Where(g => g.Resolution == resolutionCBI.Content.ToString()).ToList();
+            }
+            // Фильтр-герцовка
+            ComboBoxItem hertzCBI = hertzFilter.SelectedItem as ComboBoxItem;
+            if (hertzFilter.SelectedIndex < 0 || hertzFilter.SelectedIndex == 0)
+            {
+                filterGoods = filterGoods;
+            }
+            else if (hertzFilter.SelectedIndex > 0)
+            {
+                filterGoods = filterGoods.Where(g => g.Hertz == Convert.ToInt32(hertzCBI.Content.ToString())).ToList();
+            }
+            // Фильтр-процессор
+            if (!String.IsNullOrEmpty(cpuFilter.Text))
+            {
+                Regex regex = new Regex(cpuFilter.Text);
+                for (int i = filterGoods.Count - 1; i >= 0; i--)
+                {
+                    if (!regex.IsMatch(filterGoods[i].CPU))
+                    {
+                        filterGoods.Remove(filterGoods[i]);
+                    }
+                }
+            }
+            // Фильтр-оперативка
+            ComboBoxItem ramCBI = ramFilter.SelectedItem as ComboBoxItem;
+            if (ramFilter.SelectedIndex < 0 || ramFilter.SelectedIndex == 0)
+            {
+                filterGoods = filterGoods;
+            }
+            else if (ramFilter.SelectedIndex > 0)
+            {
+                filterGoods = filterGoods.Where(g => g.RAM == Convert.ToInt32(ramCBI.Content.ToString())).ToList();
+            }
+            // Фильтр-емкость хранилища
+            ComboBoxItem romCBI = romFilter.SelectedItem as ComboBoxItem;
+            if (romFilter.SelectedIndex < 0 || romFilter.SelectedIndex == 0)
+            {
+                filterGoods = filterGoods;
+            }
+            else if (romFilter.SelectedIndex > 0)
+            {
+                filterGoods = filterGoods.Where(g => g.ROM == Convert.ToInt32(romCBI.Content.ToString())).ToList();
+            }
+            // Фильтр-цвет
+            ComboBoxItem colorCBI = colorFilter.SelectedItem as ComboBoxItem;
+            if (colorFilter.SelectedIndex < 0 || colorFilter.SelectedIndex == 0)
+            {
+                filterGoods = filterGoods;
+            }
+            else if (colorFilter.SelectedIndex > 0)
+            {
+                filterGoods = filterGoods.Where(g => g.Color == colorCBI.Content.ToString()).ToList();
+            }
+            // Фильтр-батарея
+            if (!String.IsNullOrEmpty(fromBatteryFilter.Text) && !String.IsNullOrEmpty(toBatteryFilter.Text))
+            {
+                filterGoods = filterGoods.Where(g => g.Battery >= Convert.ToDouble(fromBatteryFilter.Text) && g.Battery <= Convert.ToDouble(toBatteryFilter.Text)).ToList();
+            }
+            // Фильтр-камера
+            if (!String.IsNullOrEmpty(cameraFilter.Text))
+            {
+                filterGoods = filterGoods.Where(g => g.Camera == Convert.ToDouble(cameraFilter.Text)).ToList();
+            }
+            // Фильтр-NFC
+            if ((bool)nfcOK.IsChecked)
+            {
+                filterGoods = filterGoods.Where(g => g.NFC == true).ToList();
+            }
+            else if ((bool)nfcNone.IsChecked)
+            {
+                filterGoods = filterGoods.Where(g => g.NFC == false).ToList();
+            }
 
 
             allGoodPage.allGoodsList.ItemsSource = filterGoods;
@@ -200,9 +300,18 @@ namespace Catalog
         {
             typeFilter.SelectedIndex = 0;
             firmFilter.SelectedIndex = 0;
+            displayTypeFilter.SelectedIndex = 0;
+            resolutionFilter.SelectedIndex = 0;
+            hertzFilter.SelectedIndex = 0;
+            ramFilter.SelectedIndex = 0;
+            romFilter.SelectedIndex = 0;
+            colorFilter.SelectedIndex = 0;
+            nfcOK.IsChecked = false;
+            nfcNone.IsChecked = false;
 
             fromPriceFilter.Text = "0";
-            toPriceFilter.Text = "";
+            toPriceFilter.Text = forPrice;
+            displayFilter.Text = "";
 
             OutputGoods(sender, e);
         }
