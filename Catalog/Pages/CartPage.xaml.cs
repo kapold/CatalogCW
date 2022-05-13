@@ -1,4 +1,5 @@
 ﻿using Catalog.Classes;
+using Catalog.Wndows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,49 @@ namespace Catalog.Pages
     /// </summary>
     public partial class CartPage : Page
     {
+        public static bool ifDeliveryOpened = false;
         public CartPage()
         {
             InitializeComponent();
 
+            GetCartGoods();
+        }
+
+        public void GetCartGoods()
+        {
             List<Order> orders = new List<Order>();
             DataBase db = new DataBase();
             orders = db.GetOrders();
             db.Dispose();
             cartList.ItemsSource = orders;
+        }
+
+        private void OpenDeliveryForm(object sender, RoutedEventArgs e)
+        {
+            Good good = new Good();
+            good = ((sender as Button).DataContext) as Good;
+            MessageBox.Show(good.ToString());
+
+            if (!ifDeliveryOpened)
+            {
+                DeliveryRegistration deliveryRegistration = new DeliveryRegistration(good);
+                deliveryRegistration.Show();
+                ifDeliveryOpened = true;
+            }
+        }
+
+        private void DeleteFromOrders(object sender, RoutedEventArgs e)
+        {
+            Order order = new Order();
+            order = ((sender as Button).DataContext) as Order;
+
+            DataBase db = new DataBase();
+            db.DeleteOrder(order);
+            db.Dispose();
+
+            MessageBox.Show("Товар удален из корзины!");
+            GetCartGoods();
+            ShoppingCartWnd.mainCartWnd.GetCurrentTotalPrice();
         }
     }
 }

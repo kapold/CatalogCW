@@ -12,5 +12,11 @@ namespace Catalog.Classes
         public int OrderID { get; set; }
         public DateTime? DeliveryDate { get; set; }
         public string? DeliveryAddress { get; set; }
+        public Order? Order { get; set; }
+
+        public Delivery()
+        {
+            Order = new Order();
+        }
     }
 }

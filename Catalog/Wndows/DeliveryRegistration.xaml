@@ -1,0 +1,43 @@
+﻿<Window x:Class="Catalog.Wndows.DeliveryRegistration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Catalog.Wndows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Оформление доставки" 
+        Height="600" Width="400"
+        MinHeight="600" MinWidth="400"
+        Closing="Window_Closing">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.3*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="1" Height="30" TextWrapping="Wrap" Text="Оформление заказа" VerticalAlignment="Top" Margin="0,5,0,0" Padding="5" FontFamily="Century Gothic" FontWeight="DemiBold" HorizontalAlignment="Center" Width="240" FontSize="18"/>
+
+        <!-- ФИО -->
+        <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,42,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="101" RadiusX="13" RadiusY="13"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,42,0,0" TextWrapping="Wrap" Text="ФИО" VerticalAlignment="Top" Width="101" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,73,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <TextBlock x:Name="FIOBox" Padding="8,4,0,0" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,73,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="200" FontFamily="Century Gothic" FontSize="14"/>
+        <!-- Товар -->
+        <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,104,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="120" RadiusX="13" RadiusY="13"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,104,0,0" TextWrapping="Wrap" Text="Товар" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <TextBlock x:Name="goodNameBox" Padding="8,4,0,0" Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,135,0,0" TextWrapping="Wrap" Text="GoodName" VerticalAlignment="Top" Width="200" FontFamily="Century Gothic" FontSize="14"/>
+        <!-- Количество -->
+        <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,166,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="160" RadiusX="13" RadiusY="13"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,166,0,0" TextWrapping="Wrap" Text="Количество" VerticalAlignment="Top" Width="130" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,197,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <TextBox x:Name="countBox" Padding="8,4,0,0" Background="Transparent" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="25,197,0,0" TextWrapping="Wrap" Text="Count" VerticalAlignment="Top" Width="200" Height="26" FontFamily="Century Gothic" FontSize="14"/>
+        <Image Source="/Images/isEditable.png" Grid.Column="1" HorizontalAlignment="Left" Height="21" Margin="157,169,0,0" VerticalAlignment="Top" Width="20"/>
+        <!--  -->
+
+    </Grid>
+
+</Window>

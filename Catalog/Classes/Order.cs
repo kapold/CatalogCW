@@ -15,6 +15,7 @@ namespace Catalog.Classes
         public int Customer { get; set; }
 
         public Good? Good { get; set; }
+        public Order? OrderLink { get; set; }
 
         public Order()
         {

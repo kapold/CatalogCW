@@ -31,10 +31,12 @@ namespace Catalog.Classes
         public int? Battery { get; set; }
         public int? Camera { get; set; }
         public bool? NFC { get; set; }
+        public Good GoodLink { get; set; }
+
 
         public override string ToString()
         {
-            return $"\t\tGood\n\n" +
+            return $"\t\t\tGood\n\n" +
                 $"ID: {ID}\n" +
                 $"Name: {Name}\n" +
                 $"Price: {Price}\n" +
@@ -55,6 +57,39 @@ namespace Catalog.Classes
                 $"Battery: {Battery}\n" +
                 $"Camera: {Camera}\n" +
                 $"NFC: {NFC}";
+        }
+
+        public string FullDecsription()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (Firm != null)
+                sb.Append($"Firm: {Firm}\n");
+            if(Display != null)
+                sb.Append($"Display: {Display}\n");
+            if (DisplayType != null)
+                sb.Append($"Display Type: {DisplayType}\n");
+            if (Resolution != null)
+                sb.Append($"Resolution: {Resolution}\n");
+            if (Hertz != null)
+                sb.Append($"Hertz: {Hertz}\n");
+            if (CPU != null)
+                sb.Append($"CPU: {CPU}\n");
+            if (RAM != null)
+                sb.Append($"RAM: {RAM}\n");
+            if (ROM != null)
+                sb.Append($"ROM: {ROM}\n");
+            if (Color != null)
+                sb.Append($"Color: {Color}\n");
+            if (OS != null)
+                sb.Append($"OS: {OS}\n");
+            if (Battery != null)
+                sb.Append($"Battery: {Battery}\n");
+            if (Camera != null)
+                sb.Append($"Camera: {Camera}\n");
+            if (NFC != null)
+                sb.Append($"NFC: {NFC}\n");
+
+            return sb.ToString();
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Catalog.Pages
     {
         public static Page goodsPage;
         public List<Good> allGoods = new List<Good>();
+        
         public AllGoodsPage()
         {
             InitializeComponent();
@@ -36,11 +37,58 @@ namespace Catalog.Pages
 
         private void AddToCart(object sender, RoutedEventArgs e)
         {
-            Good good = e.Source as Good;
-            MessageBox.Show(good.ToString());
-            //DataBase dataBase = new DataBase();
-            //dataBase.AddOrder(null, Auth.currentUser);
-            //dataBase.Dispose();
+            try
+            {
+                Good good = new Good();
+                good = ((sender as Button).DataContext) as Good;
+                MessageBox.Show(good.ToString());
+                bool ifThereIs = false;
+
+                DataBase db = new DataBase();
+                List<Order> ordersInCart = db.GetOrders().ToList();
+                db.Dispose();
+
+                foreach (Order item in ordersInCart)
+                {
+                    MessageBox.Show(item.Good.ToString());
+                    if (item.Good.ID == good.ID)
+                    {
+                        ifThereIs = true;
+                    }
+                }
+
+                if (ifThereIs)
+                {
+                    MessageBox.Show("Такой товар уже находится в корзине!");
+                }
+                else
+                {
+                    DataBase dataBase = new DataBase();
+                    dataBase.AddOrder(good, Auth.currentUser);
+                    dataBase.Dispose();
+                    MessageBox.Show("Товар успешно добавлен в корзину!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
+        }
+
+        private void ShowDescription(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Good good = new Good();
+                good = ((sender as Button).DataContext) as Good;
+
+                GoodDescriptionPage goodDescriptionPage = new GoodDescriptionPage(good);
+                MainWindow.mainWindow.navigationService.Navigate(goodDescriptionPage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка: " + ex.Message);
+            }
         }
     }
 }

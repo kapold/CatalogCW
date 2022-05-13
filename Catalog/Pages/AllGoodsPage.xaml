@@ -28,7 +28,8 @@
                                     <TextBlock Text="{Binding Price}" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold" />
                                     <TextBlock Text=" BYN" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
                                 </StackPanel>
-                                <Button Style="{StaticResource authButtons}"  Width="100" Height="30" Content="В корзину" FontSize="18" FontFamily="Century Gothic" Click="AddToCart"/>
+                                <Button Style="{StaticResource authButtons}" DataContext="{Binding GoodLink}" Width="110" Height="30" Content="В корзину" FontSize="18" FontFamily="Century Gothic" Click="AddToCart"/>
+                                <Button Style="{StaticResource authButtons}" DataContext="{Binding GoodLink}" Margin="0,10,0,0"  Width="110" Height="30" Content="Подробнее" FontSize="18" FontFamily="Century Gothic" Click="ShowDescription"/>
                             </StackPanel>
                         </StackPanel>
 

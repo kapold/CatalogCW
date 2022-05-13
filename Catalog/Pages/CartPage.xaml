@@ -16,10 +16,12 @@
                     <StackPanel Orientation="Horizontal" Margin="5">
 
                         <StackPanel Orientation="Horizontal">
+                            <Image x:Name="goodImage" Source="{Binding Good.ImageSrc}" Width="140" Height="160"/>
                             <!-- Характеристики -->
-                            <StackPanel Orientation="Vertical" Margin="5,0,150,0">
+                            <StackPanel Orientation="Vertical" Margin="5,0,100,0">
                                 <TextBlock Text="{Binding OrderNo}" Padding="0,0,0,20" FontFamily="Century Gothic" FontSize="22" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding Good}"/>
+                                <TextBlock Text="{Binding Good.Name}" Padding="0,0,0,10" FontSize="18" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Binding Good.Description}" FontSize="12" TextWrapping="Wrap" Width="160"/>
                             </StackPanel>
                             <!-- Цена -->
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
@@ -27,6 +29,8 @@
                                     <TextBlock Text="{Binding Good.Price}" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
                                     <TextBlock Text=" BYN" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
                                 </StackPanel>
+                                <Button Style="{StaticResource authButtons}" DataContext="{Binding Good.GoodLink}" Margin="0,0,0,6" Width="100" Height="30" Content="Заказать" FontSize="18" FontFamily="Century Gothic" Click="OpenDeliveryForm"/>
+                                <Button Style="{StaticResource authButtons}" DataContext="{Binding OrderLink}" Width="100" Height="30" Content="Удалить" FontSize="18" FontFamily="Century Gothic" Click="DeleteFromOrders"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -35,7 +39,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
 
     </Grid>
 

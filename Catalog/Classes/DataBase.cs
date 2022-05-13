@@ -115,6 +115,8 @@ namespace Catalog.Classes
                         good.Camera = Convert.ToInt32(reader["Camera"]);
                         good.NFC = Convert.ToBoolean(reader["NFC"]);
 
+                        good.GoodLink = good;
+
                         goods.Add(good);
                     }
                 }
@@ -190,8 +192,23 @@ namespace Catalog.Classes
 
         public void AddOrder(Good g, User u)
         {
-            string sqlOrder = $"INSERT INTO Orders(GoodID, OrderedCount, DeliveryDate, IsOrdered, Customer) " +
-                $"VALUES ({g.ID}, 1, '{DateTime.Now.AddDays(3).Date}', 0, {u.ID})";
+            string sqlOrder = $"INSERT INTO Orders(GoodID, OrderedCount, IsOrdered, Customer) " +
+                $"VALUES ({g.ID}, 1, 0, {u.ID})";
+
+            try
+            {
+                SqlCommand commandOrders = new SqlCommand(sqlOrder, connection);
+                commandOrders.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            string sqlOrder = $"DELETE FROM Orders WHERE OrderNo = {order.OrderNo}";
 
             try
             {
@@ -208,7 +225,7 @@ namespace Catalog.Classes
         {
             Order order;
             List<Order> orders = new List<Order>();
-            string sql = $"SELECT * FROM Orders as o INNER JOIN Goods as g on o.GoodID = g.GoodID INNER JOIN Users as u on o.Customer = u.UserID WHERE UserID = {Auth.currentUser.ID}";
+            string sql = $"SELECT * FROM Orders as o INNER JOIN Goods as g on o.GoodID = g.GoodID INNER JOIN Users as u on o.Customer = u.UserID INNER JOIN Params as p on p.Good_ID = g.GoodID WHERE UserID = {Auth.currentUser.ID} and IsOrdered = 0";
             SqlCommand commandOrders = new SqlCommand(sql, connection);
 
             using (SqlDataReader reader = commandOrders.ExecuteReader())
@@ -221,9 +238,11 @@ namespace Catalog.Classes
                         order.OrderNo = Convert.ToInt32(reader["OrderNo"]);
                         order.GoodID = Convert.ToInt32(reader["GoodID"]);
                         order.GoodCount = 1;
+                        order.IsOrdered = Convert.ToBoolean(reader["IsOrdered"]);
                         order.Customer = Convert.ToInt32(reader["Customer"]);
 
                         // Good in Order
+                        order.Good.ID = Convert.ToInt32(reader["GoodID"]);
                         order.Good.Name = reader["Name"].ToString();
                         order.Good.Price = Convert.ToDouble(reader["Price"]);
                         order.Good.Count = Convert.ToInt32(reader["GoodCount"]);
@@ -231,13 +250,31 @@ namespace Catalog.Classes
                         order.Good.Description = reader["Description"].ToString();
                         order.Good.ImageSrc = reader["ImageSrc"].ToString();
                         order.Good.Type = reader["GoodType"].ToString();
+                        // Params
+                        order.Good.Display = Convert.ToDouble(reader["Display"]);
+                        order.Good.DisplayType = reader["DisplayType"].ToString();
+                        order.Good.Resolution = reader["Resolution"].ToString();
+                        order.Good.Hertz = Convert.ToInt32(reader["Hertz"]);
+                        order.Good.CPU = reader["CPU"].ToString();
+                        order.Good.RAM = Convert.ToInt32(reader["RAM"]);
+                        order.Good.ROM = Convert.ToInt32(reader["ROM"]);
+                        order.Good.Color = reader["Color"].ToString();
+                        order.Good.OS = reader["OS"].ToString();
+                        order.Good.Battery = Convert.ToInt32(reader["Battery"]);
+                        order.Good.Camera = Convert.ToInt32(reader["Camera"]);
+                        order.Good.NFC = Convert.ToBoolean(reader["NFC"]);
+
+                        order.Good.GoodLink = order.Good;
+                        order.OrderLink = order;
+
+                        MessageBox.Show(order.Good.GoodLink.ToString());
 
                         orders.Add(order);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ошибка в получении коллекции заказов!");
+                    //MessageBox.Show("Ошибка в получении коллекции заказов!");
                     connection.Close();
                     return null;
                 }
@@ -250,7 +287,7 @@ namespace Catalog.Classes
         {
             Delivery delivery;
             List<Delivery> deliveries = new List<Delivery>();
-            string sql = $"SELECT * FROM Deliveries as d INNER JOIN Orders as o ON d.OrderID = o.OrderNo INNER JOIN Users as u ON u.UserID = o.Customer INNER JOIN Goods as g ON o.GoodID = g.GoodID";
+            string sql = $"SELECT * FROM Deliveries as d INNER JOIN Orders as o ON d.OrderID = o.OrderNo INNER JOIN Goods as g ON o.GoodID = g.GoodID INNER JOIN Users as u ON u.UserID = o.Customer WHERE UserID = {Auth.currentUser.ID} and IsOrdered = 1";
             SqlCommand commandDeliveries = new SqlCommand(sql, connection);
 
             using (SqlDataReader reader = commandDeliveries.ExecuteReader())
@@ -265,12 +302,19 @@ namespace Catalog.Classes
                         delivery.DeliveryDate = Convert.ToDateTime(reader["DeliveryDate"]);
                         delivery.DeliveryAddress = reader["DeliveryAddress"].ToString();
 
+                        delivery.Order.OrderNo = Convert.ToInt32(reader["OrderNo"]);
+                        delivery.Order.GoodCount = Convert.ToInt32(reader["OrderedCount"]);
+
+                        delivery.Order.Good.ImageSrc = reader["ImageSrc"].ToString();
+                        delivery.Order.Good.Name = reader["Name"].ToString();
+                        delivery.Order.Good.Price = Convert.ToDouble(reader["Price"]);
+
                         deliveries.Add(delivery);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ошибка в получении коллекции доставок!");
+                    //MessageBox.Show("Ошибка в получении коллекции доставок!");
                     connection.Close();
                     return null;
                 }

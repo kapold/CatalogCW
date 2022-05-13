@@ -17,24 +17,17 @@ using System.Windows.Shapes;
 namespace Catalog.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для DeliveryPage.xaml
+    /// Логика взаимодействия для GoodDescriptionPage.xaml
     /// </summary>
-    public partial class DeliveryPage : Page
+    public partial class GoodDescriptionPage : Page
     {
-        public DeliveryPage()
+        public GoodDescriptionPage(Good good)
         {
             InitializeComponent();
 
-            GetCartDeliveries();
-        }
-
-        public void GetCartDeliveries()
-        {
-            List<Delivery> deliveries = new List<Delivery>();
-            DataBase db = new DataBase();
-            deliveries = db.GetDeliveries();
-            db.Dispose();
-            deliveryList.ItemsSource = deliveries;
+            imageDescription.Source = new BitmapImage(new Uri(good.ImageSrc, UriKind.Absolute));
+            goodNameDescription.Text = good.Name;
+            fullDecription.Text = good.FullDecsription();
         }
     }
 }

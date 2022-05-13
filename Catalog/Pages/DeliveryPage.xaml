@@ -9,7 +9,50 @@
       Title="DeliveryPage">
 
     <Grid Background="White">
-        
+
+        <ListBox x:Name="deliveryList">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <StackPanel Orientation="Horizontal" Margin="5">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image x:Name="goodImage" Source="{Binding Order.Good.ImageSrc}" Width="140" Height="160"/>
+                            <!-- Характеристики -->
+                            <StackPanel Orientation="Vertical" Margin="5,0,20,0">
+                                <TextBlock Text="{Binding Order.Good.Name}" Padding="0,0,0,10" FontSize="18" FontWeight="DemiBold"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Адрес доставки: " FontSize="14" FontWeight="DemiBold"/>
+                                    <TextBlock Text="{Binding DeliveryAddress}" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Дата доставки: " FontSize="14" FontWeight="DemiBold"/>
+                                    <TextBlock Text="{Binding DeliveryDate}" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Количество: " FontSize="14" FontWeight="DemiBold"/>
+                                    <TextBlock Text="{Binding Order.GoodCount}" TextWrapping="Wrap" Width="50" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="{Binding Order.Good.Price}" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
+                                    <TextBlock Text=" BYN" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <!-- Цена -->
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Text="{Binding Order.Good.Price}" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
+                                    <TextBlock Text=" BYN" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
     </Grid>
     
 </Page>

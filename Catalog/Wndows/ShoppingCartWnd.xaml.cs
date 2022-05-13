@@ -23,6 +23,7 @@ namespace Catalog.Wndows
     public partial class ShoppingCartWnd : Window
     {
         public double totalPrice = 0;
+        public static ShoppingCartWnd mainCartWnd = new ShoppingCartWnd();
         public NavigationService navigationService;
         public CartPage cartPage = new CartPage();
         public DeliveryPage deliveryPage = new DeliveryPage();
@@ -31,18 +32,32 @@ namespace Catalog.Wndows
             InitializeComponent();
             navigationService = mainCartFrame.NavigationService;
             navigationService.Navigate(cartPage);
+            mainCartWnd = this;
 
             pickCartBtn.Background = Brushes.LightGray;
             pickCartBtn.BorderBrush = Brushes.LightGray;
 
+            GetCurrentTotalPrice();
+        }
+
+        public void GetCurrentTotalPrice()
+        {
+            totalPrice = 0;
             DataBase db = new DataBase();
             List<Order> orders = db.GetOrders();
-            foreach (Order ord in orders)
+            if (orders == null)
             {
-                totalPrice += Convert.ToDouble(ord.Good.Price);
+                MessageBox.Show("Корзина пуста!");
+                totalPriceTB.Text = "0,00";
             }
-            totalPriceTB.Text = totalPrice.ToString();
-
+            else
+            {
+                foreach (Order ord in orders)
+                {
+                    totalPrice += Convert.ToDouble(ord.Good.Price);
+                }
+                totalPriceTB.Text = totalPrice.ToString();
+            }
         }
 
         private void ReturnToGoods(object sender, RoutedEventArgs e)
