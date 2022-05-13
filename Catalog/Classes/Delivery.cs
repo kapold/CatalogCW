@@ -12,7 +12,10 @@ namespace Catalog.Classes
         public int OrderID { get; set; }
         public DateTime? DeliveryDate { get; set; }
         public string? DeliveryAddress { get; set; }
+        //public string? DeliveryType { get; set; }
+        public string? PaymentType { get; set; }
         public Order? Order { get; set; }
+        public Delivery? DeliveryLink { get; set; }
 
         public Delivery()
         {

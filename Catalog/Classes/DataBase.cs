@@ -309,6 +309,8 @@ namespace Catalog.Classes
                         delivery.Order.Good.Name = reader["Name"].ToString();
                         delivery.Order.Good.Price = Convert.ToDouble(reader["Price"]);
 
+                        delivery.DeliveryLink = delivery;
+
                         deliveries.Add(delivery);
                     }
                 }

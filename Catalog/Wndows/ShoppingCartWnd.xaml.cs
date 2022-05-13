@@ -58,6 +58,7 @@ namespace Catalog.Wndows
                 }
                 totalPriceTB.Text = totalPrice.ToString();
             }
+            db.Dispose();
         }
 
         private void ReturnToGoods(object sender, RoutedEventArgs e)

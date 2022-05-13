@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Оформление доставки" 
-        Height="600" Width="400"
-        MinHeight="600" MinWidth="400"
+        Height="430" Width="400"
+        MinHeight="430" MinWidth="400"
         Closing="Window_Closing">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.2*"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Column="1" Height="30" TextWrapping="Wrap" Text="Оформление заказа" VerticalAlignment="Top" Margin="0,5,0,0" Padding="5" FontFamily="Century Gothic" FontWeight="DemiBold" HorizontalAlignment="Center" Width="240" FontSize="18"/>
@@ -23,20 +23,38 @@
         <!-- ФИО -->
         <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,42,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="101" RadiusX="13" RadiusY="13"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,42,0,0" TextWrapping="Wrap" Text="ФИО" VerticalAlignment="Top" Width="101" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
-        <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,73,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,73,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
         <TextBlock x:Name="FIOBox" Padding="8,4,0,0" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,73,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="200" FontFamily="Century Gothic" FontSize="14"/>
         <!-- Товар -->
         <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,104,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="120" RadiusX="13" RadiusY="13"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,104,0,0" TextWrapping="Wrap" Text="Товар" VerticalAlignment="Top" Width="120" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
-        <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
-        <TextBlock x:Name="goodNameBox" Padding="8,4,0,0" Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,135,0,0" TextWrapping="Wrap" Text="GoodName" VerticalAlignment="Top" Width="200" FontFamily="Century Gothic" FontSize="14"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,135,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <TextBlock x:Name="goodNameBox" Padding="8,4,0,0" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,135,0,0" TextWrapping="Wrap" Text="GoodName" VerticalAlignment="Top" Width="200" FontFamily="Century Gothic" FontSize="14"/>
         <!-- Количество -->
         <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,166,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="160" RadiusX="13" RadiusY="13"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,166,0,0" TextWrapping="Wrap" Text="Количество" VerticalAlignment="Top" Width="130" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
-        <Rectangle Grid.Column="1" HorizontalAlignment="Center" Height="26" Margin="0,197,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,197,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
         <TextBox x:Name="countBox" Padding="8,4,0,0" Background="Transparent" BorderThickness="0" Grid.Column="1" HorizontalAlignment="Left" Margin="25,197,0,0" TextWrapping="Wrap" Text="Count" VerticalAlignment="Top" Width="200" Height="26" FontFamily="Century Gothic" FontSize="14"/>
         <Image Source="/Images/isEditable.png" Grid.Column="1" HorizontalAlignment="Left" Height="21" Margin="157,169,0,0" VerticalAlignment="Top" Width="20"/>
-        <!--  -->
+
+        <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="190,166,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="35" RadiusX="13" RadiusY="13"/>
+        <TextBlock x:Name="maxCountBox" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="190,166,0,0" TextWrapping="Wrap" Text="M" VerticalAlignment="Top" Width="35" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
+        <!-- Дата доставки -->
+        <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,228,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,228,0,0" TextWrapping="Wrap" Text="Дата доставки" VerticalAlignment="Top" Width="167" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
+        <Image Source="/Images/isEditable.png" Grid.Column="1" HorizontalAlignment="Left" Height="21" Margin="197,231,0,0" VerticalAlignment="Top" Width="20"/>
+        <DatePicker Padding="8,4,0,0" BorderThickness="0" x:Name="deliveryDateBox" FontSize="14" FontFamily="Century Gothic" SelectedDateFormat="Short" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,259,0,0" VerticalAlignment="Top" Width="192"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,259,0,0" Stroke="Black" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <!-- Тип оплаты -->
+        <Rectangle Fill="#abcdef" Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,289,0,0" Stroke="{x:Null}" VerticalAlignment="Top" Width="200" RadiusX="13" RadiusY="13"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Height="26" Margin="25,289,0,0" TextWrapping="Wrap" Text="Вид оплаты" VerticalAlignment="Top" Width="167" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20" FontWeight="Bold" FontStyle="Normal" Foreground="White"/>
+        <Image Source="/Images/isEditable.png" Grid.Column="1" HorizontalAlignment="Left" Height="21" Margin="197,292,0,0" VerticalAlignment="Top" Width="20"/>
+        <ComboBox x:Name="paymentTypeBox" FontFamily="Century Gothic" FontSize="14" Grid.Column="1" Style="{StaticResource ComboBoxFlatStyle}" HorizontalAlignment="Left" Height="26" Margin="25,320,0,0" VerticalAlignment="Top" Width="200">
+            <ComboBoxItem>Наличными</ComboBoxItem>
+            <ComboBoxItem>Банковской картой</ComboBoxItem>
+        </ComboBox>
+        <!-- Оформить доставку -->
+        <Button Style="{StaticResource authButtons}" Click="AddToDeliveries" FontFamily="Century Gothic" FontSize="14" Grid.Column="1" Content="Оформить" HorizontalAlignment="Left" Margin="85,356,0,0" VerticalAlignment="Top" Width="92"/>
 
     </Grid>
 

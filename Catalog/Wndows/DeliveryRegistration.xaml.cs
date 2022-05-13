@@ -28,11 +28,18 @@ namespace Catalog.Wndows
             FIOBox.Text = $"{Auth.currentUser.Surname} {Auth.currentUser.Name} {Auth.currentUser.Patronymic}";
             countBox.Text = "1";
             goodNameBox.Text = good.Name;
+            deliveryDateBox.DisplayDateStart = DateTime.Now.AddDays(1);
+            deliveryDateBox.DisplayDateEnd = DateTime.Now.AddDays(7);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             CartPage.ifDeliveryOpened = false;
+        }
+
+        private void AddToDeliveries(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("WORK");
         }
     }
 }
