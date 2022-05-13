@@ -47,7 +47,7 @@ namespace Catalog.Wndows
             List<Order> orders = db.GetOrders();
             if (orders == null)
             {
-                MessageBox.Show("Корзина пуста!");
+                //MessageBox.Show("Корзина пуста!");
                 totalPriceTB.Text = "0,00";
             }
             else

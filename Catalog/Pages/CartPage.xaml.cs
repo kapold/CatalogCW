@@ -43,7 +43,7 @@ namespace Catalog.Pages
         {
             Good good = new Good();
             good = ((sender as Button).DataContext) as Good;
-            MessageBox.Show(good.ToString());
+            //MessageBox.Show(good.ToString());
 
             if (!ifDeliveryOpened)
             {

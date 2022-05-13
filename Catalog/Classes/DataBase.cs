@@ -270,7 +270,7 @@ namespace Catalog.Classes
                         order.Good.GoodLink = order.Good;
                         order.OrderLink = order;
 
-                        MessageBox.Show(order.Good.GoodLink.ToString());
+                        //MessageBox.Show(order.Good.GoodLink.ToString());
 
                         orders.Add(order);
                     }
@@ -284,6 +284,26 @@ namespace Catalog.Classes
             }
 
             return orders;
+        }
+
+        public void AddDelivery(Delivery delivery)
+        {
+            string sqlDelivery = $"INSERT INTO Deliveries(OrderID, DeliveryDate, DeliveryAddress, PaymentType, DeliveryCount) " +
+                $"VALUES ({delivery.OrderID}, '{delivery.DeliveryDate}', '{delivery.DeliveryAddress}', '{delivery.PaymentType}', {delivery.DeliveryCount})";
+            string sqlOrder = $"UPDATE Orders SET IsOrdered = 1 WHERE OrderNo = {delivery.OrderID}";
+
+            try
+            {
+                SqlCommand commandDeliveries = new SqlCommand(sqlDelivery, connection);
+                commandDeliveries.ExecuteNonQuery();
+
+                SqlCommand commandOrders = new SqlCommand(sqlOrder, connection);
+                commandOrders.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public List<Delivery> GetDeliveries()
@@ -304,6 +324,8 @@ namespace Catalog.Classes
                         delivery.OrderID = Convert.ToInt32(reader["OrderID"]);
                         delivery.DeliveryDate = Convert.ToDateTime(reader["DeliveryDate"]);
                         delivery.DeliveryAddress = reader["DeliveryAddress"].ToString();
+                        delivery.DeliveryCount = Convert.ToInt32(reader["DeliveryCount"]);
+                        delivery.PaymentType = reader["PaymentType"].ToString();
 
                         delivery.Order.OrderNo = Convert.ToInt32(reader["OrderNo"]);
                         delivery.Order.GoodCount = Convert.ToInt32(reader["OrderedCount"]);

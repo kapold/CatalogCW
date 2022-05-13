@@ -30,21 +30,25 @@
                                     <TextBlock Text="{Binding DeliveryDate}" FontSize="14"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Способ оплаты: " FontSize="14" FontWeight="DemiBold"/>
+                                    <TextBlock Text="{Binding PaymentType}" FontSize="14"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Количество: " FontSize="14" FontWeight="DemiBold"/>
-                                    <TextBlock Text="{Binding Order.GoodCount}" TextWrapping="Wrap" Width="50" FontSize="14"/>
+                                    <TextBlock Text="{Binding DeliveryCount}" TextWrapping="Wrap" Width="50" FontSize="14"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="5">
                                     <TextBlock Text="{Binding Order.Good.Price}" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
                                     <TextBlock Text=" BYN" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
                                 </StackPanel>
                             </StackPanel>
-                            <!-- Цена -->
+                            <!-- Цена --><!--
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                 <StackPanel Orientation="Horizontal" Margin="5">
                                     <TextBlock Text="{Binding Order.Good.Price}" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
                                     <TextBlock Text=" BYN" Foreground="Black" FontSize="18" FontFamily="Century Gothic" FontWeight="Bold"/>
                                 </StackPanel>
-                            </StackPanel>
+                            </StackPanel>-->
                         </StackPanel>
 
                     </StackPanel>

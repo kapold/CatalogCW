@@ -21,5 +21,14 @@ namespace Catalog.Classes
         {
             Good = new Good();
         }
+
+        public override string ToString()
+        {
+            return $"OrderNo: {OrderNo}\n" +
+                $"GoodID: {GoodID}\n" +
+                $"GoodCount: {GoodCount}\n" +
+                $"IsOrdered: {IsOrdered}\n" +
+                $"Customer: {Customer}\n";
+        }
     }
 }

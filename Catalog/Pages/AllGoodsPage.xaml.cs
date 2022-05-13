@@ -45,15 +45,19 @@ namespace Catalog.Pages
                 bool ifThereIs = false;
 
                 DataBase db = new DataBase();
-                List<Order> ordersInCart = db.GetOrders().ToList();
+                List<Order> ordersInCart = db.GetOrders();
                 db.Dispose();
 
-                foreach (Order item in ordersInCart)
+                MessageBox.Show("Блок перед циклом");
+                if(ordersInCart != null)
                 {
-                    MessageBox.Show(item.Good.ToString());
-                    if (item.Good.ID == good.ID)
+                    foreach (Order item in ordersInCart)
                     {
-                        ifThereIs = true;
+                        MessageBox.Show(item.Good.ToString());
+                        if (item.Good.ID == good.ID)
+                        {
+                            ifThereIs = true;
+                        }
                     }
                 }
 
@@ -72,6 +76,7 @@ namespace Catalog.Pages
             catch (Exception ex)
             {
                 MessageBox.Show("Ошибка: " + ex.Message);
+                MessageBox.Show("Ошибка: " + ex.Source);
             }
         }
 
