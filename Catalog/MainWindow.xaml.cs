@@ -55,12 +55,19 @@ namespace Catalog
             fromPriceFilter.Text = "0";
 
             // Цена в филтре из БД
-            DataBase dataBase = new DataBase();
-            goodsMainWnd = dataBase.GetGoods();
-            dataBase.Dispose();
-            List<Good> forPriceFilter = goodsMainWnd.OrderByDescending(x => x.Price).ToList();
-            toPriceFilter.Text = Convert.ToString(forPriceFilter[0].Price);
-            forPrice = Convert.ToString(forPriceFilter[0].Price);
+            try
+            {
+                DataBase dataBase = new DataBase();
+                goodsMainWnd = dataBase.GetGoods();
+                dataBase.Dispose();
+                List<Good> forPriceFilter = goodsMainWnd.OrderByDescending(x => x.Price).ToList();
+                toPriceFilter.Text = Convert.ToString(forPriceFilter[0].Price);
+                forPrice = Convert.ToString(forPriceFilter[0].Price);
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("Фильтр цены не установлен(нет товаров)");
+            }
 
             // Скрываем админ-панель, если пользователь не админ
             if (!Auth.currentUser.IsAdmin)

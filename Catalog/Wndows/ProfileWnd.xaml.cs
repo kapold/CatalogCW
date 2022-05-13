@@ -29,7 +29,7 @@ namespace Catalog.Wndows
 
             //savedUserLogin = Auth.currentUser.Login;
             profileLogin.Text = Auth.currentUser.Login;
-            profilePassword.Text = Auth.currentUser.Password;
+            profilePassword.Text = "********";
             profileName.Text = Auth.currentUser.Name;
             profileSurname.Text = Auth.currentUser.Surname;
             profilePatronymic.Text = Auth.currentUser.Patronymic;
@@ -64,16 +64,26 @@ namespace Catalog.Wndows
             //    connection.Close();
             //}
 
-            Auth.currentUser.Login = profileLogin.Text;
-            Auth.currentUser.Password = profilePassword.Text;
-            Auth.currentUser.Name = profileName.Text;
-            Auth.currentUser.Surname = profileSurname.Text;
-            Auth.currentUser.Patronymic = profilePatronymic.Text;
-            Auth.currentUser.PhoneNumber = profilePhone.Text;
-            Auth.currentUser.Address = profileAddress.Text;
+            try
+            {
+                if (profilePassword.Text != "********")
+                {
+                    Auth.currentUser.Password = profilePassword.Text;
+                }
+                Auth.currentUser.Login = profileLogin.Text;
+                Auth.currentUser.Name = profileName.Text;
+                Auth.currentUser.Surname = profileSurname.Text;
+                Auth.currentUser.Patronymic = profilePatronymic.Text;
+                Auth.currentUser.PhoneNumber = profilePhone.Text;
+                Auth.currentUser.Address = profileAddress.Text;
 
-            dataBase.RedactUser(Auth.currentUser);
-            dataBase.Dispose();
+                dataBase.RedactUser(Auth.currentUser);
+                dataBase.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DeleteAccount(object sender, RoutedEventArgs e)

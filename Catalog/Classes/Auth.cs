@@ -20,6 +20,7 @@ namespace Catalog.Classes
             using(SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open(); // Подключаемся к БД
+                password = Crypto.GetHash(password); // sha256
                 string sqlExpression = $"SELECT * FROM Users WHERE Password = '{password}' AND Login = '{nickname}'";
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 using(SqlDataReader reader = command.ExecuteReader())
@@ -72,6 +73,7 @@ namespace Catalog.Classes
             using(SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
+                password = Crypto.GetHash(password); // sha256
                 string sqlExpression = $"INSERT INTO Users(isAdmin, login, password, name, surname, patronymic, phoneNumber, Address)" +
                                        $"   VALUES(0, '{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{phoneNumber}', '{address}')";
                 string checkUserSql = $"SELECT * FROM Users WHERE Login = '{login}'";

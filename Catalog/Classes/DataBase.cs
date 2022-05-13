@@ -122,7 +122,7 @@ namespace Catalog.Classes
                 }
                 else
                 {
-                    MessageBox.Show("Ошибка в получении коллекции товаров!");
+                    //MessageBox.Show("Ошибка в получении коллекции товаров!");
                     connection.Close();
                     return null;
                 }
@@ -175,14 +175,17 @@ namespace Catalog.Classes
 
         public void RedactUser(User user)
         {
-            User redactedUser = new User();
-
-            string sqlRedact = $"UPDATE Users SET Password = '{user.Password}', Name = '{user.Name}', Surname = '{user.Surname}', Patronymic = '{user.Patronymic}', PhoneNumber = '{user.PhoneNumber}', Address = '{user.Address}' WHERE UserID = {user.ID}";
+            user.Password = Crypto.GetHash(user.Password);
+            string sqlRedact = $"UPDATE Users SET Login = '{user.Login}', Password = '{user.Password}', Name = '{user.Name}', Surname = '{user.Surname}', Patronymic = '{user.Patronymic}', PhoneNumber = '{user.PhoneNumber}', Address = '{user.Address}' WHERE UserID = {user.ID}";
 
             try
             {
                 SqlCommand commandRedact = new SqlCommand(sqlRedact, connection);
                 commandRedact.ExecuteNonQuery();
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show("Такой логин занят!");
             }
             catch (Exception ex)
             {
