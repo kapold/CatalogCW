@@ -107,7 +107,10 @@ namespace Catalog
 
         private void OutputGoods(object sender, RoutedEventArgs e)
         {
-
+            DataBase dataBase = new DataBase();
+            goodsMainWnd = dataBase.GetGoods();
+            dataBase.Dispose();
+            allGoodPage.allGoodsList.ItemsSource = goodsMainWnd;
         }
 
         private void LeftArrowNavigate(object sender, RoutedEventArgs e)
@@ -160,128 +163,135 @@ namespace Catalog
             DataBase dataBase = new DataBase();
             filterGoods = dataBase.GetGoods();
 
-            // Фильтр-тип
-            ComboBoxItem typeCBI = typeFilter.SelectedItem as ComboBoxItem;
-            if (typeFilter.SelectedIndex < 0 || typeFilter.SelectedIndex == 0)
+            try
             {
-                filterGoods = filterGoods;
-            }
-            else if (typeFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.Type == typeCBI.Content.ToString()).ToList();
-            }
-            // Фильтр-цена
-            if (!String.IsNullOrEmpty(fromPriceFilter.Text) && !String.IsNullOrEmpty(toPriceFilter.Text))
-            {
-                filterGoods = filterGoods.Where(g => g.Price >= Convert.ToDouble(fromPriceFilter.Text) && g.Price <= Convert.ToDouble(toPriceFilter.Text)).ToList();
-            }
-            // Фильтр-фирма
-            ComboBoxItem firmCBI = firmFilter.SelectedItem as ComboBoxItem;
-            if (firmFilter.SelectedIndex < 0 || firmFilter.SelectedIndex == 0)
-            {
-                filterGoods = filterGoods;
-            }
-            else if (firmFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.Firm == firmCBI.Content.ToString()).ToList();
-            }
-            // Фильтр-дисплей(размер)
-            if (!String.IsNullOrEmpty(displayFilter.Text))
-            {
-                filterGoods = filterGoods.Where(g => g.Display == Convert.ToDouble(displayFilter.Text)).ToList();
-            }
-            // Фильтр-дисплей(тип)
-            ComboBoxItem displayTypeCBI = displayTypeFilter.SelectedItem as ComboBoxItem;
-            if (displayTypeFilter.SelectedIndex < 0 || displayTypeFilter.SelectedIndex == 0)
-            {
-                filterGoods = filterGoods;
-            }
-            else if (displayTypeFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.DisplayType == displayTypeCBI.Content.ToString()).ToList();
-            }
-            // Фильтр-разрешение
-            ComboBoxItem resolutionCBI = resolutionFilter.SelectedItem as ComboBoxItem;
-            if (resolutionFilter.SelectedIndex < 0 || resolutionFilter.SelectedIndex == 0)
-            {
-                filterGoods = filterGoods;
-            }
-            else if (resolutionFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.Resolution == resolutionCBI.Content.ToString()).ToList();
-            }
-            // Фильтр-герцовка
-            ComboBoxItem hertzCBI = hertzFilter.SelectedItem as ComboBoxItem;
-            if (hertzFilter.SelectedIndex < 0 || hertzFilter.SelectedIndex == 0)
-            {
-                filterGoods = filterGoods;
-            }
-            else if (hertzFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.Hertz == Convert.ToInt32(hertzCBI.Content.ToString())).ToList();
-            }
-            // Фильтр-процессор
-            if (!String.IsNullOrEmpty(cpuFilter.Text))
-            {
-                Regex regex = new Regex(cpuFilter.Text);
-                for (int i = filterGoods.Count - 1; i >= 0; i--)
+                // Фильтр-тип
+                ComboBoxItem typeCBI = typeFilter.SelectedItem as ComboBoxItem;
+                if (typeFilter.SelectedIndex < 0 || typeFilter.SelectedIndex == 0)
                 {
-                    if (!regex.IsMatch(filterGoods[i].CPU))
+                    filterGoods = filterGoods;
+                }
+                else if (typeFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.Type == typeCBI.Content.ToString()).ToList();
+                }
+                // Фильтр-цена
+                if (!String.IsNullOrEmpty(fromPriceFilter.Text) && !String.IsNullOrEmpty(toPriceFilter.Text))
+                {
+                    filterGoods = filterGoods.Where(g => g.Price >= Convert.ToDouble(fromPriceFilter.Text) && g.Price <= Convert.ToDouble(toPriceFilter.Text)).ToList();
+                }
+                // Фильтр-фирма
+                ComboBoxItem firmCBI = firmFilter.SelectedItem as ComboBoxItem;
+                if (firmFilter.SelectedIndex < 0 || firmFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (firmFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.Firm == firmCBI.Content.ToString()).ToList();
+                }
+                // Фильтр-дисплей(размер)
+                if (!String.IsNullOrEmpty(displayFilter.Text))
+                {
+                    filterGoods = filterGoods.Where(g => g.Display == Convert.ToDouble(displayFilter.Text)).ToList();
+                }
+                // Фильтр-дисплей(тип)
+                ComboBoxItem displayTypeCBI = displayTypeFilter.SelectedItem as ComboBoxItem;
+                if (displayTypeFilter.SelectedIndex < 0 || displayTypeFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (displayTypeFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.DisplayType == displayTypeCBI.Content.ToString()).ToList();
+                }
+                // Фильтр-разрешение
+                ComboBoxItem resolutionCBI = resolutionFilter.SelectedItem as ComboBoxItem;
+                if (resolutionFilter.SelectedIndex < 0 || resolutionFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (resolutionFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.Resolution == resolutionCBI.Content.ToString()).ToList();
+                }
+                // Фильтр-герцовка
+                ComboBoxItem hertzCBI = hertzFilter.SelectedItem as ComboBoxItem;
+                if (hertzFilter.SelectedIndex < 0 || hertzFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (hertzFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.Hertz == Convert.ToInt32(hertzCBI.Content.ToString())).ToList();
+                }
+                // Фильтр-процессор
+                if (!String.IsNullOrEmpty(cpuFilter.Text))
+                {
+                    Regex regex = new Regex(cpuFilter.Text);
+                    for (int i = filterGoods.Count - 1; i >= 0; i--)
                     {
-                        filterGoods.Remove(filterGoods[i]);
+                        if (!regex.IsMatch(filterGoods[i].CPU))
+                        {
+                            filterGoods.Remove(filterGoods[i]);
+                        }
                     }
                 }
+                // Фильтр-оперативка
+                ComboBoxItem ramCBI = ramFilter.SelectedItem as ComboBoxItem;
+                if (ramFilter.SelectedIndex < 0 || ramFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (ramFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.RAM == Convert.ToInt32(ramCBI.Content.ToString())).ToList();
+                }
+                // Фильтр-емкость хранилища
+                ComboBoxItem romCBI = romFilter.SelectedItem as ComboBoxItem;
+                if (romFilter.SelectedIndex < 0 || romFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (romFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.ROM == Convert.ToInt32(romCBI.Content.ToString())).ToList();
+                }
+                // Фильтр-цвет
+                ComboBoxItem colorCBI = colorFilter.SelectedItem as ComboBoxItem;
+                if (colorFilter.SelectedIndex < 0 || colorFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (colorFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.Color == colorCBI.Content.ToString()).ToList();
+                }
+                // Фильтр-батарея
+                if (!String.IsNullOrEmpty(fromBatteryFilter.Text) && !String.IsNullOrEmpty(toBatteryFilter.Text))
+                {
+                    filterGoods = filterGoods.Where(g => g.Battery >= Convert.ToDouble(fromBatteryFilter.Text) && g.Battery <= Convert.ToDouble(toBatteryFilter.Text)).ToList();
+                }
+                // Фильтр-камера
+                if (!String.IsNullOrEmpty(cameraFilter.Text))
+                {
+                    filterGoods = filterGoods.Where(g => g.Camera == Convert.ToDouble(cameraFilter.Text)).ToList();
+                }
+                // Фильтр-NFC
+                if ((bool)nfcOK.IsChecked)
+                {
+                    filterGoods = filterGoods.Where(g => g.NFC == true).ToList();
+                }
+                else if ((bool)nfcNone.IsChecked)
+                {
+                    filterGoods = filterGoods.Where(g => g.NFC == false).ToList();
+                }
             }
-            // Фильтр-оперативка
-            ComboBoxItem ramCBI = ramFilter.SelectedItem as ComboBoxItem;
-            if (ramFilter.SelectedIndex < 0 || ramFilter.SelectedIndex == 0)
+            catch (Exception ex)
             {
-                filterGoods = filterGoods;
+                MessageBox.Show("Фильтр задан неверно!");
+                OutputGoods(sender, e);
             }
-            else if (ramFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.RAM == Convert.ToInt32(ramCBI.Content.ToString())).ToList();
-            }
-            // Фильтр-емкость хранилища
-            ComboBoxItem romCBI = romFilter.SelectedItem as ComboBoxItem;
-            if (romFilter.SelectedIndex < 0 || romFilter.SelectedIndex == 0)
-            {
-                filterGoods = filterGoods;
-            }
-            else if (romFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.ROM == Convert.ToInt32(romCBI.Content.ToString())).ToList();
-            }
-            // Фильтр-цвет
-            ComboBoxItem colorCBI = colorFilter.SelectedItem as ComboBoxItem;
-            if (colorFilter.SelectedIndex < 0 || colorFilter.SelectedIndex == 0)
-            {
-                filterGoods = filterGoods;
-            }
-            else if (colorFilter.SelectedIndex > 0)
-            {
-                filterGoods = filterGoods.Where(g => g.Color == colorCBI.Content.ToString()).ToList();
-            }
-            // Фильтр-батарея
-            if (!String.IsNullOrEmpty(fromBatteryFilter.Text) && !String.IsNullOrEmpty(toBatteryFilter.Text))
-            {
-                filterGoods = filterGoods.Where(g => g.Battery >= Convert.ToDouble(fromBatteryFilter.Text) && g.Battery <= Convert.ToDouble(toBatteryFilter.Text)).ToList();
-            }
-            // Фильтр-камера
-            if (!String.IsNullOrEmpty(cameraFilter.Text))
-            {
-                filterGoods = filterGoods.Where(g => g.Camera == Convert.ToDouble(cameraFilter.Text)).ToList();
-            }
-            // Фильтр-NFC
-            if ((bool)nfcOK.IsChecked)
-            {
-                filterGoods = filterGoods.Where(g => g.NFC == true).ToList();
-            }
-            else if ((bool)nfcNone.IsChecked)
-            {
-                filterGoods = filterGoods.Where(g => g.NFC == false).ToList();
-            }
-
 
             allGoodPage.allGoodsList.ItemsSource = filterGoods;
             dataBase.Dispose();

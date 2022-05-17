@@ -28,7 +28,32 @@
         </Grid.ColumnDefinitions>
 
         <!-- Table -->
-        <DataGrid x:Name="tableGoods" ColumnWidth="*" RowBackground="LightGray" AlternatingRowBackground="White" CanUserAddRows="False" Grid.RowSpan="4" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10"/>
+        <DataGrid x:Name="tableGoods" ColumnWidth="*" AutoGenerateColumns="False" RowBackground="LightGray" AlternatingRowBackground="White" CanUserAddRows="False" Grid.RowSpan="4" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Width="Auto" Binding="{Binding ID}" Header="ID" IsReadOnly="True"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Name}" Header="Name"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Price}" Header="Price"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Count}" Header="Count"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Firm}" Header="Firm"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Description}" Header="Description"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding ImageSrc}" Header="ImageSrc"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Type}" Header="Type"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Display}" Header="Display"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding DisplayType}" Header="DisplayType"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Resolution}" Header="Resolution"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Hertz}" Header="Hertz"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding CPU}" Header="CPU"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding RAM}" Header="RAM"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding ROM}" Header="ROM"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Color}" Header="Color"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding OS}" Header="OS"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Battery}" Header="Battery"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding Camera}" Header="Camera"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding NFC}" Header="NFC"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
         <!-- Search -->
         <TextBox Style="{StaticResource MainBoxStyle}" x:Name="searchBox" MinHeight="39" Foreground="Gray" TextChanged="SearchBox_Changed" Padding="5,0,0,0" Margin="50,59,50,0" Grid.Row="3" TextWrapping="Wrap" FontSize="26" FontFamily="Century Gothic" FontStyle="Normal" Height="40" VerticalAlignment="Top"/>
         <TextBlock Height="50" Margin="50,29,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Поиск:" VerticalAlignment="Top" FontSize="22" FontFamily="Century Gothic" FontStyle="Normal" HorizontalAlignment="Left" Width="200"/>

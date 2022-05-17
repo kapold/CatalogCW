@@ -45,7 +45,7 @@
         <TextBox x:Name="patronymicBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="31" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- RepeatPassword -->
         <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Повторите пароль:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="2" Grid.Column="1" Margin="40,0,0,0"/>
-        <PasswordBox x:Name="repeatPasswordBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainPasswordStyle}" MaxLength="16" Height="30" Grid.Row="2" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
+        <PasswordBox x:Name="repeatPasswordBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainPasswordStyle}" MaxLength="16" Height="30" Grid.Row="2" VerticalAlignment="Center" FontSize="18" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>
         <!-- Address -->
         <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Адрес:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="3" Grid.Column="1" Margin="40,0,0,0"/>
         <TextBox x:Name="addressBoxRegistr" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="32" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>

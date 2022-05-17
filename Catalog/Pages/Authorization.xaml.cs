@@ -28,6 +28,17 @@ namespace Catalog.Pages
 
         private void SingInBtn(object sender, RoutedEventArgs e)
         {
+            if (String.IsNullOrEmpty(usernameTextBox.Text))
+            {
+                MessageBox.Show("Введите логин!");
+                return;
+            }
+            else if (!String.IsNullOrEmpty(usernameTextBox.Text) && String.IsNullOrEmpty(passwordBox.Password))
+            {
+                MessageBox.Show("Введите пароль!");
+                return;
+            }
+
             Auth.TrySignIn(usernameTextBox.Text, passwordBox.Password.ToString());
         }
     }

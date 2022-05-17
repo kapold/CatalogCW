@@ -9,8 +9,17 @@
   </Class>
   <Class Name="Catalog.Classes.DataBase" BaseTypeListCollapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
+    <InheritanceLine Type="System.Object" ManuallyRouted="true">
+      <Path>
+        <Point X="3" Y="4.5" />
+        <Point X="3" Y="4.252" />
+        <Point X="3.877" Y="4.252" />
+        <Point X="3.877" Y="2.431" />
+        <Point X="4" Y="2.431" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAIAQAgCSAAAAgAAAEBAAAAAAAAAAQAAAAAgAAAAAA=</HashCode>
+      <HashCode>AAAIAQAgCSAAAAgAAAEBAAAAAAAAAAQAAEAAgAAAAAA=</HashCode>
       <FileName>Classes\DataBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -18,21 +27,21 @@
   <Class Name="Catalog.Classes.Delivery">
     <Position X="2.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAABAAAAAAAAAABCAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAMAABAAAAAAAAAEDCAQAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Classes\Delivery.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Catalog.Classes.Good">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAiAAAACYAgggAEAAAABQSAAgAgBAAAAQAAgAAAAAE=</HashCode>
+      <HashCode>AAAiAAAACYAgggAUAAIABQSAAgAgBAAAAQAAgAAAAAE=</HashCode>
       <FileName>Classes\Good.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Catalog.Classes.Order">
-    <Position X="4" Y="4.25" Width="1.5" />
+    <Position X="4" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAQAAAAAAIM=</HashCode>
+      <HashCode>AAEAAAAAAAAAAAAEAAAAAAAAACAAACAAAAQAAAAAAIM=</HashCode>
       <FileName>Classes\Order.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -78,7 +87,7 @@
   <Class Name="Catalog.Wndows.ShoppingCartWnd">
     <Position X="8" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAAAAAAAAAAAEAAIAQAAABAAAAQAAAAAAAAAAAACAA=</HashCode>
+      <HashCode>CAAAAAAAAAAAAEAAIAQIAABAAAAQAAAAAAAABAAACAA=</HashCode>
       <FileName>Wndows\ShoppingCartWnd.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -92,15 +101,15 @@
     <TypeIdentifier />
   </Class>
   <Class Name="Catalog.Pages.AllGoodsPage">
-    <Position X="0.5" Y="8" Width="1.5" />
+    <Position X="8.25" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAASA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAIAAAAAAAAAAAAAAAAAAAASA=</HashCode>
       <FileName>Pages\AllGoodsPage.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Catalog.Pages.Authorization">
-    <Position X="2.5" Y="8" Width="1.5" />
+    <Position X="10.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pages\Authorization.xaml.cs</FileName>
@@ -108,23 +117,23 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Catalog.Pages.CartPage">
-    <Position X="4.5" Y="8" Width="1.5" />
+    <Position X="12.25" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAIAAAAAAEAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
       <FileName>Pages\CartPage.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Catalog.Pages.DeliveryPage">
-    <Position X="0.5" Y="10.75" Width="1.5" />
+    <Position X="8.25" Y="10.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Pages\DeliveryPage.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Catalog.Pages.Registration">
-    <Position X="4.5" Y="10.25" Width="1.5" />
+    <Position X="12.25" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Pages\Registration.xaml.cs</FileName>
@@ -132,8 +141,31 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="System.Windows.Controls.Page" Collapsed="true">
-    <Position X="2.5" Y="11" Width="1.5" />
+    <Position X="10.25" Y="11" Width="1.5" />
     <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Catalog.Classes.Crypto">
+    <Position X="6" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Crypto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Catalog.Wndows.DeliveryRegistration">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAABBBAAAAAAAAAAAgAgAAACAAAAA=</HashCode>
+      <FileName>Wndows\DeliveryRegistration.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Catalog.Pages.GoodDescriptionPage">
+    <Position X="10.25" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\GoodDescriptionPage.xaml.cs</FileName>
+    </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Font Name="Segoe UI" Size="9" />

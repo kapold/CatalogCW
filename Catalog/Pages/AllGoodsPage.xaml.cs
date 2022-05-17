@@ -41,14 +41,13 @@ namespace Catalog.Pages
             {
                 Good good = new Good();
                 good = ((sender as Button).DataContext) as Good;
-                MessageBox.Show(good.ToString());
+                //MessageBox.Show(good.ToString());
                 bool ifThereIs = false;
 
                 DataBase db = new DataBase();
                 List<Order> ordersInCart = db.GetOrders();
                 db.Dispose();
 
-                MessageBox.Show("Блок перед циклом");
                 if(ordersInCart != null)
                 {
                     foreach (Order item in ordersInCart)

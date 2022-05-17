@@ -30,8 +30,8 @@ namespace Catalog.Pages
         private void RegisterBtn(object sender, RoutedEventArgs e)
         {
             int isAdministractor = 0;
-            
-            if(String.IsNullOrEmpty(loginBoxRegistr.Text) || String.IsNullOrEmpty(passwordBoxRegistr.Password) ||
+
+            if (String.IsNullOrEmpty(loginBoxRegistr.Text) || String.IsNullOrEmpty(passwordBoxRegistr.Password) ||
                String.IsNullOrEmpty(nameBoxRegistr.Text) || String.IsNullOrEmpty(repeatPasswordBoxRegistr.Password) ||
                String.IsNullOrEmpty(surnameBoxRegistr.Text) || String.IsNullOrEmpty(addressBoxRegistr.Text) ||
                String.IsNullOrEmpty(patronymicBoxRegistr.Text) || String.IsNullOrEmpty(phoneNumberBoxRegistr.Text))
@@ -40,9 +40,25 @@ namespace Catalog.Pages
                 MessageBox.Show("Заполните все поля!");
                 return;
             }
-            if(passwordBoxRegistr.Password != repeatPasswordBoxRegistr.Password)
+            if (passwordBoxRegistr.Password != repeatPasswordBoxRegistr.Password)
             {
                 MessageBox.Show("Пароли не совпадают!");
+                return;
+            }
+            if (passwordBoxRegistr.Password.Length < 8 || passwordBoxRegistr.Password.Length > 16)
+            {
+                MessageBox.Show("Пароль должен быть длиной от 8 до 16 символов!");
+                return;
+            }
+
+            try
+            {
+                Convert.ToInt64(phoneNumberBoxRegistr.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Проверьте номер телефона!\n" +
+                    "Шаблон: 375298689745 (12 цифр)");
                 return;
             }
 
