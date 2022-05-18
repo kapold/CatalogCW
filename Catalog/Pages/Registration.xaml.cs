@@ -50,6 +50,21 @@ namespace Catalog.Pages
                 MessageBox.Show("Пароль должен быть длиной от 8 до 16 символов!");
                 return;
             }
+            if (phoneNumberBoxRegistr.Text.Length != 12)
+            {
+                MessageBox.Show("Телефон должен быть 12 символов!");
+                return;
+            }
+            if (nameBoxRegistr.Text.Contains(' ') || surnameBoxRegistr.Text.Contains(' ') || patronymicBoxRegistr.Text.Contains(' '))
+            {
+                MessageBox.Show("Проверьте чтобы в полях ФИО было по 1 слову");
+                return;
+            }
+            if (loginBoxRegistr.Text.Length < 8 || loginBoxRegistr.Text.Length > 16)
+            {
+                MessageBox.Show("Логин должен быть длиной от 8 до 16 символов!");
+                return;
+            }
 
             try
             {
@@ -77,6 +92,33 @@ namespace Catalog.Pages
                 repeatPasswordBoxRegistr.Password = null;
                 RegisterWnd.regWnd.AuthorizationPageSelect(sender, e);
             }
+        }
+
+        // Подсказки для полей регистрации
+        private void NumberSelection(object sender, RoutedEventArgs e)
+        {
+            RegisterWnd.regWnd.notificationBox.Text = "* Номер телефона должен быть без пробелов, знака + и длиной 12 символов.\n" +
+                "Шаблон: 375298689745";
+        }
+
+        private void LoginSelection(object sender, RoutedEventArgs e)
+        {
+            RegisterWnd.regWnd.notificationBox.Text = "* Логин должен быть длиной от 8 до 16 знаков.";
+        }
+
+        private void FIOSelection(object sender, RoutedEventArgs e)
+        {
+            RegisterWnd.regWnd.notificationBox.Text = "* Поля Имя, Фамилия и Отечество должны содержать по одному слову.";
+        }
+
+        private void AddressSelection(object sender, RoutedEventArgs e)
+        {
+            RegisterWnd.regWnd.notificationBox.Text = "* Адрес не должен быть больше 64 символов.";
+        }
+
+        private void PasswordSelection(object sender, RoutedEventArgs e)
+        {
+            RegisterWnd.regWnd.notificationBox.Text = "* Пароль должен быть длиной от 8 до 16 символов.";
         }
     }
 }

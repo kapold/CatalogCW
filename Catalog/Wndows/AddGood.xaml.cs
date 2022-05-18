@@ -56,7 +56,7 @@ namespace Catalog.Wndows
                 else 
                     good.NFC = false;
 
-                MessageBox.Show(good.ToString());
+                //MessageBox.Show(good.ToString());
             }
             catch(Exception ex)
             {

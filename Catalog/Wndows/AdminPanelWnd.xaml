@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Админ-панель" 
         Icon="/Images/shopIcon.png" 
-        Height="600" Width="1000"
+        Height="800" Width="1000"
         MinHeight="300" MinWidth="300"
         Closing="Window_Closing"
         WindowStartupLocation="CenterScreen">
@@ -27,8 +27,8 @@
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Table -->
-        <DataGrid x:Name="tableGoods" ColumnWidth="*" AutoGenerateColumns="False" RowBackground="LightGray" AlternatingRowBackground="White" CanUserAddRows="False" Grid.RowSpan="4" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10">
+        <!-- Table 1 -->
+        <DataGrid x:Name="tableGoods" ColumnWidth="*" AutoGenerateColumns="False" RowBackground="LightGray" AlternatingRowBackground="White" CanUserAddRows="False" Grid.RowSpan="2" Grid.Column="1" Grid.Row="0" Margin="10,10,10,10">
             <DataGrid.Columns>
 
                 <DataGridTextColumn Width="Auto" Binding="{Binding ID}" Header="ID" IsReadOnly="True"/>
@@ -37,10 +37,10 @@
                 <DataGridTextColumn Width="Auto" Binding="{Binding Count}" Header="Count"/>
                 <DataGridTextColumn Width="Auto" Binding="{Binding Firm}" Header="Firm"/>
                 <DataGridTextColumn Width="Auto" Binding="{Binding Description}" Header="Description"/>
-                <DataGridTextColumn Width="Auto" Binding="{Binding ImageSrc}" Header="ImageSrc"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding ImageSrc}" Header="Image Link"/>
                 <DataGridTextColumn Width="Auto" Binding="{Binding Type}" Header="Type"/>
                 <DataGridTextColumn Width="Auto" Binding="{Binding Display}" Header="Display"/>
-                <DataGridTextColumn Width="Auto" Binding="{Binding DisplayType}" Header="DisplayType"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding DisplayType}" Header="Display Type"/>
                 <DataGridTextColumn Width="Auto" Binding="{Binding Resolution}" Header="Resolution"/>
                 <DataGridTextColumn Width="Auto" Binding="{Binding Hertz}" Header="Hertz"/>
                 <DataGridTextColumn Width="Auto" Binding="{Binding CPU}" Header="CPU"/>
@@ -55,16 +55,30 @@
             </DataGrid.Columns>
         </DataGrid>
         <!-- Search -->
-        <TextBox Style="{StaticResource MainBoxStyle}" x:Name="searchBox" MinHeight="39" Foreground="Gray" TextChanged="SearchBox_Changed" Padding="5,0,0,0" Margin="50,59,50,0" Grid.Row="3" TextWrapping="Wrap" FontSize="26" FontFamily="Century Gothic" FontStyle="Normal" Height="40" VerticalAlignment="Top"/>
-        <TextBlock Height="50" Margin="50,29,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Поиск:" VerticalAlignment="Top" FontSize="22" FontFamily="Century Gothic" FontStyle="Normal" HorizontalAlignment="Left" Width="200"/>
+        <TextBox Style="{StaticResource MainBoxStyle}" x:Name="searchBox" MinHeight="39" Foreground="Gray" TextChanged="SearchBox_Changed" Padding="5,0,0,0" Margin="50,103,50,0" Grid.Row="2" TextWrapping="Wrap" FontSize="26" FontFamily="Century Gothic" FontStyle="Normal" Height="40" VerticalAlignment="Top"/>
+        <TextBlock Height="50" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="22" FontFamily="Century Gothic" FontStyle="Normal" HorizontalAlignment="Center" Width="200"><Run Text="Поиск"/><Run Language="ru-ru" Text="(табл.1)"/><Run Text=":"/></TextBlock>
         <StackPanel Grid.ColumnSpan="2" HorizontalAlignment="Left" Grid.RowSpan="2" Width="310">
             <!-- Add Good -->
-            <Button Style="{DynamicResource authButtons}" Margin="0,30,0,0" Click="OpenAddGoodWnd" Content="Добавить товар" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
+            <Button Style="{DynamicResource authButtons}" Margin="0,10,0,0" Click="OpenAddGoodWnd" Content="Добавить товар" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
             <!-- Change Good -->
             <Button Style="{DynamicResource authButtons}" Margin="0,30,0,0" Click="ChangeGoodBtn" Content="Изменить товар" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
             <!-- Delete Good -->
             <Button Style="{DynamicResource authButtons}" Margin="0,30,0,0" Click="DeleteGoodBtn" Content="Удалить товар" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
+            <!-- Delete Good -->
+            <Button Style="{DynamicResource authButtons}" Margin="0,30,0,0" Content="Добавить тип" Height="45" MinHeight="45" MaxWidth="210" FontSize="24" FontFamily="Century Gothic"/>
         </StackPanel>
+        <!-- Table 2 -->
+        <DataGrid x:Name="tableOrders" Grid.Column="1" HorizontalAlignment="Center" Height="372" Margin="0,10,0,0" Grid.RowSpan="2" Grid.Row="2" VerticalAlignment="Top" Width="680">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Width="Auto" Binding="{Binding DeliveryID}" Header="ID" IsReadOnly="True"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding DeliveryDate}" Header="Delivery Date" IsReadOnly="True"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding DeliveryAddress}" Header="Delivery Address" IsReadOnly="True"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding PaymentType}" Header="Payment Type" IsReadOnly="True"/>
+                <DataGridTextColumn Width="Auto" Binding="{Binding DeliveryCount}" Header="Count" IsReadOnly="True"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 

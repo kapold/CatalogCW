@@ -114,6 +114,8 @@
                             <ComboBoxItem>Apple</ComboBoxItem>
                             <ComboBoxItem>Xiaomi</ComboBoxItem>
                             <ComboBoxItem>Samsung</ComboBoxItem>
+                            <ComboBoxItem>Lenovo</ComboBoxItem>
+                            <ComboBoxItem>LG</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
                     <!-- Размер дисплея -->

@@ -10,7 +10,7 @@ namespace Catalog.Classes
     {
         public int DeliveryID { get; set; }
         public int OrderID { get; set; }
-        public DateTime? DeliveryDate { get; set; }
+        public DateOnly DeliveryDate { get; set; }
         public string? DeliveryAddress { get; set; }
         //public string? DeliveryType { get; set; }
         public string? PaymentType { get; set; }

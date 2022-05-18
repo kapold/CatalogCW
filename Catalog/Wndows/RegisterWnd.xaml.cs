@@ -42,16 +42,31 @@ namespace Catalog.Wndows
             StreamResourceInfo sri = Application.GetResourceStream(new Uri("Images/CursorBlack.cur", UriKind.Relative));
             Cursor customCursor = new Cursor(sri.Stream);
             this.Cursor = customCursor;
+
+            authBtn.IsEnabled = false;
+            authBtn.Visibility = Visibility.Hidden;
         }
 
         public void AuthorizationPageSelect(object sender, RoutedEventArgs e)
         {
             navigationService.Navigate(authorizationPage);
+
+            regBtn.IsEnabled = true;
+            regBtn.Visibility = Visibility.Visible;
+            authBtn.IsEnabled = false;
+            authBtn.Visibility = Visibility.Hidden;
+            regWnd.notificationBox.Text = "";
         }
 
         private void RegistrationPageSelect(object sender, RoutedEventArgs e)
         {
             navigationService.Navigate(registrationPage);
+
+            authBtn.IsEnabled = true;
+            authBtn.Visibility = Visibility.Visible;
+            regBtn.IsEnabled = false;
+            regBtn.Visibility = Visibility.Hidden;
+            regWnd.notificationBox.Text = "";
         }
     }
 }

@@ -45,6 +45,12 @@ namespace Catalog.Wndows
 
         private void ChangeGoodBtn(object sender, RoutedEventArgs e)
         {
+            if (tableGoods.SelectedIndex < 0)
+            {
+                MessageBox.Show("Выберите товар!");
+                return;
+            }
+
             Good good = (Good) tableGoods.SelectedItem;
             int GoodID = Convert.ToInt32(good.ID);
 
@@ -58,6 +64,12 @@ namespace Catalog.Wndows
 
         private void DeleteGoodBtn(object sender, RoutedEventArgs e)
         {
+            if (tableGoods.SelectedIndex < 0)
+            {
+                MessageBox.Show("Выберите товар!");
+                return;
+            }
+
             Good good = (Good)tableGoods.SelectedItem;
             int GoodID = Convert.ToInt32(good.ID);
 

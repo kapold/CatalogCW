@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -30,7 +31,7 @@ namespace Catalog.Classes
         {
             //SqlTransaction transaction = connection.BeginTransaction();
             //SqlCommand commandTrans = connection.CreateCommand();
-            //commandTrans.Transaction = transaction;
+            //commandTrans.Transaction = transaction;d
             // Редактирую приближенные значения(в c# и sql разные знаки)
             string redactedPrice = g.Price.ToString().Replace(',', '.');
             string redactedDisplay = g.Display.ToString().Replace(',', '.');
@@ -70,12 +71,10 @@ namespace Catalog.Classes
             {
                 SqlCommand commandParams = new SqlCommand(sqlParams, connection);
                 commandParams.ExecuteNonQuery();
-                //transaction.Commit();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                //transaction.Rollback();
             }
         }
 
@@ -83,7 +82,7 @@ namespace Catalog.Classes
         {
             Good good;
             List<Good> goods = new List<Good>();
-            string sql = $"SELECT * FROM Goods as g INNER JOIN Params as p ON g.GoodID = p.Good_ID ORDER BY g.GoodID";
+            string sql = $"SELECT * FROM Goods as g INNER JOIN Params as p ON g.GoodID = p.Good_ID WHERE GoodCount > 0 ORDER BY g.GoodID";
             SqlCommand commandGoods = new SqlCommand(sql, connection);
             using(SqlDataReader reader = commandGoods.ExecuteReader())
             {
@@ -322,7 +321,7 @@ namespace Catalog.Classes
                         delivery = new Delivery();
                         delivery.DeliveryID = Convert.ToInt32(reader["DeliveryID"]);
                         delivery.OrderID = Convert.ToInt32(reader["OrderID"]);
-                        delivery.DeliveryDate = Convert.ToDateTime(reader["DeliveryDate"]);
+                        delivery.DeliveryDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["DeliveryDate"]));
                         delivery.DeliveryAddress = reader["DeliveryAddress"].ToString();
                         delivery.DeliveryCount = Convert.ToInt32(reader["DeliveryCount"]);
                         delivery.PaymentType = reader["PaymentType"].ToString();
@@ -348,6 +347,37 @@ namespace Catalog.Classes
             }
 
             return deliveries;
+        }
+
+        public void DeleteDateProcedure()
+        {
+            string sqlProcedure = "DeleteExpiredDate";
+            SqlCommand commandProcedure = new SqlCommand(sqlProcedure, connection);
+            commandProcedure.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                commandProcedure.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void CorrectCount(int count, string name)
+        {
+            string sqlCount = $"UPDATE Goods SET GoodCount = GoodCount - {count} WHERE Name = '{name}'";
+
+            try
+            {
+                SqlCommand commandGoods = new SqlCommand(sqlCount, connection);
+                commandGoods.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Catalog.Pages
                 {
                     foreach (Order item in ordersInCart)
                     {
-                        MessageBox.Show(item.Good.ToString());
+                        //MessageBox.Show(item.Good.ToString());
                         if (item.Good.ID == good.ID)
                         {
                             ifThereIs = true;

@@ -38,6 +38,10 @@ namespace Catalog.Wndows
             pickCartBtn.BorderBrush = Brushes.LightGray;
 
             GetCurrentTotalPrice();
+
+            DataBase db = new DataBase();
+            db.DeleteDateProcedure();
+            db.Dispose();
         }
 
         public void GetCurrentTotalPrice()
