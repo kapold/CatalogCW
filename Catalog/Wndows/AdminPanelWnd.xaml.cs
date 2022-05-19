@@ -28,6 +28,10 @@ namespace Catalog.Wndows
             DataBase dataBase = new DataBase();
             List<Good> goods = dataBase.GetGoods();
             tableGoods.ItemsSource = goods;
+
+            List<Delivery> deliveries = dataBase.GetAllDeliveries();
+            tableOrders.ItemsSource = deliveries;
+
             dataBase.Dispose();
         }
 
@@ -83,7 +87,7 @@ namespace Catalog.Wndows
 
         private void SearchBox_Changed(object sender, TextChangedEventArgs e)
         {
-            Regex regex = new Regex(searchBox.Text);
+            Regex regex = new Regex(searchBox.Text.ToUpper());
 
             DataBase dataBase = new DataBase();
             List<Good> goods = dataBase.GetGoods();
@@ -91,7 +95,7 @@ namespace Catalog.Wndows
 
             foreach (Good g in goods)
             {
-                if(regex.IsMatch(g.Name))
+                if(regex.IsMatch(g.Name.ToUpper()))
                 {
                     searchedGoods.Add(g);
                 }
@@ -99,6 +103,48 @@ namespace Catalog.Wndows
 
             tableGoods.ItemsSource = searchedGoods;
             dataBase.Dispose();
+        }
+
+        private void SearchOrders_Changed(object sender, TextChangedEventArgs e)
+        {
+            Regex regex = new Regex(searchOrdersBox.Text);
+
+            DataBase dataBase = new DataBase();
+            List<Delivery> deliveries = dataBase.GetAllDeliveries();
+            List<Delivery> searchedDeliveries = new List<Delivery>();
+
+            foreach (Delivery d in deliveries)
+            {
+                if (regex.IsMatch(d.DeliveryID.ToString()))
+                {
+                    searchedDeliveries.Add(d);
+                }
+            }
+
+            tableOrders.ItemsSource = searchedDeliveries;
+            dataBase.Dispose();
+        }
+
+        private void AddNewTypeBtn(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(typeBox.Text))
+            {
+                MessageBox.Show("Введите название типа!");
+                return;
+            }
+
+            try
+            {
+                DataBase db = new DataBase();
+                db.AddNewType(typeBox.Text);
+                db.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка добавления типа!");
+            }
+
+            typeBox.Text = String.Empty;
         }
     }
 }

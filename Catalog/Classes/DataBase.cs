@@ -349,6 +349,50 @@ namespace Catalog.Classes
             return deliveries;
         }
 
+        public List<Delivery> GetAllDeliveries()
+        {
+            Delivery delivery;
+            List<Delivery> deliveries = new List<Delivery>();
+            string sql = $"SELECT * FROM Deliveries as d INNER JOIN Orders as o ON d.OrderID = o.OrderNo INNER JOIN Goods as g ON o.GoodID = g.GoodID INNER JOIN Users as u ON u.UserID = o.Customer WHERE IsOrdered = 1";
+            SqlCommand commandDeliveries = new SqlCommand(sql, connection);
+
+            using (SqlDataReader reader = commandDeliveries.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        delivery = new Delivery();
+                        delivery.DeliveryID = Convert.ToInt32(reader["DeliveryID"]);
+                        delivery.OrderID = Convert.ToInt32(reader["OrderID"]);
+                        delivery.DeliveryDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["DeliveryDate"]));
+                        delivery.DeliveryAddress = reader["DeliveryAddress"].ToString();
+                        delivery.DeliveryCount = Convert.ToInt32(reader["DeliveryCount"]);
+                        delivery.PaymentType = reader["PaymentType"].ToString();
+
+                        delivery.Order.OrderNo = Convert.ToInt32(reader["OrderNo"]);
+                        delivery.Order.GoodCount = Convert.ToInt32(reader["OrderedCount"]);
+
+                        delivery.Order.Good.ImageSrc = reader["ImageSrc"].ToString();
+                        delivery.Order.Good.Name = reader["Name"].ToString();
+                        delivery.Order.Good.Price = Convert.ToDouble(reader["Price"]);
+
+                        delivery.DeliveryLink = delivery;
+
+                        deliveries.Add(delivery);
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("Ошибка в получении коллекции доставок!");
+                    connection.Close();
+                    return null;
+                }
+            }
+
+            return deliveries;
+        }
+
         public void DeleteDateProcedure()
         {
             string sqlProcedure = "DeleteExpiredDate";
@@ -377,6 +421,28 @@ namespace Catalog.Classes
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void AddNewType(string newType)
+        {
+            string sqlType = $"INSERT INTO GoodTypes(TypeName) " +
+                $"VALUES ('{newType}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("Тип успешно добавлен!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такой тип уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
     }
