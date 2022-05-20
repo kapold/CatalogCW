@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Catalog.Classes
 {
@@ -327,6 +328,7 @@ namespace Catalog.Classes
                         delivery.PaymentType = reader["PaymentType"].ToString();
 
                         delivery.Order.OrderNo = Convert.ToInt32(reader["OrderNo"]);
+                        delivery.Order.GoodID = Convert.ToInt32(reader["GoodID"]);
                         delivery.Order.GoodCount = Convert.ToInt32(reader["OrderedCount"]);
 
                         delivery.Order.Good.ImageSrc = reader["ImageSrc"].ToString();
@@ -424,7 +426,33 @@ namespace Catalog.Classes
             }
         }
 
-        public void AddNewType(string newType)
+        public void DeleteDelivery(Delivery delivery)
+        {
+            string sqlDelivery = $"DELETE FROM Deliveries WHERE DeliveryID = {delivery.DeliveryID}";
+            string sqlOrder = $"UPDATE Orders SET IsOrdered = 0 WHERE OrderNo = {delivery.Order.OrderNo}";
+            string sqlGoodCount = $"UPDATE Goods SET GoodCount = GoodCount + {delivery.DeliveryCount} WHERE GoodID = {delivery.Order.GoodID}";
+
+            try
+            {
+                SqlCommand commandDelivery = new SqlCommand(sqlDelivery, connection);
+                commandDelivery.ExecuteNonQuery();
+
+                SqlCommand commandOrder = new SqlCommand(sqlOrder, connection);
+                commandOrder.ExecuteNonQuery();
+
+                SqlCommand commandGoodCount = new SqlCommand(sqlGoodCount, connection);
+                commandGoodCount.ExecuteNonQuery();
+
+                MessageBox.Show("Отмена доставки!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // Добавление параметров
+        public void AddGoodType(string newType)
         {
             string sqlType = $"INSERT INTO GoodTypes(TypeName) " +
                 $"VALUES ('{newType}')";
@@ -434,7 +462,7 @@ namespace Catalog.Classes
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
                 commandTypes.ExecuteNonQuery();
 
-                MessageBox.Show("Тип успешно добавлен!");
+                MessageBox.Show("Тип товара успешно добавлен!");
             }
             catch (SqlException ex)
             {
@@ -444,6 +472,751 @@ namespace Catalog.Classes
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        public void AddDisplayType(string type)
+        {
+            string sqlType = $"INSERT INTO DisplayTypes(TypeName) " +
+                $"VALUES ('{type}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("Тип дисплея успешно добавлен!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такой тип уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void AddResolution(string resolution)
+        {
+            string sqlType = $"INSERT INTO Resolutions(ResolutionName) " +
+                $"VALUES ('{resolution}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("Разрешение успешно добавлено!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такое разрешение уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void AddHertz(string hertz)
+        {
+            string sqlType = $"INSERT INTO Hertzs(HertzName) " +
+                $"VALUES ('{hertz}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("Гц успешно добавлено!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такое Гц уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void AddRAM(string ram)
+        {
+            string sqlType = $"INSERT INTO RAMs(RAMName) " +
+                $"VALUES ('{ram}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("RAM успешно добавлено!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такое RAM уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void AddROM(string rom)
+        {
+            string sqlType = $"INSERT INTO ROMs(ROMName) " +
+                $"VALUES ('{rom}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("ROM успешно добавлено!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такое ROM уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void AddOS(string os)
+        {
+            string sqlType = $"INSERT INTO OS(OSName) " +
+                $"VALUES ('{os}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("OS успешно добавлено!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такое OS уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void AddColor(string color)
+        {
+            string sqlType = $"INSERT INTO Colors(ColorName) " +
+                $"VALUES ('{color}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("Color успешно добавлено!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такое Color уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void AddFirm(string firm)
+        {
+            string sqlType = $"INSERT INTO Firms(FirmName) " +
+                $"VALUES ('{firm}')";
+
+            try
+            {
+                SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.ExecuteNonQuery();
+
+                MessageBox.Show("Firm успешно добавлено!");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Такое Firm уже есть в БД!");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        // Получение параметров
+        public List<ComboBoxItem> GetGoodTypes()
+        {
+            string sqlExpression = "SELECT * FROM GoodTypes";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while(reader.Read())
+                        {
+                            string name = reader["TypeName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetDisplayTypes()
+        {
+            string sqlExpression = "SELECT * FROM DisplayTypes";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["TypeName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetResolutions()
+        {
+            string sqlExpression = "SELECT * FROM Resolutions";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["ResolutionName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetHertz()
+        {
+            string sqlExpression = "SELECT * FROM Hertzs";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["HertzName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetRAM()
+        {
+            string sqlExpression = "SELECT * FROM RAMs";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["RAMName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetROM()
+        {
+            string sqlExpression = "SELECT * FROM ROMs";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["ROMName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetOS()
+        {
+            string sqlExpression = "SELECT * FROM OS";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["OSName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetColors()
+        {
+            string sqlExpression = "SELECT * FROM Colors";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["ColorName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetFirms()
+        {
+            string sqlExpression = "SELECT * FROM Firms";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["FirmName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        // ALL
+        public List<ComboBoxItem> GetGoodTypesALL()
+        {
+            string sqlExpression = "SELECT * FROM GoodTypes";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все товары";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["TypeName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetDisplayTypesALL()
+        {
+            string sqlExpression = "SELECT * FROM DisplayTypes";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все типы";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["TypeName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetResolutionsALL()
+        {
+            string sqlExpression = "SELECT * FROM Resolutions";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все разрешения";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["ResolutionName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetHertzALL()
+        {
+            string sqlExpression = "SELECT * FROM Hertzs";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все герцовки";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["HertzName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetRAMALL()
+        {
+            string sqlExpression = "SELECT * FROM RAMs";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["RAMName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetROMALL()
+        {
+            string sqlExpression = "SELECT * FROM ROMs";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["ROMName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetOSALL()
+        {
+            string sqlExpression = "SELECT * FROM OS";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["OSName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetColorsALL()
+        {
+            string sqlExpression = "SELECT * FROM Colors";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["ColorName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
+        }
+
+        public List<ComboBoxItem> GetFirmsALL()
+        {
+            string sqlExpression = "SELECT * FROM Firms";
+            List<ComboBoxItem> collection = new List<ComboBoxItem>();
+            ComboBoxItem allItem = new ComboBoxItem();
+            allItem.Content = "Все";
+            collection.Add(allItem);
+
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(sqlExpression, connection);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            string name = reader["FirmName"].ToString();
+                            ComboBoxItem item = new ComboBoxItem();
+                            item.Content = name;
+                            collection.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return collection;
         }
     }
 }

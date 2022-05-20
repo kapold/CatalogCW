@@ -47,6 +47,12 @@ namespace Catalog.Wndows
             this.Close();
         }
 
+        private void OpenAddTypeWnd(object sender, RoutedEventArgs e)
+        {
+            AddNewParams addNewParams = new AddNewParams();
+            addNewParams.Show();
+        }
+
         private void ChangeGoodBtn(object sender, RoutedEventArgs e)
         {
             if (tableGoods.SelectedIndex < 0)
@@ -123,28 +129,6 @@ namespace Catalog.Wndows
 
             tableOrders.ItemsSource = searchedDeliveries;
             dataBase.Dispose();
-        }
-
-        private void AddNewTypeBtn(object sender, RoutedEventArgs e)
-        {
-            if (String.IsNullOrEmpty(typeBox.Text))
-            {
-                MessageBox.Show("Введите название типа!");
-                return;
-            }
-
-            try
-            {
-                DataBase db = new DataBase();
-                db.AddNewType(typeBox.Text);
-                db.Dispose();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка добавления типа!");
-            }
-
-            typeBox.Text = String.Empty;
         }
     }
 }

@@ -79,6 +79,8 @@ namespace Catalog.Wndows
             pickCartBtn.BorderBrush = Brushes.LightGray;
             pickDeliveryBtn.Background = new SolidColorBrush(Color.FromRgb(255, 192, 203));
             navigationService.Navigate(cartPage);
+
+            orderAllBtn.Visibility = Visibility.Visible;
         }
 
         private void PickDelivery(object sender, RoutedEventArgs e)
@@ -87,6 +89,14 @@ namespace Catalog.Wndows
             pickDeliveryBtn.Background = Brushes.LightGray;
             pickDeliveryBtn.BorderBrush = Brushes.LightGray;
             navigationService.Navigate(deliveryPage);
+
+            orderAllBtn.Visibility = Visibility.Hidden;
+        }
+
+        private void OrderAllCart(object sender, RoutedEventArgs e)
+        {
+            RegisterAllDeliveries registerAllDeliveries = new RegisterAllDeliveries();
+            registerAllDeliveries.Show();
         }
     }
 }

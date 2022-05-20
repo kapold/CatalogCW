@@ -41,8 +41,18 @@ namespace Catalog
             mainWindow = this;
             navigationService = goodsFrame.NavigationService;
             navigationService.Navigate(allGoodPage);
-
+            DataBase dataBase = new DataBase();
             DataContext = new ApplicationsViewModel();
+
+            typeFilter.ItemsSource = dataBase.GetGoodTypesALL();
+            displayTypeFilter.ItemsSource = dataBase.GetDisplayTypesALL();
+            resolutionFilter.ItemsSource = dataBase.GetResolutionsALL();
+            hertzFilter.ItemsSource = dataBase.GetHertzALL();
+            ramFilter.ItemsSource= dataBase.GetRAMALL();
+            romFilter.ItemsSource = dataBase.GetROMALL();
+            colorFilter.ItemsSource = dataBase.GetColorsALL();
+            firmFilter.ItemsSource = dataBase.GetFirmsALL();
+            osFilter.ItemsSource = dataBase.GetOSALL();
 
             typeFilter.SelectedIndex = 0;
             firmFilter.SelectedIndex = 0;
@@ -52,12 +62,12 @@ namespace Catalog
             romFilter.SelectedIndex = 0;
             hertzFilter.SelectedIndex = 0;
             colorFilter.SelectedIndex = 0;
+            osFilter.SelectedIndex = 0;
             fromPriceFilter.Text = "0";
 
             // Цена в филтре из БД
             try
             {
-                DataBase dataBase = new DataBase();
                 goodsMainWnd = dataBase.GetGoods();
                 dataBase.Dispose();
                 List<Good> forPriceFilter = goodsMainWnd.OrderByDescending(x => x.Price).ToList();
@@ -121,7 +131,7 @@ namespace Catalog
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
         }
 
@@ -133,7 +143,7 @@ namespace Catalog
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
         }
 
@@ -225,13 +235,23 @@ namespace Catalog
                 {
                     filterGoods = filterGoods.Where(g => g.Hertz == Convert.ToInt32(hertzCBI.Content.ToString())).ToList();
                 }
+                // Фильтр-операционка
+                ComboBoxItem osCBI = osFilter.SelectedItem as ComboBoxItem;
+                if (osFilter.SelectedIndex < 0 || osFilter.SelectedIndex == 0)
+                {
+                    filterGoods = filterGoods;
+                }
+                else if (osFilter.SelectedIndex > 0)
+                {
+                    filterGoods = filterGoods.Where(g => g.OS == osCBI.Content.ToString()).ToList();
+                }
                 // Фильтр-процессор
                 if (!String.IsNullOrEmpty(cpuFilter.Text))
                 {
-                    Regex regex = new Regex(cpuFilter.Text);
+                    Regex regex = new Regex(cpuFilter.Text.ToUpper());
                     for (int i = filterGoods.Count - 1; i >= 0; i--)
                     {
-                        if (!regex.IsMatch(filterGoods[i].CPU))
+                        if (!regex.IsMatch(filterGoods[i].CPU.ToUpper()))
                         {
                             filterGoods.Remove(filterGoods[i]);
                         }

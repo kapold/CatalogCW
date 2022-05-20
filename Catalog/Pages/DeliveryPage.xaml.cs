@@ -1,4 +1,5 @@
 ﻿using Catalog.Classes;
+using Catalog.Wndows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,22 @@ namespace Catalog.Pages
             deliveries = db.GetDeliveries();
             db.Dispose();
             deliveryList.ItemsSource = deliveries;
+        }
+
+        public void DeleteDelivery(object sender, RoutedEventArgs e)
+        {
+            Delivery delivery = new Delivery();
+            delivery = ((sender as Button).DataContext) as Delivery;
+
+            DataBase db = new DataBase();
+            db.DeleteDelivery(delivery);
+            db.Dispose();
+
+            ShoppingCartWnd.mainCartWnd.GetCurrentTotalPrice();
+            ShoppingCartWnd.mainCartWnd.cartPage.GetCartGoods();
+            ShoppingCartWnd.mainCartWnd.deliveryPage.GetCartDeliveries();
+            //MessageBox.Show(delivery.ToString());
+            //MessageBox.Show(delivery.Order.ToString());
         }
     }
 }

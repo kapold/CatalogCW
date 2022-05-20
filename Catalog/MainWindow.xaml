@@ -83,18 +83,18 @@
         <Grid Grid.Column="2" Background="#abcdef">
             <TextBlock Grid.Column="2" Padding="20,3,0,0" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="&lt; Фильтры &gt;" VerticalAlignment="Top" Width="250" FontSize="20" FontFamily="Century Gothic" FontWeight="Bold" FontStyle="Normal"/>
 
-            <ScrollViewer Margin="0,33,0,0" CanContentScroll="True" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+            <ScrollViewer Margin="0,33,0,0" CanContentScroll="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
                 <StackPanel Width="auto">
 
                     <!-- Тип -->
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="Тип" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="typeFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все товары</ComboBoxItem>
+                            <!--<ComboBoxItem>Все товары</ComboBoxItem>
                             <ComboBoxItem>Ноутбук</ComboBoxItem>
                             <ComboBoxItem>Телефон</ComboBoxItem>
                             <ComboBoxItem>Телевизор</ComboBoxItem>
-                            <ComboBoxItem>Планшет</ComboBoxItem>
+                            <ComboBoxItem>Планшет</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Цена -->
@@ -110,12 +110,12 @@
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="Фирма" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="firmFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все фирмы</ComboBoxItem>
+                            <!--<ComboBoxItem>Все фирмы</ComboBoxItem>
                             <ComboBoxItem>Apple</ComboBoxItem>
                             <ComboBoxItem>Xiaomi</ComboBoxItem>
                             <ComboBoxItem>Samsung</ComboBoxItem>
                             <ComboBoxItem>Lenovo</ComboBoxItem>
-                            <ComboBoxItem>LG</ComboBoxItem>
+                            <ComboBoxItem>LG</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Размер дисплея -->
@@ -127,36 +127,36 @@
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="Тип дисплея" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="displayTypeFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все типы</ComboBoxItem>
+                            <!--<ComboBoxItem>Все типы</ComboBoxItem>
                             <ComboBoxItem>IPS</ComboBoxItem>
                             <ComboBoxItem>OLED</ComboBoxItem>
-                            <ComboBoxItem>AMOLED</ComboBoxItem>
+                            <ComboBoxItem>AMOLED</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Разрешение -->
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="Разрешение" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="resolutionFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все разрешения</ComboBoxItem>
-                            <ComboBoxItem>7680x4320 (8K UHD)</ComboBoxItem>
-                            <ComboBoxItem>3840x2160 (4K UHD)</ComboBoxItem>
-                            <ComboBoxItem>2560x1440 (Full HD+)</ComboBoxItem>
-                            <ComboBoxItem>1920x1080 (Full HD)</ComboBoxItem>
-                            <ComboBoxItem>1366x768 (HD)</ComboBoxItem>
+                            <!--<ComboBoxItem>Все разрешения</ComboBoxItem>
+                            <ComboBoxItem>7680x4320</ComboBoxItem>
+                            <ComboBoxItem>3840x2160</ComboBoxItem>
+                            <ComboBoxItem>2560x1440</ComboBoxItem>
+                            <ComboBoxItem>1920x1080</ComboBoxItem>
+                            <ComboBoxItem>1366x768</ComboBoxItem>
                             <ComboBoxItem>1024x1080</ComboBoxItem>
-                            <ComboBoxItem>1024x768</ComboBoxItem>
+                            <ComboBoxItem>1024x768</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Герцовка -->
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="Герцовка(Гц)" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="hertzFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все герцовки</ComboBoxItem>
+                            <!--<ComboBoxItem>Все герцовки</ComboBoxItem>
                             <ComboBoxItem>240</ComboBoxItem>
                             <ComboBoxItem>144</ComboBoxItem>
                             <ComboBoxItem>120</ComboBoxItem>
                             <ComboBoxItem>90</ComboBoxItem>
-                            <ComboBoxItem>60</ComboBoxItem>
+                            <ComboBoxItem>60</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Процессор -->
@@ -168,7 +168,7 @@
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="RAM(Гб)" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="ramFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все</ComboBoxItem>
+                            <!--<ComboBoxItem>Все</ComboBoxItem>
                             <ComboBoxItem>2</ComboBoxItem>
                             <ComboBoxItem>4</ComboBoxItem>
                             <ComboBoxItem>6</ComboBoxItem>
@@ -176,32 +176,32 @@
                             <ComboBoxItem>12</ComboBoxItem>
                             <ComboBoxItem>16</ComboBoxItem>
                             <ComboBoxItem>32</ComboBoxItem>
-                            <ComboBoxItem>64</ComboBoxItem>
+                            <ComboBoxItem>64</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Память -->
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="ROM(Гб)" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="romFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все</ComboBoxItem>
+                            <!--<ComboBoxItem>Все</ComboBoxItem>
                             <ComboBoxItem>128</ComboBoxItem>
                             <ComboBoxItem>256</ComboBoxItem>
                             <ComboBoxItem>512</ComboBoxItem>
                             <ComboBoxItem>1024</ComboBoxItem>
                             <ComboBoxItem>2048</ComboBoxItem>
-                            <ComboBoxItem>4096</ComboBoxItem>
+                            <ComboBoxItem>4096</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Цвет -->
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
                         <TextBlock Text="Цвет" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
                         <ComboBox x:Name="colorFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16">
-                            <ComboBoxItem>Все</ComboBoxItem>
+                            <!--<ComboBoxItem>Все</ComboBoxItem>
                             <ComboBoxItem>Серый</ComboBoxItem>
                             <ComboBoxItem>Черный</ComboBoxItem>
                             <ComboBoxItem>Красный</ComboBoxItem>
                             <ComboBoxItem>Голубой</ComboBoxItem>
-                            <ComboBoxItem>Зеленый</ComboBoxItem>
+                            <ComboBoxItem>Зеленый</ComboBoxItem>-->
                         </ComboBox>
                     </StackPanel>
                     <!-- Батарея -->
@@ -212,6 +212,11 @@
                             <TextBox x:Name="fromBatteryFilter" SelectionChanged="FilterChanged" Style="{StaticResource MainBoxStyle}" Width="100" Height="30" Margin="20,0,0,0" FontFamily="Century Gothic" FontSize="20" FontWeight="Normal" TextAlignment="Center"/>
                             <TextBox x:Name="toBatteryFilter" SelectionChanged="FilterChanged" Style="{StaticResource MainBoxStyle}" Width="100" Height="30" Margin="10,0,0,0" TextAlignment="Center" FontFamily="Century Gothic" FontSize="20"/>
                         </StackPanel>
+                    </StackPanel>
+                    <!-- Операционная система -->
+                    <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">
+                        <TextBlock Text="ОC:" Margin="36,5,0,5" FontSize="20" FontStyle="Normal" FontFamily="Century Gothic" Width="auto"/>
+                        <ComboBox x:Name="osFilter" Style="{StaticResource ComboBoxFlatStyle}" SelectionChanged="FilterChanged" Margin="30,0,30,0" Height="30" Width="auto" FontFamily="Century Gothic" FontSize="16"/>
                     </StackPanel>
                     <!-- Камера -->
                     <StackPanel Orientation="Vertical" Height="80" MinHeight="80" Margin="0" VerticalAlignment="Top">

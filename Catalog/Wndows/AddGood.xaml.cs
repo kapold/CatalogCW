@@ -24,6 +24,19 @@ namespace Catalog.Wndows
         public AddGood()
         {
             InitializeComponent();
+            DataBase db = new DataBase();
+
+            typeBox.ItemsSource = db.GetGoodTypes();
+            displayTypeBox.ItemsSource = db.GetDisplayTypes();
+            resolutionBox.ItemsSource = db.GetResolutions();
+            hertzBox.ItemsSource = db.GetHertz();
+            ramBox.ItemsSource = db.GetRAM();
+            romBox.ItemsSource = db.GetROM();
+            osBox.ItemsSource = db.GetOS();
+            firmBox.ItemsSource = db.GetFirms();
+            colorBox.ItemsSource = db.GetColors();
+
+            db.Dispose();
         }
 
         private void AddNewGood(object sender, RoutedEventArgs e)
@@ -42,11 +55,11 @@ namespace Catalog.Wndows
                 // Параметры
                 good.Display = Convert.ToDouble(displaySizeBox.Text);
                 good.DisplayType = (displayTypeBox.SelectedItem as ComboBoxItem).Content.ToString();
-                good.Resolution = (resolutionBox.SelectedItem as ComboBoxItem).Content.ToString().Split(' ')[0];
-                good.Hertz = Convert.ToInt32((hertzBox.SelectedItem as ComboBoxItem).Content.ToString().Split(' ')[0]);
+                good.Resolution = (resolutionBox.SelectedItem as ComboBoxItem).Content.ToString();
+                good.Hertz = Convert.ToInt32((hertzBox.SelectedItem as ComboBoxItem).Content.ToString());
                 good.CPU = cpuBox.Text;
-                good.RAM = Convert.ToInt32((ramBox.SelectedItem as ComboBoxItem).Content.ToString().Split(' ')[0]);
-                good.ROM = Convert.ToInt32((romBox.SelectedItem as ComboBoxItem).Content.ToString().Split(' ')[0]);
+                good.RAM = Convert.ToInt32((ramBox.SelectedItem as ComboBoxItem).Content.ToString());
+                good.ROM = Convert.ToInt32((romBox.SelectedItem as ComboBoxItem).Content.ToString());
                 good.Color = colorBox.Text;
                 good.OS = (osBox.SelectedItem as ComboBoxItem).Content.ToString();
                 good.Battery = Convert.ToInt32(batteryBox.Text);
