@@ -25,6 +25,7 @@ namespace Catalog.Wndows
         {
             InitializeComponent();
             DataBase db = new DataBase();
+            this.DataContext = new GoodViewModel();
 
             typeBox.ItemsSource = db.GetGoodTypes();
             displayTypeBox.ItemsSource = db.GetDisplayTypes();
@@ -35,6 +36,9 @@ namespace Catalog.Wndows
             osBox.ItemsSource = db.GetOS();
             firmBox.ItemsSource = db.GetFirms();
             colorBox.ItemsSource = db.GetColors();
+
+            // Error Provider
+
 
             db.Dispose();
         }

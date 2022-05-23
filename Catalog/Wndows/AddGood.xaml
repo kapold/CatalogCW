@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:b="clr-namespace:ReactiveValidation.WPF.Behaviors;assembly=ReactiveValidation"
         xmlns:local="clr-namespace:Catalog.Wndows"
         mc:Ignorable="d"
         Title="Добавить товар" 
@@ -27,14 +28,14 @@
         </Grid.RowDefinitions>
 
         <!-- Name -->
-        <TextBox x:Name="nameBox" Height="30" Margin="33,24,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic"/>
+        <TextBox Style="{StaticResource TextBox}" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="nameBox" Height="30" Margin="33,24,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic"/>
         <TextBlock TextWrapping="Wrap" Text="Название:" FontSize="18" FontFamily="Century Gothic" Margin="34,0,33,107"/>
         <!-- Price -->
         <TextBlock TextWrapping="Wrap" Text="Цена:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,34,36"/>
-        <TextBox x:Name="priceBox" Height="30" Margin="33,95,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic"/>
+        <TextBox Style="{StaticResource TextBox}" Text="{Binding Price, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="priceBox" Height="30" Margin="33,95,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic"/>
         <!-- Count -->
         <TextBlock TextWrapping="Wrap" Text="Количество:" FontSize="18" FontFamily="Century Gothic" Margin="34,10,33,97" Grid.Row="1"/>
-        <TextBox x:Name="countBox" Height="30" Margin="33,30,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="1"/>
+        <TextBox Style="{StaticResource TextBox}" Text="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="countBox" Height="30" Margin="33,30,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="1"/>
         <!-- Firm -->
         <TextBlock TextWrapping="Wrap" Text="Фирма:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,33,34" Grid.Row="1"/>
         <ComboBox x:Name="firmBox" Height="30" Margin="33,93,34,0" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="1"/>
@@ -59,7 +60,7 @@
         </ComboBox>
         <!-- Image Box -->
         <TextBlock TextWrapping="Wrap" Text="Картинка:" FontSize="18" FontFamily="Century Gothic" Margin="34,73,33,34" Grid.Row="2"/>
-        <TextBox x:Name="imageBox" Height="30" Margin="33,95,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="2"/>
+        <TextBox Style="{StaticResource TextBox}" Text="{Binding Image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="imageBox" Height="30" Margin="33,95,34,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="2"/>
         <!-- Resolution -->
         <ComboBox x:Name="resolutionBox" Grid.Column="1" Height="30" Margin="33,33,33,0" VerticalAlignment="Top" Grid.Row="1" FontSize="16" FontFamily="Century Gothic">
             <!--<ComboBoxItem Content="7680x4320 (8K UHD)"/>
@@ -129,11 +130,10 @@
         </ComboBox>
         <!-- Description -->
         <TextBlock TextWrapping="Wrap" Text="Описание:" FontSize="18" FontFamily="Century Gothic" Margin="34,10,33,97" Grid.Row="3"/>
-        <TextBox x:Name="descriptionBox" Height="91" Margin="33,30,32,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <TextBox Style="{StaticResource TextBox}" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="descriptionBox" Height="91" Margin="33,30,32,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" FontFamily="Century Gothic" Grid.Row="3" Grid.ColumnSpan="2"/>
         <!-- Add Btn -->
         <Button Style="{StaticResource authButtons}" Click="AddNewGood" Grid.Column="2" Content="Добавить" HorizontalAlignment="Left" Height="45" Margin="35,76,0,0" Grid.Row="3" VerticalAlignment="Top" Width="200" FontSize="22" FontWeight="Bold" FontFamily="Century Gothic"/>
         <Button Style="{StaticResource authButtons}" Click="ClearAllFields" Grid.Column="2" Content="Очистить" HorizontalAlignment="Left" Height="45" Margin="35,16,0,0" Grid.Row="3" VerticalAlignment="Top" Width="200" FontSize="22" FontFamily="Century Gothic" FontWeight="Bold"/>
-
 
     </Grid>
 

@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Catalog.Wndows">
+                    xmlns:local="clr-namespace:Catalog.Wndows"
+                    xmlns:b="clr-namespace:ReactiveValidation.WPF.Behaviors;assembly=ReactiveValidation"
+                    xmlns:t="clr-namespace:ReactiveValidation.WPF.Templates;assembly=ReactiveValidation">
     <!-- RegisterWnd Buttons -->
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
@@ -259,5 +261,10 @@
         </Setter>
     </Style>
     <!-- End of Flat ComboBox -->
+    <Style x:Key="TextBox" TargetType="TextBox">
+        <Setter Property="b:ReactiveValidation.AutoRefreshErrorTemplate" Value="True" />
+        <Setter Property="b:ReactiveValidation.ErrorTemplate" Value="{x:Static t:ErrorTemplates.ExtendedErrorTemplate}"/>
+        <Setter Property="Margin" Value="3" />
+    </Style>
 
 </ResourceDictionary>
