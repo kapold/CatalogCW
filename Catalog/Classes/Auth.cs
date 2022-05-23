@@ -64,6 +64,7 @@ namespace Catalog.Classes
 
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
+            XmlSerializator.SerializeUser(currentUser);
 
             RegisterWnd.regWnd.Close();
         }

@@ -100,10 +100,11 @@ namespace Catalog
 
         private void OpenAuthForm(object sender, RoutedEventArgs e)
         {
-            RegisterWnd registerWnd = new RegisterWnd();
+            RegisterWnd registerWnd = new RegisterWnd(true);
             registerWnd.Show();
             // Обнуляем пользователя
             Auth.currentUser = null;
+            XmlSerializator.SerializeUser(Auth.currentUser);
             this.Close();
         }
 

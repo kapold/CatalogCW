@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Catalog.Classes
 {
+    [Serializable]
     public class User
     {
         public int ID { get; set; }

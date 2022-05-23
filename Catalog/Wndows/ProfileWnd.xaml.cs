@@ -79,6 +79,7 @@ namespace Catalog.Wndows
 
                 dataBase.RedactUser(Auth.currentUser);
                 dataBase.Dispose();
+                XmlSerializator.SerializeUser(Auth.currentUser);
             }
             catch (Exception ex)
             {
@@ -90,12 +91,13 @@ namespace Catalog.Wndows
         {
             if(MessageBox.Show("Вы действительно хотите удалить аккаунт?", "Удаление профиля", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
-                RegisterWnd registerWnd = new RegisterWnd();
+                RegisterWnd registerWnd = new RegisterWnd(true);
                 registerWnd.Show();
                 this.Close();
 
                 Auth.DeleteUser(Auth.currentUser.ID);
                 Auth.currentUser = null;
+                XmlSerializator.SerializeUser(Auth.currentUser);
                 MessageBox.Show("Аккаунт успешно удален!");
             }
         }

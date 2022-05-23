@@ -23,6 +23,28 @@ namespace Catalog.Classes
             ValidationOptions.LanguageManager.DefaultResourceManager = Resources.Additional.ResourceManager;
         }
 
+        public static bool IsValidGood(string Name, string Price, string Count, string Image, string Processor, string DisplaySize, string Battery, string Camera)
+        {
+            if (!IsValidName(Name))
+                return false;
+            if (!IsValidPrice(Price))
+                return false;
+            if (!IsValidCount(Count))
+                return false;
+            if (!IsValidImage(Image))
+                return false;
+            if (!IsValidProcessor(Processor))
+                return false;
+            if (!IsValidDisplaySize(DisplaySize))
+                return false;
+            if (!IsValidBattery(Battery))
+                return false;
+            if (!IsValidCamera(Camera))
+                return false;
+
+            return true;
+        }
+
         private IObjectValidator GetValidator()
         {
             var builder = new ValidationBuilder<GoodViewModel>();
@@ -59,6 +81,34 @@ namespace Catalog.Classes
                 .NotEmpty()
                 .When(vm => vm.Description, description => String.IsNullOrEmpty(description) == true)
                     .WithLocalizedMessage(nameof(Resources.Additional.NotEmptyRES));
+
+            builder.RuleFor(vm => vm.Processor)
+                .NotEmpty()
+                .When(vm => vm.Processor, processor => String.IsNullOrEmpty(processor) == true)
+                    .WithLocalizedMessage(nameof(Resources.Additional.NotEmptyRES))
+                .Must(IsValidProcessor)
+                    .WithLocalizedMessage(nameof(Resources.Additional.ProcessorRES));
+
+            builder.RuleFor(vm => vm.DisplaySize)
+                .NotEmpty()
+                .When(vm => vm.DisplaySize, displaySize => String.IsNullOrEmpty(displaySize) == true)
+                    .WithLocalizedMessage(nameof(Resources.Additional.NotEmptyRES))
+                .Must(IsValidDisplaySize)
+                    .WithLocalizedMessage(nameof(Resources.Additional.DisplaySizeRES));
+
+            builder.RuleFor(vm => vm.Battery)
+                .NotEmpty()
+                .When(vm => vm.Battery, battery => String.IsNullOrEmpty(battery) == true)
+                    .WithLocalizedMessage(nameof(Resources.Additional.NotEmptyRES))
+                .Must(IsValidBattery)
+                    .WithLocalizedMessage(nameof(Resources.Additional.BatteryRES));
+
+            builder.RuleFor(vm => vm.Camera)
+                .NotEmpty()
+                .When(vm => vm.Camera, camera => String.IsNullOrEmpty(camera) == true)
+                    .WithLocalizedMessage(nameof(Resources.Additional.NotEmptyRES))
+                .Must(IsValidCamera)
+                    .WithLocalizedMessage(nameof(Resources.Additional.CameraRES));
 
 
             return builder.Build(this);
@@ -115,6 +165,50 @@ namespace Catalog.Classes
             set
             {
                 _description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _processor;
+        public string Processor
+        {
+            get => _processor;
+            set
+            {
+                _processor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _displaySize;
+        public string DisplaySize
+        {
+            get => _displaySize;
+            set
+            {
+                _displaySize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _battery;
+        public string Battery
+        {
+            get => _battery;
+            set
+            {
+                _battery = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _camera;
+        public string Camera
+        {
+            get => _camera;
+            set
+            {
+                _camera = value;
                 OnPropertyChanged();
             }
         }
@@ -181,7 +275,7 @@ namespace Catalog.Classes
             if (String.IsNullOrEmpty(image) == true)
                 return true;
 
-            if (image.Contains(':') || image.Contains(';'))
+            if (image.Contains(';'))
                 return false;
 
             if (image.Length < 4)
@@ -191,6 +285,85 @@ namespace Catalog.Classes
                 return true;
             else
                 return false;
+        }
+
+        private static bool IsValidProcessor(string processor)
+        {
+            if (String.IsNullOrEmpty(processor) == true)
+                return true;
+
+            if (processor.Contains(':') || processor.Contains(';') ||
+                processor.Contains('.') || processor.Contains(',') ||
+                processor.Contains('|') || processor.Contains('/') ||
+                processor.Contains(@"\") || processor.Contains(@"'"))
+                return false;
+
+            return true;
+        }
+
+        private static bool IsValidDisplaySize(string displaySize)
+        {
+            if (String.IsNullOrEmpty(displaySize) == true)
+                return true;
+
+            if (displaySize.Contains(':') || displaySize.Contains(';') ||
+                displaySize.Contains('|') || displaySize.Contains('/') ||
+                displaySize.Contains(@"\") || displaySize.Contains(@"'"))
+                return false;
+
+            double num;
+            if (!double.TryParse(displaySize, out num))
+                return false;
+
+            if (Convert.ToDouble(displaySize) < 0.01)
+                return false;
+
+
+            return true;
+        }
+
+        private static bool IsValidBattery(string battery)
+        {
+            if (String.IsNullOrEmpty(battery) == true)
+                return true;
+
+            if (battery.Contains(':') || battery.Contains(';') ||
+                battery.Contains('.') || battery.Contains(',') ||
+                battery.Contains('|') || battery.Contains('/') ||
+                battery.Contains(@"\") || battery.Contains(@"'"))
+                return false;
+
+            int num;
+            if (!int.TryParse(battery, out num))
+                return false;
+
+            if (Convert.ToInt32(battery) < 1)
+                return false;
+
+
+            return true;
+        }
+
+        private static bool IsValidCamera(string camera)
+        {
+            if (String.IsNullOrEmpty(camera) == true)
+                return true;
+
+            if (camera.Contains(':') || camera.Contains(';') ||
+                camera.Contains('.') || camera.Contains(',') ||
+                camera.Contains('|') || camera.Contains('/') ||
+                camera.Contains(@"\") || camera.Contains(@"'"))
+                return false;
+
+            int num;
+            if (!int.TryParse(camera, out num))
+                return false;
+
+            if (Convert.ToInt32(camera) < 1)
+                return false;
+
+
+            return true;
         }
     }
 }

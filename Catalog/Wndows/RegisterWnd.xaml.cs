@@ -45,6 +45,42 @@ namespace Catalog.Wndows
 
             authBtn.IsEnabled = false;
             authBtn.Visibility = Visibility.Hidden;
+
+            User? user = XmlSerializator.DeserializeUser();
+            if (user != null)
+            {
+                Auth.currentUser = user;
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                this.Close();
+            }
+        }
+
+        // Нужен для сохраненного юзера
+        public RegisterWnd(bool ifExited)
+        {
+            InitializeComponent();
+            regWnd = this;
+            // Для навигации по фреймам
+            navigationService = mainFrame.NavigationService;
+            // Новый курсор
+            StreamResourceInfo sri = Application.GetResourceStream(new Uri("Images/CursorBlack.cur", UriKind.Relative));
+            Cursor customCursor = new Cursor(sri.Stream);
+            this.Cursor = customCursor;
+
+            authBtn.IsEnabled = false;
+            authBtn.Visibility = Visibility.Hidden;
+
+            User? user = XmlSerializator.DeserializeUser();
+            if (user != null && ifExited != true)
+            {
+                Auth.currentUser = user;
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+
+                this.Close();
+            }
         }
 
         public void AuthorizationPageSelect(object sender, RoutedEventArgs e)

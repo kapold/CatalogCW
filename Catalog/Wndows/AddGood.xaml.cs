@@ -37,9 +37,6 @@ namespace Catalog.Wndows
             firmBox.ItemsSource = db.GetFirms();
             colorBox.ItemsSource = db.GetColors();
 
-            // Error Provider
-
-
             db.Dispose();
         }
 
@@ -48,6 +45,7 @@ namespace Catalog.Wndows
             good = new Good();
             try
             {
+                
                 // Товар
                 good.Name = nameBox.Text;
                 good.Price = Convert.ToDouble(priceBox.Text);
@@ -74,10 +72,15 @@ namespace Catalog.Wndows
                     good.NFC = false;
 
                 //MessageBox.Show(good.ToString());
+                if (!GoodViewModel.IsValidGood(good.Name, good.Price.ToString(), good.Count.ToString(), good.ImageSrc, good.CPU, good.Display.ToString(), good.Battery.ToString(), good.Camera.ToString()))
+                {
+                    MessageBox.Show("Товар не прошел валидацию!");
+                    return;
+                }
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Проверьте введенные поля!");
                 return;
             }
 

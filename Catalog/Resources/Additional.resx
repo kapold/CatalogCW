@@ -117,19 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BatteryRES" xml:space="preserve">
+    <value>Батарея должна быть положительным числом, больше нуля и не содержать символов строки!</value>
+  </data>
+  <data name="CameraRES" xml:space="preserve">
+    <value>Камера должна быть положительным числом, больше нуля и не содержать символов строки!</value>
+  </data>
   <data name="ContainsRES" xml:space="preserve">
     <value>Поле не должно содержать следующие знаки: ';' ':' '/' '\' '|' ',' '.'.</value>
   </data>
   <data name="CountRES" xml:space="preserve">
     <value>Количество должно быть целым положительным числом, больше нуля и не содержать символы строки!</value>
   </data>
+  <data name="DisplaySizeRES" xml:space="preserve">
+    <value>Размер дисплея должен быть положительным числом, больше нуля и не содержать символов строки!</value>
+  </data>
   <data name="ImageRES" xml:space="preserve">
-    <value>Ссылка на картинку должна содержать "http" и не содержать символы ';' ':'.</value>
+    <value>Ссылка на картинку должна содержать "http" и не содержать символы ';'.</value>
   </data>
   <data name="NotEmptyRES" xml:space="preserve">
     <value>Поле должно быть заполненным!</value>
   </data>
   <data name="PriceRES" xml:space="preserve">
-    <value>Цена должна быть положительным числом, больге нуля и не содержать символов строки!</value>
+    <value>Цена должна быть положительным числом, больше нуля и не содержать символов строки!</value>
+  </data>
+  <data name="ProcessorRES" xml:space="preserve">
+    <value>Поле не должно содержать следующие знаки: ';' ':' '/' '\' '|' ',' '.'.</value>
   </data>
 </root>

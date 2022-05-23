@@ -61,6 +61,24 @@ namespace Catalog.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Батарея должна быть положительным числом, больше нуля и не содержать символов строки!.
+        /// </summary>
+        internal static string BatteryRES {
+            get {
+                return ResourceManager.GetString("BatteryRES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Камера должна быть положительным числом, больше нуля и не содержать символов строки!.
+        /// </summary>
+        internal static string CameraRES {
+            get {
+                return ResourceManager.GetString("CameraRES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Поле не должно содержать следующие знаки: &apos;;&apos; &apos;:&apos; &apos;/&apos; &apos;\&apos; &apos;|&apos; &apos;,&apos; &apos;.&apos;..
         /// </summary>
         internal static string ContainsRES {
@@ -79,7 +97,16 @@ namespace Catalog.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Ссылка на картинку должна содержать &quot;http&quot; и не содержать символы &apos;;&apos; &apos;:&apos;..
+        ///   Ищет локализованную строку, похожую на Размер дисплея должен быть положительным числом, больше нуля и не содержать символов строки!.
+        /// </summary>
+        internal static string DisplaySizeRES {
+            get {
+                return ResourceManager.GetString("DisplaySizeRES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ссылка на картинку должна содержать &quot;http&quot; и не содержать символы &apos;;&apos;..
         /// </summary>
         internal static string ImageRES {
             get {
@@ -97,11 +124,20 @@ namespace Catalog.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Цена должна быть положительным числом, больге нуля и не содержать символов строки!.
+        ///   Ищет локализованную строку, похожую на Цена должна быть положительным числом, больше нуля и не содержать символов строки!.
         /// </summary>
         internal static string PriceRES {
             get {
                 return ResourceManager.GetString("PriceRES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Поле не должно содержать следующие знаки: &apos;;&apos; &apos;:&apos; &apos;/&apos; &apos;\&apos; &apos;|&apos; &apos;,&apos; &apos;.&apos;..
+        /// </summary>
+        internal static string ProcessorRES {
+            get {
+                return ResourceManager.GetString("ProcessorRES", resourceCulture);
             }
         }
     }
