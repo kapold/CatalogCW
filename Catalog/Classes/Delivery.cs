@@ -17,10 +17,12 @@ namespace Catalog.Classes
         public int DeliveryCount { get; set; }
         public Order? Order { get; set; }
         public Delivery? DeliveryLink { get; set; }
+        public User? Customer { get; set; }
 
         public Delivery()
         {
             Order = new Order();
+            Customer = new User();
         }
 
         public override string ToString()

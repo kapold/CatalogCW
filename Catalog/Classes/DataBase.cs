@@ -38,7 +38,7 @@ namespace Catalog.Classes
             string redactedDisplay = g.Display.ToString().Replace(',', '.');
 
             string sqlGoods = $"INSERT INTO Goods(Name, Price, GoodCount, Firm, Description, ImageSrc, GoodType) " +
-                $"VALUES ('{g.Name}', {redactedPrice}, {g.Count}, '{g.Firm}', '{g.Description}', '{g.ImageSrc}', '{g.Type}');";
+                $"VALUES (@gName, @redactedPrice, @gCount, @gFirm, @gDescription, @gImageSrc, @gType);";
             string sqlCopyID = $"SELECT TOP(1) GoodID FROM Goods ORDER BY Goods.GoodID DESC; ";
 
 
@@ -46,6 +46,14 @@ namespace Catalog.Classes
             try
             {
                 SqlCommand commandGoods = new SqlCommand(sqlGoods, connection);
+                commandGoods.Parameters.Add(new SqlParameter("@gName", g.Name));
+                commandGoods.Parameters.Add(new SqlParameter("@redactedPrice", redactedPrice));
+                commandGoods.Parameters.Add(new SqlParameter("@gCount", g.Count));
+                commandGoods.Parameters.Add(new SqlParameter("@gFirm", g.Firm));
+                commandGoods.Parameters.Add(new SqlParameter("@gDescription", g.Description));
+                commandGoods.Parameters.Add(new SqlParameter("@gImageSrc", g.ImageSrc));
+                commandGoods.Parameters.Add(new SqlParameter("@gType", g.Type));
+
                 commandGoods.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -66,11 +74,25 @@ namespace Catalog.Classes
 
 
             string sqlParams = $"INSERT INTO Params(Good_ID, Display, DisplayType, Resolution, Hertz, CPU, RAM, ROM, Color, OS, Battery, Camera, NFC) " +
-                $"VALUES ({id}, {redactedDisplay}, '{g.DisplayType}', '{g.Resolution}', {g.Hertz}, '{g.CPU}', {g.RAM}, {g.ROM}, '{g.Color}', '{g.OS}', {g.Battery}, {g.Camera}, {Convert.ToInt32(g.NFC)});";
+                $"VALUES (@id, @redactedDisplay, @gDisplayType, @gResolution, @gHertz, @gCPU, @gRAM, @gROM, @gColor, @gOS, @gBattery, @gCamera, @gNFC);";
 
             try
             {
                 SqlCommand commandParams = new SqlCommand(sqlParams, connection);
+                commandParams.Parameters.Add(new SqlParameter("@id", id));
+                commandParams.Parameters.Add(new SqlParameter("@redactedDisplay", redactedDisplay));
+                commandParams.Parameters.Add(new SqlParameter("@gDisplayType", g.DisplayType));
+                commandParams.Parameters.Add(new SqlParameter("@gResolution", g.Resolution));
+                commandParams.Parameters.Add(new SqlParameter("@gHertz", g.Hertz));
+                commandParams.Parameters.Add(new SqlParameter("@gCPU", g.CPU));
+                commandParams.Parameters.Add(new SqlParameter("@gRAM", g.RAM));
+                commandParams.Parameters.Add(new SqlParameter("@gROM", g.ROM));
+                commandParams.Parameters.Add(new SqlParameter("@gColor", g.Color));
+                commandParams.Parameters.Add(new SqlParameter("@gOS", g.OS));
+                commandParams.Parameters.Add(new SqlParameter("@gBattery", g.Battery));
+                commandParams.Parameters.Add(new SqlParameter("@gCamera", g.Camera));
+                commandParams.Parameters.Add(new SqlParameter("@gNFC", Convert.ToInt32(g.NFC)));
+
                 commandParams.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -137,15 +159,36 @@ namespace Catalog.Classes
             string redactedPrice = g.Price.ToString().Replace(',', '.');
             string redactedDisplay = g.Display.ToString().Replace(',', '.');
 
-            string sqlUpdateGoods = $"UPDATE Goods SET Name = '{g.Name}', Price = {redactedPrice}, GoodCount = {g.Count}, Firm = '{g.Firm}', Description = '{g.Description}', ImageSrc = '{g.ImageSrc}', GoodType = '{g.Type}' WHERE GoodID = {id}";
-            string sqlUpdateParams = $"UPDATE Params SET Display = {redactedDisplay}, DisplayType = '{g.DisplayType}', Resolution = '{g.Resolution}', Hertz = {g.Hertz}, CPU = '{g.CPU}', RAM = {g.RAM}, ROM = {g.ROM}, Color = '{g.Color}', OS = '{g.OS}', Battery = {g.Battery}, Camera = {g.Camera}, NFC = {Convert.ToInt32(g.NFC)} WHERE Good_ID = {id}";
+            string sqlUpdateGoods = $"UPDATE Goods SET Name = @gName, Price = @redactedPrice, GoodCount = @gCount, Firm = @gFirm, Description = @gDescription, ImageSrc = @gImageSrc, GoodType = @gType WHERE GoodID = @id";
+            string sqlUpdateParams = $"UPDATE Params SET Display = @redactedDisplay, DisplayType = @gDisplayType, Resolution = @gResolution, Hertz = @gHertz, CPU = @gCPU, RAM = @gRAM, ROM = @gROM, Color = @gColor, OS = @gOS, Battery = @gBattery, Camera = @gCamera, NFC = @gNFC WHERE Good_ID = @id";
 
             try
             {
                 SqlCommand commandGoods = new SqlCommand(sqlUpdateGoods, connection);
+                commandGoods.Parameters.Add(new SqlParameter("@gName", g.Name));
+                commandGoods.Parameters.Add(new SqlParameter("@redactedPrice", redactedPrice));
+                commandGoods.Parameters.Add(new SqlParameter("@gCount", g.Count));
+                commandGoods.Parameters.Add(new SqlParameter("@gFirm", g.Firm));
+                commandGoods.Parameters.Add(new SqlParameter("@gDescription", g.Description));
+                commandGoods.Parameters.Add(new SqlParameter("@gImageSrc", g.ImageSrc));
+                commandGoods.Parameters.Add(new SqlParameter("@gType", g.Type));
+                commandGoods.Parameters.Add(new SqlParameter("@id", id));
                 commandGoods.ExecuteNonQuery();
 
                 SqlCommand commandParams = new SqlCommand(sqlUpdateParams, connection);
+                commandParams.Parameters.Add(new SqlParameter("@id", id));
+                commandParams.Parameters.Add(new SqlParameter("@redactedDisplay", redactedDisplay));
+                commandParams.Parameters.Add(new SqlParameter("@gDisplayType", g.DisplayType));
+                commandParams.Parameters.Add(new SqlParameter("@gResolution", g.Resolution));
+                commandParams.Parameters.Add(new SqlParameter("@gHertz", g.Hertz));
+                commandParams.Parameters.Add(new SqlParameter("@gCPU", g.CPU));
+                commandParams.Parameters.Add(new SqlParameter("@gRAM", g.RAM));
+                commandParams.Parameters.Add(new SqlParameter("@gROM", g.ROM));
+                commandParams.Parameters.Add(new SqlParameter("@gColor", g.Color));
+                commandParams.Parameters.Add(new SqlParameter("@gOS", g.OS));
+                commandParams.Parameters.Add(new SqlParameter("@gBattery", g.Battery));
+                commandParams.Parameters.Add(new SqlParameter("@gCamera", g.Camera));
+                commandParams.Parameters.Add(new SqlParameter("@gNFC", Convert.ToInt32(g.NFC)));
                 commandParams.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -156,15 +199,17 @@ namespace Catalog.Classes
 
         public void DeleteGood(int id)
         {
-            string sqlGoods = $"DELETE FROM Goods WHERE GoodID = {id}";
-            string sqlParams = $"DELETE FROM Params WHERE Good_ID = {id}";
+            string sqlGoods = $"DELETE FROM Goods WHERE GoodID = @id";
+            string sqlParams = $"DELETE FROM Params WHERE Good_ID = @id";
 
             try
             {
                 SqlCommand commandParams = new SqlCommand(sqlParams, connection);
+                commandParams.Parameters.Add(new SqlParameter("@id", id));
                 commandParams.ExecuteNonQuery();
 
                 SqlCommand commandGoods = new SqlCommand(sqlGoods, connection);
+                commandGoods.Parameters.Add(new SqlParameter("@id", id));
                 commandGoods.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -176,11 +221,19 @@ namespace Catalog.Classes
         public void RedactUser(User user)
         {
             user.Password = Crypto.GetHash(user.Password);
-            string sqlRedact = $"UPDATE Users SET Login = '{user.Login}', Password = '{user.Password}', Name = '{user.Name}', Surname = '{user.Surname}', Patronymic = '{user.Patronymic}', PhoneNumber = '{user.PhoneNumber}', Address = '{user.Address}' WHERE UserID = {user.ID}";
+            string sqlRedact = $"UPDATE Users SET Login = @userLogin, Password = @userPassword, Name = @userName, Surname = @userSurname, Patronymic = @userPatronymic, PhoneNumber = @userPhoneNumber, Address = @userAddress WHERE UserID = @userID";
 
             try
             {
                 SqlCommand commandRedact = new SqlCommand(sqlRedact, connection);
+                commandRedact.Parameters.Add(new SqlParameter("@userLogin", user.Login));
+                commandRedact.Parameters.Add(new SqlParameter("@userPassword", user.Password));
+                commandRedact.Parameters.Add(new SqlParameter("@userName", user.Name));
+                commandRedact.Parameters.Add(new SqlParameter("@userSurname", user.Surname));
+                commandRedact.Parameters.Add(new SqlParameter("@userPatronymic", user.Patronymic));
+                commandRedact.Parameters.Add(new SqlParameter("@userPhoneNumber", user.PhoneNumber));
+                commandRedact.Parameters.Add(new SqlParameter("@userAddress", user.Address));
+                commandRedact.Parameters.Add(new SqlParameter("@userID", user.ID));
                 commandRedact.ExecuteNonQuery();
             }
             catch(SqlException ex)
@@ -196,11 +249,13 @@ namespace Catalog.Classes
         public void AddOrder(Good g, User u)
         {
             string sqlOrder = $"INSERT INTO Orders(GoodID, OrderedCount, IsOrdered, Customer) " +
-                $"VALUES ({g.ID}, 1, 0, {u.ID})";
+                $"VALUES (@gID, 1, 0, @uID)";
 
             try
             {
                 SqlCommand commandOrders = new SqlCommand(sqlOrder, connection);
+                commandOrders.Parameters.Add(new SqlParameter("@gID", g.ID));
+                commandOrders.Parameters.Add(new SqlParameter("@uID", u.ID));
                 commandOrders.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -211,11 +266,12 @@ namespace Catalog.Classes
 
         public void DeleteOrder(Order order)
         {
-            string sqlOrder = $"DELETE FROM Orders WHERE OrderNo = {order.OrderNo}";
+            string sqlOrder = $"DELETE FROM Orders WHERE OrderNo = @orderNo";
 
             try
             {
                 SqlCommand commandOrders = new SqlCommand(sqlOrder, connection);
+                commandOrders.Parameters.Add(new SqlParameter("@orderNo", order.OrderNo));
                 commandOrders.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -289,15 +345,20 @@ namespace Catalog.Classes
         public void AddDelivery(Delivery delivery)
         {
             string sqlDelivery = $"INSERT INTO Deliveries(OrderID, DeliveryDate, DeliveryAddress, PaymentType, DeliveryCount) " +
-                $"VALUES ({delivery.OrderID}, '{delivery.DeliveryDate}', '{delivery.DeliveryAddress}', '{delivery.PaymentType}', {delivery.DeliveryCount})";
-            string sqlOrder = $"UPDATE Orders SET IsOrdered = 1 WHERE OrderNo = {delivery.OrderID}";
+                $"VALUES (@deliveryOrderID, '{delivery.DeliveryDate}', @deliveryDeliveryAddress, @deliveryPaymentType, @deliveryDeliveryCount)";
+            string sqlOrder = $"UPDATE Orders SET IsOrdered = 1 WHERE OrderNo = @deliveryOrderID";
 
             try
             {
                 SqlCommand commandDeliveries = new SqlCommand(sqlDelivery, connection);
+                commandDeliveries.Parameters.Add(new SqlParameter("@deliveryOrderID", delivery.OrderID));
+                commandDeliveries.Parameters.Add(new SqlParameter("@deliveryDeliveryAddress", delivery.DeliveryAddress));
+                commandDeliveries.Parameters.Add(new SqlParameter("@deliveryPaymentType", delivery.PaymentType));
+                commandDeliveries.Parameters.Add(new SqlParameter("@deliveryDeliveryCount", delivery.DeliveryCount));
                 commandDeliveries.ExecuteNonQuery();
 
                 SqlCommand commandOrders = new SqlCommand(sqlOrder, connection);
+                commandOrders.Parameters.Add(new SqlParameter("@deliveryOrderID", delivery.OrderID));
                 commandOrders.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -378,6 +439,7 @@ namespace Catalog.Classes
                         delivery.Order.Good.ImageSrc = reader["ImageSrc"].ToString();
                         delivery.Order.Good.Name = reader["Name"].ToString();
                         delivery.Order.Good.Price = Convert.ToDouble(reader["Price"]);
+                        delivery.Customer.Surname = reader["Surname"].ToString();
 
                         delivery.DeliveryLink = delivery;
 
@@ -455,11 +517,12 @@ namespace Catalog.Classes
         public void AddGoodType(string newType)
         {
             string sqlType = $"INSERT INTO GoodTypes(TypeName) " +
-                $"VALUES ('{newType}')";
+                $"VALUES (@newType)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@newType", newType));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("Тип товара успешно добавлен!");
@@ -477,11 +540,12 @@ namespace Catalog.Classes
         public void AddDisplayType(string type)
         {
             string sqlType = $"INSERT INTO DisplayTypes(TypeName) " +
-                $"VALUES ('{type}')";
+                $"VALUES (@type)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@type", type));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("Тип дисплея успешно добавлен!");
@@ -499,11 +563,12 @@ namespace Catalog.Classes
         public void AddResolution(string resolution)
         {
             string sqlType = $"INSERT INTO Resolutions(ResolutionName) " +
-                $"VALUES ('{resolution}')";
+                $"VALUES (@resolution)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@resolution", resolution));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("Разрешение успешно добавлено!");
@@ -521,11 +586,12 @@ namespace Catalog.Classes
         public void AddHertz(string hertz)
         {
             string sqlType = $"INSERT INTO Hertzs(HertzName) " +
-                $"VALUES ('{hertz}')";
+                $"VALUES (@hertz)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@hertz", hertz));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("Гц успешно добавлено!");
@@ -543,11 +609,12 @@ namespace Catalog.Classes
         public void AddRAM(string ram)
         {
             string sqlType = $"INSERT INTO RAMs(RAMName) " +
-                $"VALUES ('{ram}')";
+                $"VALUES (@ram)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@ram", ram));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("RAM успешно добавлено!");
@@ -565,11 +632,12 @@ namespace Catalog.Classes
         public void AddROM(string rom)
         {
             string sqlType = $"INSERT INTO ROMs(ROMName) " +
-                $"VALUES ('{rom}')";
+                $"VALUES (@rom)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@rom", rom));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("ROM успешно добавлено!");
@@ -587,11 +655,12 @@ namespace Catalog.Classes
         public void AddOS(string os)
         {
             string sqlType = $"INSERT INTO OS(OSName) " +
-                $"VALUES ('{os}')";
+                $"VALUES (@os)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@os", os));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("OS успешно добавлено!");
@@ -609,11 +678,12 @@ namespace Catalog.Classes
         public void AddColor(string color)
         {
             string sqlType = $"INSERT INTO Colors(ColorName) " +
-                $"VALUES ('{color}')";
+                $"VALUES (@color)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@color", color));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("Color успешно добавлено!");
@@ -631,11 +701,12 @@ namespace Catalog.Classes
         public void AddFirm(string firm)
         {
             string sqlType = $"INSERT INTO Firms(FirmName) " +
-                $"VALUES ('{firm}')";
+                $"VALUES (@firm)";
 
             try
             {
                 SqlCommand commandTypes = new SqlCommand(sqlType, connection);
+                commandTypes.Parameters.Add(new SqlParameter("@firm", firm));
                 commandTypes.ExecuteNonQuery();
 
                 MessageBox.Show("Firm успешно добавлено!");

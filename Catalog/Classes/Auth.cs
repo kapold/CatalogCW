@@ -21,8 +21,12 @@ namespace Catalog.Classes
             {
                 connection.Open(); // Подключаемся к БД
                 password = Crypto.GetHash(password); // sha256
-                string sqlExpression = $"SELECT * FROM Users WHERE Password = '{password}' AND Login = '{nickname}'";
+                string sqlExpression = $"SELECT * FROM Users WHERE Password = @password AND Login = @nickname";
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
+
+                command.Parameters.Add(new SqlParameter("@password", password));
+                command.Parameters.Add(new SqlParameter("@nickname", nickname));
+
                 using(SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows) // если есть данные
@@ -76,12 +80,20 @@ namespace Catalog.Classes
                 connection.Open();
                 password = Crypto.GetHash(password); // sha256
                 string sqlExpression = $"INSERT INTO Users(isAdmin, login, password, name, surname, patronymic, phoneNumber, Address)" +
-                                       $"   VALUES(0, '{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{phoneNumber}', '{address}')";
-                string checkUserSql = $"SELECT * FROM Users WHERE Login = '{login}'";
+                                       $"   VALUES(0, @login, @password, @name, @surname, @patronymic, @phoneNumber, @address)";
+                string checkUserSql = $"SELECT * FROM Users WHERE Login = @login";
 
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlCommand commandForCheck = new SqlCommand(checkUserSql, connection);
-                //command.Parameters.Add("@login", login);
+
+                command.Parameters.Add(new SqlParameter("@login", login));
+                command.Parameters.Add(new SqlParameter("@password", password));
+                command.Parameters.Add(new SqlParameter("@name", name));
+                command.Parameters.Add(new SqlParameter("@surname", surname));
+                command.Parameters.Add(new SqlParameter("@patronymic", patronymic));
+                command.Parameters.Add(new SqlParameter("@phoneNumber", phoneNumber));
+                command.Parameters.Add(new SqlParameter("@address", address));
+                commandForCheck.Parameters.Add(new SqlParameter("@login", login));
 
                 SqlDataReader checkReader = commandForCheck.ExecuteReader();
                 if (!checkReader.HasRows) // Проверяем есть ли такой User в БД
@@ -108,11 +120,13 @@ namespace Catalog.Classes
             using(SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string sqlDelete = $"DELETE FROM Users WHERE UserID = {id}";
+                string sqlDelete = $"DELETE FROM Users WHERE UserID = @id";
 
                 try
                 {
                     SqlCommand commandDelete = new SqlCommand(sqlDelete, connection);
+                    commandDelete.Parameters.Add(new SqlParameter("@id", id));
+                    
                     commandDelete.ExecuteNonQuery();
                 }
                 catch (Exception ex)

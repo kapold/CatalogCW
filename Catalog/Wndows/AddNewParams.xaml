@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:Catalog.Wndows"
         mc:Ignorable="d"
         Title="Добавить параметры" 
-        Height="760" Width="550"
-        WindowStartupLocation="CenterScreen">
+        Height="760" Width="560"
+        MinHeight="760" MinWidth="560"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Images/shopIcon.png">
 
     <Grid>
         <Grid.ColumnDefinitions>

@@ -121,7 +121,7 @@ namespace Catalog.Wndows
 
             foreach (Delivery d in deliveries)
             {
-                if (regex.IsMatch(d.DeliveryID.ToString()))
+                if (regex.IsMatch(d.Customer.Surname.ToString()))
                 {
                     searchedDeliveries.Add(d);
                 }

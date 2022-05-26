@@ -65,8 +65,8 @@
         <Button x:Name="pickCartBtn" Style="{StaticResource authButtons}" Click="PickCart" Grid.Column="1" Content="Корзина" Margin="0,27,261,0" VerticalAlignment="Top" Height="30" FontFamily="Century Gothic" FontSize="18" HorizontalAlignment="Right" Width="100"/>
         <!-- Доставка -->
         <Button x:Name="pickDeliveryBtn" Style="{StaticResource authButtons}" Click="PickDelivery" Grid.Column="1" Content="Доставка" Margin="0,27,156,0" VerticalAlignment="Top" Height="30" FontFamily="Century Gothic" FontSize="18" HorizontalAlignment="Right" Width="100"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Center" Height="33" TextWrapping="Wrap" Text="Итого:" VerticalAlignment="Top" Width="114" FontFamily="Century Gothic" FontSize="18" FontWeight="Bold" FontStyle="Italic" TextAlignment="Center" Margin="0,18,0,0"/>
-        <TextBlock x:Name="totalPriceTB" Grid.Column="2" HorizontalAlignment="Center" Height="21" Margin="0,39,0,0" TextWrapping="Wrap" Text="0,00 " VerticalAlignment="Top" Width="114" TextAlignment="Center" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" FontStyle="Italic"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Итого:" Width="114" FontFamily="Century Gothic" FontSize="18" FontWeight="Bold" FontStyle="Italic" TextAlignment="Center" Margin="0,0,1,84" Grid.Row="1" Height="33" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="totalPriceTB" Grid.Column="2" Margin="0,0,1,75" TextWrapping="Wrap" Text="0,00 " TextAlignment="Center" FontFamily="Century Gothic" FontSize="16" FontWeight="Normal" FontStyle="Italic" Grid.Row="1" HorizontalAlignment="Right" Width="114" Height="21" VerticalAlignment="Bottom"/>
         <Button x:Name="orderAllBtn" Style="{StaticResource authButtons}" Click="OrderAllCart" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,7,10" Grid.Row="1" Width="102" FontSize="18" FontFamily="Century Gothic" Height="60" VerticalAlignment="Bottom">
             <TextBlock>Заказать<LineBreak/>все</TextBlock>
         </Button>

@@ -98,6 +98,16 @@ namespace Catalog.Wndows
                 MessageBox.Show("Введите название герц!");
                 return;
             }
+            else if (hertzTypeBox.Text.Contains(',') || hertzTypeBox.Text.Contains('.'))
+            {
+                MessageBox.Show("Введите целое количество герц!");
+                return;
+            }
+            else if (Convert.ToInt32(hertzTypeBox.Text) < 1)
+            {
+                MessageBox.Show("Введите положительное количество герц больше нуля!");
+                return;
+            }
 
             try
             {
@@ -120,6 +130,16 @@ namespace Catalog.Wndows
                 MessageBox.Show("Введите название RAM!");
                 return;
             }
+            else if (ramTypeBox.Text.Contains(',') || ramTypeBox.Text.Contains('.'))
+            {
+                MessageBox.Show("Введите целое количество RAM!");
+                return;
+            }
+            else if (Convert.ToInt32(ramTypeBox.Text) < 1)
+            {
+                MessageBox.Show("Введите положительное количество RAM больше нуля!");
+                return;
+            }
 
             try
             {
@@ -140,6 +160,16 @@ namespace Catalog.Wndows
             if (String.IsNullOrEmpty(romTypeBox.Text))
             {
                 MessageBox.Show("Введите название ROM!");
+                return;
+            }
+            else if (romTypeBox.Text.Contains(',') || romTypeBox.Text.Contains('.'))
+            {
+                MessageBox.Show("Введите целое количество ROM!");
+                return;
+            }
+            else if (Convert.ToInt32(romTypeBox.Text) < 1)
+            {
+                MessageBox.Show("Введите положительное количество ROM больше нуля!");
                 return;
             }
 

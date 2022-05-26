@@ -150,22 +150,26 @@ namespace Catalog
 
         private void SearchBoxChanged(object sender, RoutedEventArgs e)
         {
-            Regex regex = new Regex(mainSearchBox.Text);
-
-            DataBase dataBase = new DataBase();
-            List<Good> goods = dataBase.GetGoods();
-            List<Good> searchedGoods = new List<Good>();
-
-            foreach (Good g in goods)
+            try
             {
-                if (regex.IsMatch(g.Name))
-                {
-                    searchedGoods.Add(g);
-                }
-            }
+                Regex regex = new Regex(mainSearchBox.Text);
 
-            allGoodPage.allGoodsList.ItemsSource = searchedGoods;
-            dataBase.Dispose();
+                DataBase dataBase = new DataBase();
+                List<Good> goods = dataBase.GetGoods();
+                List<Good> searchedGoods = new List<Good>();
+
+                foreach (Good g in goods)
+                {
+                    if (regex.IsMatch(g.Name))
+                    {
+                        searchedGoods.Add(g);
+                    }
+                }
+
+                allGoodPage.allGoodsList.ItemsSource = searchedGoods;
+                dataBase.Dispose();
+            }
+            catch { }
         }
 
         // Функция общей фильтрации
@@ -310,7 +314,7 @@ namespace Catalog
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Фильтр задан неверно!");
+                //MessageBox.Show("Фильтр задан неверно!");
                 OutputGoods(sender, e);
             }
 
