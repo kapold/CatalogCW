@@ -61,7 +61,12 @@ namespace Catalog.Wndows
                 delivery.Order = currentOrder;
                 delivery.OrderID = currentOrder.OrderNo;
 
-                if (savedMaxCount < Convert.ToInt32(countBox.Text))
+                if (countBox.Text.Contains(',') || countBox.Text.Contains('.'))
+                {
+                    MessageBox.Show("Введите целое количество товара!");
+                    return;
+                }
+                else if (savedMaxCount < Convert.ToInt32(countBox.Text))
                 {
                     MessageBox.Show("Выберите количество товара, меньше чем на складе!");
                     return;

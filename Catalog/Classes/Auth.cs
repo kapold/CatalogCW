@@ -78,9 +78,10 @@ namespace Catalog.Classes
                 string sqlExpression = $"INSERT INTO Users(isAdmin, login, password, name, surname, patronymic, phoneNumber, Address)" +
                                        $"   VALUES(0, '{login}', '{password}', '{name}', '{surname}', '{patronymic}', '{phoneNumber}', '{address}')";
                 string checkUserSql = $"SELECT * FROM Users WHERE Login = '{login}'";
-                
+
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlCommand commandForCheck = new SqlCommand(checkUserSql, connection);
+                //command.Parameters.Add("@login", login);
 
                 SqlDataReader checkReader = commandForCheck.ExecuteReader();
                 if (!checkReader.HasRows) // Проверяем есть ли такой User в БД

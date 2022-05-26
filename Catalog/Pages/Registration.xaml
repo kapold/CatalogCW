@@ -36,13 +36,13 @@
         <PasswordBox x:Name="passwordBoxRegistr" PasswordChanged="PasswordSelection"  Padding="5,0,0,0" MaxLength="16" Style="{DynamicResource MainPasswordStyle}" Margin="33,0,33,0" Grid.Row="1" FontSize="18" Grid.Column="1" Height="30" VerticalAlignment="Center"/>
         <!-- Name -->
         <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Имя:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="2" Margin="40,0,0,0"/>
-        <TextBox x:Name="nameBoxRegistr" SelectionChanged="FIOSelection" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
+        <TextBox x:Name="nameBoxRegistr" MaxLength="32" SelectionChanged="FIOSelection" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- Surname -->
         <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Фамилия:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="3" Margin="40,0,0,0"/>
-        <TextBox x:Name="surnameBoxRegistr" SelectionChanged="FIOSelection" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
+        <TextBox x:Name="surnameBoxRegistr" MaxLength="32" SelectionChanged="FIOSelection" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="30" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- Patronymic -->
         <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Отчество:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="4" Margin="32,0,0,0"/>
-        <TextBox x:Name="patronymicBoxRegistr" SelectionChanged="FIOSelection" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="31" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
+        <TextBox x:Name="patronymicBoxRegistr" MaxLength="32" SelectionChanged="FIOSelection" Padding="5,0,0,0" Style="{DynamicResource MainBoxStyle}" Height="31" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Margin="32,0,33,0"/>
         <!-- RepeatPassword -->
         <TextBlock HorizontalAlignment="Left" Height="30" TextWrapping="Wrap" Text="Повторите пароль:" VerticalAlignment="Top" Width="160" FontSize="16" FontFamily="Century Gothic" Grid.Row="2" Grid.Column="1" Margin="40,0,0,0"/>
         <PasswordBox x:Name="repeatPasswordBoxRegistr" PasswordChanged="PasswordSelection" Padding="5,0,0,0" Style="{DynamicResource MainPasswordStyle}" MaxLength="16" Height="30" Grid.Row="2" VerticalAlignment="Center" FontSize="18" FontFamily="Century Gothic" Grid.Column="1" Margin="33,0,32,0"/>

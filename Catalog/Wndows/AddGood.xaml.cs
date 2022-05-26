@@ -77,17 +77,17 @@ namespace Catalog.Wndows
                     MessageBox.Show("Товар не прошел валидацию!");
                     return;
                 }
+
+                DataBase dataBase = new DataBase();
+                dataBase.AddGood(good);
+                dataBase.Dispose();
+                MessageBox.Show("Товар добавлен!");
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Проверьте введенные поля!");
                 return;
             }
-
-            DataBase dataBase = new DataBase();
-            dataBase.AddGood(good);
-            dataBase.Dispose();
-            MessageBox.Show("Товар добавлен!");
         }
 
         private void ClearAllFields(object sender, RoutedEventArgs e)

@@ -44,10 +44,10 @@
         <TextBox x:Name="osTypeBox" Style="{StaticResource MainBoxStyle}" Padding="6,4,0,0" Height="40" Margin="20,504,20,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26" FontFamily="Century Gothic" Grid.Column="1" Width="210"/>
         <Button Click="AddOSBtn" Style="{DynamicResource authButtons}" Content="Добавить OS" Height="40" MinHeight="45" MaxWidth="220" FontSize="24" FontFamily="Century Gothic" VerticalAlignment="Top" Margin="0,501,0,0"/>
         <TextBlock Height="50" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22" FontFamily="Century Gothic" FontStyle="Normal" HorizontalAlignment="Center" Width="200" Margin="0,553,0,0" Grid.Column="1" Text="Цвет:"/>
-        <TextBox x:Name="colorTypeBox" Style="{StaticResource MainBoxStyle}" Padding="6,4,0,0" Height="40" Margin="32,583,33,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26" FontFamily="Century Gothic" Grid.Column="1" Width="210"/>
+        <TextBox x:Name="colorTypeBox" Style="{StaticResource MainBoxStyle}" Padding="6,4,0,0" Height="40" Margin="32.5,583,32.5,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26" FontFamily="Century Gothic" Grid.Column="1" Width="210"/>
         <Button Click="AddColorBtn" Style="{DynamicResource authButtons}" Content="Добавить цвет" Height="40" MinHeight="45" MaxWidth="220" FontSize="24" FontFamily="Century Gothic" VerticalAlignment="Top" Margin="0,580,0,0"/>
         <TextBlock Height="50" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22" FontFamily="Century Gothic" FontStyle="Normal" HorizontalAlignment="Center" Width="200" Margin="0,630,0,0" Grid.Column="1" Text="Фирма"/>
-        <TextBox x:Name="firmTypeBox" Style="{StaticResource MainBoxStyle}" Padding="6,4,0,0" Height="40" Margin="32,660,33,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26" FontFamily="Century Gothic" Grid.Column="1" Width="210"/>
+        <TextBox x:Name="firmTypeBox" Style="{StaticResource MainBoxStyle}" Padding="6,4,0,0" Height="40" Margin="32.5,660,32.5,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="26" FontFamily="Century Gothic" Grid.Column="1" Width="210"/>
         <Button Click="AddFirmBtn" Style="{DynamicResource authButtons}" Content="Добавить фирму" Height="40" MinHeight="45" MaxWidth="220" FontSize="24" FontFamily="Century Gothic" VerticalAlignment="Top" Margin="0,657,0,0"/>
 
     </Grid>

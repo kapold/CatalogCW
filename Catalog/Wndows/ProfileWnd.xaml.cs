@@ -70,6 +70,32 @@ namespace Catalog.Wndows
                 {
                     Auth.currentUser.Password = profilePassword.Text;
                 }
+                else if (profileLogin.Text.Length < 8 || profilePassword.Text.Length < 8)
+                {
+                    MessageBox.Show("Пароль и логин должны быть длиной от 8 до 16 символов!");
+                    RefreshAccount();
+                    return;
+                }
+                else if (profileName.Text.Contains(' ') || profileSurname.Text.Contains(' ') || profilePatronymic.Text.Contains(' ') ||
+                    profileName.Text.Length < 1 || profileSurname.Text.Length < 1 || profilePatronymic.Text.Length < 1)
+                {
+                    MessageBox.Show("ФИО должны быть длиной  не более 32 символа и содержать только 1 слово");
+                    RefreshAccount();
+                    return;
+                }
+                else if (profilePhone.Text.Length != 12)
+                {
+                    MessageBox.Show("Длина телефорна должна быть 12, без символа + и начинаясь с 375");
+                    RefreshAccount();
+                    return;
+                }
+                else if (profileAddress.Text.Length < 1)
+                {
+                    MessageBox.Show("Адрес должен быть не менее 1 символа!");
+                    RefreshAccount();
+                    return;
+                }
+
                 Auth.currentUser.Login = profileLogin.Text;
                 Auth.currentUser.Name = profileName.Text;
                 Auth.currentUser.Surname = profileSurname.Text;
@@ -78,6 +104,8 @@ namespace Catalog.Wndows
                 Auth.currentUser.Address = profileAddress.Text;
 
                 dataBase.RedactUser(Auth.currentUser);
+                MessageBox.Show("Аккаунт отредактирован!");
+                RefreshAccount();
                 dataBase.Dispose();
                 XmlSerializator.SerializeUser(Auth.currentUser);
             }
@@ -99,6 +127,24 @@ namespace Catalog.Wndows
                 Auth.currentUser = null;
                 XmlSerializator.SerializeUser(Auth.currentUser);
                 MessageBox.Show("Аккаунт успешно удален!");
+            }
+        }
+
+        private void RefreshAccount()
+        {
+            try
+            {
+                profileLogin.Text = Auth.currentUser.Login;
+                profilePassword.Text = "********";
+                profileName.Text = Auth.currentUser.Name;
+                profileSurname.Text = Auth.currentUser.Surname;
+                profilePatronymic.Text = Auth.currentUser.Patronymic;
+                profilePhone.Text = Auth.currentUser.PhoneNumber;
+                profileAddress.Text = Auth.currentUser.Address;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

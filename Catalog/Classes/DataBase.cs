@@ -466,7 +466,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такой тип уже есть в БД!");
+                MessageBox.Show("Такой тип уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -488,7 +488,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такой тип уже есть в БД!");
+                MessageBox.Show("Такой тип уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -510,7 +510,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такое разрешение уже есть в БД!");
+                MessageBox.Show("Такое разрешение уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -532,7 +532,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такое Гц уже есть в БД!");
+                MessageBox.Show("Такое Гц уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -554,7 +554,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такое RAM уже есть в БД!");
+                MessageBox.Show("Такое RAM уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -576,7 +576,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такое ROM уже есть в БД!");
+                MessageBox.Show("Такое ROM уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -598,7 +598,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такое OS уже есть в БД!");
+                MessageBox.Show("Такое OS уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -620,7 +620,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такое Color уже есть в БД!");
+                MessageBox.Show("Такое Color уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
@@ -642,7 +642,7 @@ namespace Catalog.Classes
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Такое Firm уже есть в БД!");
+                MessageBox.Show("Такое Firm уже есть в БД или он не валидный!");
             }
             catch (Exception e)
             {
