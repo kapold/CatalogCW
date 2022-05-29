@@ -1,4 +1,5 @@
 ﻿using Catalog.Classes;
+using Catalog.Patterns;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,12 @@ namespace Catalog.Wndows
     /// </summary>
     public partial class AdminPanelWnd : Window
     {
+        public static AdminPanelWnd adminWnd;
         public AdminPanelWnd()
         {
             InitializeComponent();
+            adminWnd = this;
+            DataContext = new ApplicationsViewModel();
 
             DataBase dataBase = new DataBase();
             List<Good> goods = dataBase.GetGoods();
@@ -40,14 +44,14 @@ namespace Catalog.Wndows
             MainWindow.ifAdminPanelOpened = false;
         }
 
-        private void OpenAddGoodWnd(object sender, RoutedEventArgs e)
+        public void OpenAddGoodWnd()
         {
             AddGood addGood = new AddGood();
             addGood.Show();
             this.Close();
         }
 
-        private void OpenAddTypeWnd(object sender, RoutedEventArgs e)
+        public void OpenAddTypeWnd()
         {
             AddNewParams addNewParams = new AddNewParams();
             addNewParams.Show();
@@ -55,80 +59,105 @@ namespace Catalog.Wndows
 
         private void ChangeGoodBtn(object sender, RoutedEventArgs e)
         {
-            if (tableGoods.SelectedIndex < 0)
+            try
             {
-                MessageBox.Show("Выберите товар!");
-                return;
+                if (tableGoods.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Выберите товар!");
+                    return;
+                }
+
+                Good good = (Good)tableGoods.SelectedItem;
+                int GoodID = Convert.ToInt32(good.ID);
+
+                DataBase dataBase = new DataBase();
+                dataBase.UpdateGood(GoodID, good);
+                tableGoods.ItemsSource = dataBase.GetGoods();
+                dataBase.Dispose();
+
+                MessageBox.Show("Данные обновлены!");
             }
-
-            Good good = (Good) tableGoods.SelectedItem;
-            int GoodID = Convert.ToInt32(good.ID);
-
-            DataBase dataBase = new DataBase();
-            dataBase.UpdateGood(GoodID, good);
-            tableGoods.ItemsSource = dataBase.GetGoods();
-            dataBase.Dispose();
-
-            MessageBox.Show("Данные обновлены!");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DeleteGoodBtn(object sender, RoutedEventArgs e)
         {
-            if (tableGoods.SelectedIndex < 0)
+            try
             {
-                MessageBox.Show("Выберите товар!");
-                return;
+                if (tableGoods.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Выберите товар!");
+                    return;
+                }
+
+                Good good = (Good)tableGoods.SelectedItem;
+                int GoodID = Convert.ToInt32(good.ID);
+
+                DataBase dataBase = new DataBase();
+                dataBase.DeleteGood(GoodID);
+                tableGoods.ItemsSource = dataBase.GetGoods();
+                dataBase.Dispose();
+
+                MessageBox.Show("Товар удален!");
             }
-
-            Good good = (Good)tableGoods.SelectedItem;
-            int GoodID = Convert.ToInt32(good.ID);
-
-            DataBase dataBase = new DataBase();
-            dataBase.DeleteGood(GoodID);
-            tableGoods.ItemsSource = dataBase.GetGoods();
-            dataBase.Dispose();
-
-            MessageBox.Show("Товар удален!");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SearchBox_Changed(object sender, TextChangedEventArgs e)
         {
-            Regex regex = new Regex(searchBox.Text.ToUpper());
-
-            DataBase dataBase = new DataBase();
-            List<Good> goods = dataBase.GetGoods();
-            List<Good> searchedGoods = new List<Good>();
-
-            foreach (Good g in goods)
+            try
             {
-                if(regex.IsMatch(g.Name.ToUpper()))
-                {
-                    searchedGoods.Add(g);
-                }
-            }
+                Regex regex = new Regex(searchBox.Text.ToUpper());
 
-            tableGoods.ItemsSource = searchedGoods;
-            dataBase.Dispose();
+                DataBase dataBase = new DataBase();
+                List<Good> goods = dataBase.GetGoods();
+                List<Good> searchedGoods = new List<Good>();
+
+                foreach (Good g in goods)
+                {
+                    if (regex.IsMatch(g.Name.ToUpper()))
+                    {
+                        searchedGoods.Add(g);
+                    }
+                }
+
+                tableGoods.ItemsSource = searchedGoods;
+                dataBase.Dispose();
+            }
+            catch { }
         }
 
         private void SearchOrders_Changed(object sender, TextChangedEventArgs e)
         {
-            Regex regex = new Regex(searchOrdersBox.Text);
-
-            DataBase dataBase = new DataBase();
-            List<Delivery> deliveries = dataBase.GetAllDeliveries();
-            List<Delivery> searchedDeliveries = new List<Delivery>();
-
-            foreach (Delivery d in deliveries)
+            try
             {
-                if (regex.IsMatch(d.Customer.Surname.ToString()))
-                {
-                    searchedDeliveries.Add(d);
-                }
-            }
+                Regex regex = new Regex(searchOrdersBox.Text);
 
-            tableOrders.ItemsSource = searchedDeliveries;
-            dataBase.Dispose();
+                DataBase dataBase = new DataBase();
+                List<Delivery> deliveries = dataBase.GetAllDeliveries();
+                List<Delivery> searchedDeliveries = new List<Delivery>();
+
+                if (deliveries != null)
+                {
+                    foreach (Delivery d in deliveries)
+                    {
+                        if (regex.IsMatch(d.Customer.Surname.ToString()))
+                        {
+                            searchedDeliveries.Add(d);
+                        }
+                    }
+                }
+
+                tableOrders.ItemsSource = searchedDeliveries;
+                dataBase.Dispose();
+            }
+            catch { }
         }
     }
 }

@@ -9,16 +9,28 @@ namespace Catalog.Patterns
 {
     class ApplicationsViewModel
     {
-        private RelayCommand openProfile;
+        private RelayCommand openAddGood;
 
-        public RelayCommand OpenProfile
+        public RelayCommand OpenAddGood
         {
             get
             {
-                return openProfile ?? (openProfile = new RelayCommand(obj =>
+                return openAddGood ?? (openAddGood = new RelayCommand(obj =>
                 {
-                    ProfileWnd profileWnd = new ProfileWnd();
-                    profileWnd.Show();
+                    AdminPanelWnd.adminWnd.OpenAddGoodWnd();
+                }));
+            }
+        }
+
+        private RelayCommand openAddParams;
+
+        public RelayCommand OpenAddParams
+        {
+            get
+            {
+                return openAddParams ?? (openAddParams = new RelayCommand(obj =>
+                {
+                    AdminPanelWnd.adminWnd.OpenAddTypeWnd();
                 }));
             }
         }

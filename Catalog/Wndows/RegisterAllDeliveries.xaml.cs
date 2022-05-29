@@ -38,6 +38,12 @@ namespace Catalog.Wndows
                 Delivery delivery = new Delivery();
                 DataBase db = new DataBase();
                 delivery.DeliveryCount = 1;
+
+                if (db.GetOrders() is null)
+                {
+                    MessageBox.Show("Корзина пуста, нечего заказывать!");
+                    return;
+                }
                 
                 delivery.DeliveryDate = DateOnly.FromDateTime(Convert.ToDateTime(deliveryDateBox.Text));
                 ComboBoxItem paymentCBI = paymentTypeBox.SelectedItem as ComboBoxItem;

@@ -66,6 +66,7 @@ namespace Catalog.Wndows
 
             try
             {
+                Int64 num;
                 if (profilePassword.Text != "********")
                 {
                     Auth.currentUser.Password = profilePassword.Text;
@@ -92,6 +93,12 @@ namespace Catalog.Wndows
                 else if (profileAddress.Text.Length < 1)
                 {
                     MessageBox.Show("Адрес должен быть не менее 1 символа!");
+                    RefreshAccount();
+                    return;
+                }
+                else if (!Int64.TryParse(profilePhone.Text, out num))
+                {
+                    MessageBox.Show("Телефон должен состоять из цифр!");
                     RefreshAccount();
                     return;
                 }

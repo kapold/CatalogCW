@@ -98,7 +98,7 @@ namespace Catalog.Pages
         private void NumberSelection(object sender, RoutedEventArgs e)
         {
             RegisterWnd.regWnd.notificationBox.Text = "* Номер телефона должен быть без пробелов, знака + и длиной 12 символов.\n" +
-                "Шаблон: 375298689745";
+                "Шаблон: 375XXXXXXXXX";
         }
 
         private void LoginSelection(object sender, RoutedEventArgs e)
